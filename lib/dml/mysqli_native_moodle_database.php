@@ -665,7 +665,12 @@ class mysqli_native_moodle_database extends moodle_database {
      * @return array Array containing 'description' and 'version' info
      */
     public function get_server_info() {
-        return array('description'=>$this->mysqli->server_info, 'version'=>$this->mysqli->server_info);
+	//workaround for installation issues
+	$res = $this->mysqli->query("SELECT VERSION() AS VERSION;");
+	$res->data_seek(0);
+	$data = $res->fetch_array();
+	return array('description'=>$data["VERSION"], 'version'=>$data["VERSION"]);
+	//return array('description'=>$this->mysqli->server_info, 'version'=>$this->mysqli->server_info);
     }
 
     /**

@@ -86,6 +86,8 @@ function getADToken() {
 	);
 
 	$responseData = execCurl($data);
+	var_dump($responseData['access_token']);
+	exit;
 	return $responseData['access_token'];
 }
 function getADUsers($key, $skipToken='') {

@@ -103,58 +103,28 @@ function getADUsers($key, $skipToken='') {
 function createUsers($usersAD) {
 	global $DB;
 	if(!empty($usersAD)) {
-		echo 'ok';
-//		foreach($usersAD as $key=>$userAD) {
-//			$userObj = new stdClass();
-//			$userPrincipalName = $userAD['userPrincipalName'];
-//			$userObj->username = isset($userPrincipalName) ? $userPrincipalName : ' ';
-//			$userObj->firstname = isset($userAD['givenName']) ? $userAD['givenName'] : ' ';
-//			$userObj->lastname =  isset($userAD['surname']) ? $userAD['surname'] : ' ';
-//			$userObj->email =  isset($userAD['mail']) ? $userAD['mail'] : ' ';
-//			$userObj->lang = 'es';
-//			$userObj->institution = 'azure';
-//
-//			$user = $DB->get_record('user', array('username' => $userPrincipalName));
-//
-//			if(empty($user) || !$user) {
-//				$userObj->auth       = 'manual';
-//				$userObj->confirmed  = 1;
-//				$userObj->mnethostid = 1;
-//				$userObj->id = $DB->insert_record('user', $userObj);
-//			} else {
-//				$userObj->id = $user->id;
-//				$userObj->deleted = 0;
-//				$DB->update_record('user', $userObj);
-//			}
-//			$userObj->profile_field_origen = 'Qroma';
-//			$userObj->profile_field_tipo_empleado = isset($userAD['postalCode']) ? $userAD['postalCode'] : ' ';
-//			$userObj->profile_field_cargo = isset($userAD['jobTitle']) ? $userAD['jobTitle'] : ' ';
-//			$userObj->profile_field_celular = isset($userAD['mobilePhone']) ? $userAD['mobilePhone'] : ' ';
-//			$userObj->profile_field_codigo = isset($userAD['employeeId']) ? $userAD['employeeId'] : ' ';
-//			$userObj->profile_field_dni = isset($userAD['faxNumber']) ? $userAD['faxNumber'] : ' ';
-//
-//			$departmentField = isset($userAD['department']) ? $userAD['department'] : ' ';
-//
-//			$profileFieldArea = '';
-//			$profileFieldDireccion = '';
-//
-//			if(!empty($departmentField)) {
-//				if(strpos($departmentField,',') !== false) {
-//					$depValues = explode(',', $departmentField);
-//					$profileFieldArea = $depValues[0];
-//					$profileFieldDireccion = $depValues[1];
-//				} else if(strpos($departmentField,';') !== false) {
-//					$depValues = explode(';', $departmentField);
-//					$profileFieldArea = $depValues[0];
-//					$profileFieldDireccion = $depValues[1];
-//				} else {
-//					$profileFieldArea = $departmentField;
-//				}
-//			}
-//
-//			$userObj->profile_field_area = $profileFieldArea;
-//			$userObj->profile_field_direccion = $profileFieldDireccion;
-//			profile_save_data($userObj);
-//		}
+		foreach($usersAD as $key=>$userAD) {
+			$userObj = new stdClass();
+			$userPrincipalName = $userAD['userPrincipalName'];
+			$userObj->username = isset($userPrincipalName) ? $userPrincipalName : ' ';
+			$userObj->firstname = isset($userAD['givenName']) ? $userAD['givenName'] : ' ';
+			$userObj->lastname =  isset($userAD['surname']) ? $userAD['surname'] : ' ';
+			$userObj->email =  isset($userAD['mail']) ? $userAD['mail'] : ' ';
+			$userObj->lang = 'es';
+			$userObj->institution = 'azure';
+
+			$user = $DB->get_record('user', array('username' => $userPrincipalName));
+
+			if(empty($user) || !$user) {
+				$userObj->auth       = 'manual';
+				$userObj->confirmed  = 1;
+				$userObj->mnethostid = 1;
+				$userObj->id = $DB->insert_record('user', $userObj);
+			} else {
+				$userObj->id = $user->id;
+				$userObj->deleted = 0;
+				$DB->update_record('user', $userObj);
+			}
+		}
 	}
 }

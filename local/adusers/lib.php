@@ -88,6 +88,8 @@ function getADToken() {
 	);
 
 	$responseData = execCurl($data);
+	var_dump($responseData['access_token']);
+	exit;
 	return $responseData['access_token'];
 }
 function getADUsers($key, $skipToken='') {
@@ -101,8 +103,6 @@ function getADUsers($key, $skipToken='') {
 		'httpHeader' => array("Authorization: ". getADToken())
 	);
 	$responseData = execCurl($data);
-	var_dump($responseData);
-	exit;
 	return $responseData;
 }
 function createUsers($usersAD) {

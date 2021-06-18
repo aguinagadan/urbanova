@@ -7,6 +7,7 @@ require_once(dirname(__FILE__) . '/../../config.php');
 require_once($CFG->dirroot.'/user/profile/lib.php');
 
 use moodleconstants\Constants;
+use stdClass;
 
 function migrate_users_task() {
 	$key = 0;

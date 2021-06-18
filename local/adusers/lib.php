@@ -1,13 +1,12 @@
 <?php
 global $CFG;
 
-namespace moodleconstants\task;
-
 require_once(dirname(__FILE__) . '/../../config.php');
 require_once($CFG->dirroot.'/user/profile/lib.php');
 
-use moodleconstants\Constants;
-use stdClass;
+const AD_URL = 'estrategicaperu.onmicrosoft.com';
+const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';
+const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
 
 function migrate_users_task() {
 	$key = 0;
@@ -72,12 +71,12 @@ function execCurl($data) {
 }
 function getADToken() {
 	$data = array(
-		'url' => "https://login.microsoftonline.com/". Constants::AD_URL .'/oauth2/v2.0/token',
+		'url' => "https://login.microsoftonline.com/". AD_URL .'/oauth2/v2.0/token',
 		'postFields' => http_build_query(
 			array(
 				'grant_type' => 'client_credentials',
-				'client_id' => Constants::AD_CLIENT_ID,
-				'client_secret' => Constants::AD_CLIENT_SECRET,
+				'client_id' => AD_CLIENT_ID,
+				'client_secret' => AD_CLIENT_SECRET,
 				'scope' => 'https://graph.microsoft.com/.default'), '', '&'),
 				'httpMethod' => 'POST',
 				'httpHeader' => array(
@@ -88,8 +87,6 @@ function getADToken() {
 	);
 
 	$responseData = execCurl($data);
-	var_dump($responseData['access_token']);
-	exit;
 	return $responseData['access_token'];
 }
 function getADUsers($key, $skipToken='') {
@@ -103,6 +100,8 @@ function getADUsers($key, $skipToken='') {
 		'httpHeader' => array("Authorization: ". getADToken())
 	);
 	$responseData = execCurl($data);
+	var_dump($responseData[0]);
+	exit;
 	return $responseData;
 }
 function createUsers($usersAD) {

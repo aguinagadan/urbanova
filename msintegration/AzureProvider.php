@@ -58,7 +58,15 @@ class AzureProvider {
 			"grant_type" => $grantType
 		);
 
-		$fields_string = http_build_query($fields,'', '&');
+		// For each API Url field
+		foreach($fields as $key=>$value) {
+			$fields_string .= $key . "=" . $value . "&";
+		}
+
+		// Trim, prep query string
+		rtrim($fields_string, "&");
+
+		$fields_string = substr($fields_string, 0, -1);
 
 		// Make HTTP request
 		$ch = curl_init();
@@ -71,6 +79,7 @@ class AzureProvider {
 		$result = json_decode($result);
 		curl_close($ch);
 
+		var_dump($fields_string);
 		var_dump($result->access_token);
 		exit;
 

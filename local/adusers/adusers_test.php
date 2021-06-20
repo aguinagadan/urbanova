@@ -1,9 +1,9 @@
 <?php
-
 require_once(dirname(__FILE__) . '/../../config.php');
-include(dirname(__FILE__) . '/../../msintegration/AzureProvider.php');
 
-use azure\provider\azureprovider as adProvider;
+spl_autoload_register(function ($clase) {
+	include $clase . '.php';
+});
 
 $provider = new adProvider();
 var_dump($provider);

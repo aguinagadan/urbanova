@@ -1,7 +1,8 @@
 <?php
-global $CFG;
 
 namespace azure\provider\adusers;
+
+global $CFG;
 
 require_once(dirname(__FILE__) . '/../../config.php');
 require_once(dirname(__FILE__) . '/../../msintegration/AzureProvider.php');

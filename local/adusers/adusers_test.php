@@ -4,7 +4,7 @@ global $DB;
 
 require_once(dirname(__FILE__) . '/../../config.php');
 
-const AD_URL = 'estrategicaperu.onmicrosoft.com';
+const AD_URL = '3e0289c2-e351-4c79-998b-8167c83a06d3';
 const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';
 const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
 

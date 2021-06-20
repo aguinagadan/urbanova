@@ -45,21 +45,22 @@ function execCurl($data) {
 }
 function getADToken() {
 	$data = array(
-		'url' => AD_URL,
-		'postFields' =>
+		'url' => 'estrategicaperu.onmicrosoft.com',
+		'postFields' => http_build_query(
 			array(
 			'grant_type' => 'client_credentials',
-			'client_id' => AD_CLIENT_ID,
-			'client_secret' => AD_CLIENT_SECRET,
-			'scope' => 'https://graph.microsoft.com/.default'),
+			'client_id' => '15694cd7-31c2-4b7c-acf8-f257c754d499',
+			'client_secret' => '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9',
+			'scope' => 'https://graph.microsoft.com/.default'), '', '&'),
 		'httpMethod' => 'POST',
 		'httpHeader' => array('host: login.microsoftonline.com',
 			'Content-Type:application/x-www-form-urlencoded',
 			'Cookie:buid=0.AQYASG_it5IiFEqjVRrrhImuPRgFD1jTGCJMjrrTt_PN72QGAAA.AQABAAEAAAAGV_bv21oQQ4ROqh0_1-tAW_7_lkPgDNNQcc9ndJ6-VT_fKycsxUQA_fsiaenVHh0m1dZmFiOVou0VgVUcdSWQcKUXNWy0yeSTtMjrE4vBvIZsvOjiuXWYPgfnevpPNZAgAA; fpc=AlKOys_Nd-FDqTUucSXhED6Lv60HAQAAAEAZ29YOAAAA; x-ms-gateway-slice=estsfd; stsservicecookie=estsfd'
-		));
+		)
+	);
 
 	$responseData = execCurl($data);
-	var_dump($responseData);
+	var_dump($responseData['access_token']);
 	exit;
 
 	return $responseData['access_token'];

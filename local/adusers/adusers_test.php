@@ -6,7 +6,7 @@ require_once(dirname(__FILE__) . '/../../config.php');
 
 const AD_URL = 'estrategicaperu.onmicrosoft.com';
 const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';
-const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
+const AD_CLIENT_SECRET = '75dda166-0df1-407a-96da-fbf240967738';
 
 function execCurl($data) {
 	$curl = curl_init();
@@ -31,10 +31,6 @@ function execCurl($data) {
 		$curlSetOptArray[CURLOPT_POSTFIELDS] = $postFields;
 	}
 	$curlSetOptArray[CURLOPT_HTTPHEADER] = $httpHeader;
-
-	echo '<pre>';
-	var_dump($curlSetOptArray);
-	exit;
 
 	curl_setopt_array($curl, $curlSetOptArray);
 	$response = curl_exec($curl);

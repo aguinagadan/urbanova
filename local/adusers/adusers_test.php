@@ -1,17 +1,12 @@
 <?php
 
-namespace azure\provider\adusers;
-
-use azure\provider\azureprovider;
-
 require_once(dirname(__FILE__) . '/../../config.php');
-require_once(dirname(__FILE__) . '/../../msintegration/AzureProvider.php');
+include(dirname(__FILE__) . '/../../msintegration/AzureProvider.php');
 
-$provider = new azureprovider();
+use azure\provider\azureprovider as adProvider;
+
+$provider = new adProvider();
 var_dump($provider);
-exit;
-
-var_dump($users);
 exit;
 
 /*

@@ -66,6 +66,10 @@ class AzureProvider {
 		// Trim, prep query string
 		rtrim($fields_string, "&");
 
+		var_dump($url);
+		var_dump($fields_string);
+		exit;
+
 		// Make HTTP request
 		$ch = curl_init();
 		curl_setopt($ch,CURLOPT_URL, $url);

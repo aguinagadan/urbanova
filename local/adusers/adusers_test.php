@@ -26,7 +26,7 @@ curl_setopt_array($ch, array(
 		'Authorization: '.$authToken,
 		'Content-Type: application/json'
 	),
-	CURLOPT_POSTFIELDS => json_encode($postData)
+	CURLOPT_POSTFIELDS => '&'.json_encode($postData)
 ));
 
 // Send the request

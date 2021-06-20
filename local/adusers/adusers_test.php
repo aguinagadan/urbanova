@@ -2,6 +2,7 @@
 global $CFG;
 
 require_once(dirname(__FILE__) . '/../../config.php');
+require_once(realpath(dirname(__FILE__)) . '/../../msintegration/AzureProvider.php');
 
 use azure\provider\azureprovider;
 

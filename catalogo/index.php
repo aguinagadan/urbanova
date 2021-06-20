@@ -10,6 +10,7 @@ $PAGE->set_context($context);
 $title = 'Catálogo de Cursos';
 $url = new moodle_url("/catalogo/index.php");
 $PAGE->set_url($url);
+$PAGE->set_pagelayout('frontpage');
 $PAGE->set_title($title);
 
 echo $OUTPUT->header();

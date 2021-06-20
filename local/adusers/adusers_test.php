@@ -5,8 +5,8 @@ spl_autoload_register(function ($clase) {
 	include $clase . '.php';
 });
 
-$provider = new AzureProvider();
-var_dump($provider);
+$provider = new ADProvider();
+var_dump($provider->getUsers());
 exit;
 
 /*

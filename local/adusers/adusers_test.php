@@ -3,9 +3,7 @@ global $CFG;
 
 require_once(dirname(__FILE__) . '/../../config.php');
 
-use azureprovider\AzureProvider;
-
-$adProvider = new AzureProvider();
+$adProvider = new azureprovider();
 $users = $adProvider->getUsers();
 
 var_dump($users);

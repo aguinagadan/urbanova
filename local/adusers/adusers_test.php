@@ -4,7 +4,45 @@ global $DB;
 
 require_once(dirname(__FILE__) . '/../../config.php');
 
-const AD_URL = 'estrategicaperu.onmicrosoft.com';
+$tenant  = 'estrategicaperu.onmicrosoft.com';
+$authToken = 'Bearer access_token';
+const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';
+const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
+
+// The data to send to the API
+$postData = array(
+	'grant_type' => 'client_credentials',
+	'client_id' => AD_CLIENT_ID,
+	'client_secret' => AD_CLIENT_SECRET
+);
+
+// Setup cURL
+$ch = curl_init("https://login.windows.net/".$tenant."/oauth2/token?api-version=1.0");
+curl_setopt_array($ch, array(
+	CURLOPT_POST => TRUE,
+	CURLOPT_RETURNTRANSFER => TRUE,
+	CURLOPT_HTTPHEADER => array(
+		'Authorization: '.$authToken,
+		'Content-Type: application/json'
+	),
+	CURLOPT_POSTFIELDS => json_encode($postData)
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+	die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+
+print_r($responseData);
+exit;
+
+/*const AD_URL = 'estrategicaperu.onmicrosoft.com';
 const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';
 const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
 
@@ -129,4 +167,4 @@ if(!empty($usersAD)) {
 			$DB->update_record('user', $userObj);
 		}
 	}
-}
+}*/

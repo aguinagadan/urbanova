@@ -12,7 +12,7 @@ $client_id = '15694cd7-31c2-4b7c-acf8-f257c754d499'; // Client App ID (from Micr
 $client_secret = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';; // Client App Secrect (from Microsoft)
 $client_space = 'estrategicaperu.onmicrosoft.com'; // Microsoft Domain ID
 $client_redirect = "https://www.campusqroma.com/local/systemscripts/testSSO.php"; // Where to redirect after authenticated
-$scopes = "User.ReadAll"; // Scopes of data requested (ex. 'openid+profile+user.read')
+$scopes = 'https://graph.microsoft.com/.default'; // Scopes of data requested (ex. 'openid+profile+user.read')
 // Get Auth Code from MS API
 
 	// Build API Token Url

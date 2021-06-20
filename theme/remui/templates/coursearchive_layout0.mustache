@@ -1,0 +1,32 @@
+
+{{> theme_remui/coursefilters }}
+
+<div class="nav-tabs-horizontal courses-tabs" data-plugin="tabs">
+    <ul class="nav nav-tabs nav nav-tabs nav-tabs-line" role="tablist">
+        {{#tabcontent}}
+        <li class="nav-item" role="presentation">
+            <a id="{{name}}tab" class="nav-link {{#isActive}}active show{{/isActive}} bg-transparent" data-toggle="tab" href="#{{name}}region" aria-controls="{{name}}region" role="tab" aria-selected="{{#isActive}}true{{/isActive}}{{^isActive}}false{{/isActive}}" tabindex="0">
+                {{text}}
+            </a>
+        </li>
+        {{/tabcontent}}
+    </ul>
+    <div class="tab-content mt-10 {{#latest_card}}latest-cards{{/latest_card}}">
+        <div class="courses-loader-wrap w-100 h-100">
+            <i class="fa fa-spinner fa-spin fa-2x fa-fw" aria-hidden="true"></i>
+            </div>
+        {{#tabcontent}}
+        <div class="tab-pane {{#isActive}}active show{{/isActive}}" id="{{name}}region" role="tabpanel">
+            <div class="row content">
+            </div>
+            <div class="pagination" id="{{name}}pagination"></div>
+        </div>
+        {{/tabcontent}}
+    </div>
+</div>
+
+{{#js}}
+require(['theme_remui/loader',  'theme_remui/coursecategory'], function (l, c) {
+    Breakpoints();
+});
+{{/js}}

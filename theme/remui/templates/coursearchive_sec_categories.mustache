@@ -1,0 +1,22 @@
+<div class="inner-container p-4 mb-4 col-lg-12 col-sm-12 section-categories">
+	<div class="panel m-0">
+		<div class="panel-heading" id="defaultHeading_1" role="tab">
+			<a class="panel-title d-flex justify-content-between align-items-center p-0" data-toggle="collapse" href="#collapseDefault_1" data-parent="#exampleAccordionDefault" aria-expanded="true" aria-controls="collapseDefault_1">
+				<h4 class="m-0">{{#str}}categoryfilter, theme_remui {{/str}}</h4>
+				<i class="fa fa-angle-down rotate-icon">
+				</i>
+			</a>
+		</div>
+		<div class="panel-collapse collapse show" id="collapseDefault_1" aria-labelledby="defaultHeading_1" role="tabpanel" style="">
+			<div class="panel-body p-0">
+				<ul class="list-group ">
+					{{#categories}}
+						<li class="list-group-item p-0">
+							<a href="{{{config.wwwroot}}}/course/index.php?categoryid={{id}}" category-filter-link data-id="{{id}}">{{{title}}} <span class="float-right">({{courses}})</span></a>
+							</li>
+					{{/categories}}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

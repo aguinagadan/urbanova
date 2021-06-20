@@ -1,0 +1,370 @@
+/* Anchor link offset fix. This makes hash links scroll 60px down to account for the fixed header. */
+
+$drawer-closed-width: 80px !default;
+$drawer-width: 260px !default;
+$drawer-padding-x: 0px !default;
+$drawer-padding-y: 0px !default;
+$drawer-offscreen-gutter: 20px !default;
+$sidebar-open-footer-link-height: 75px;
+$sidebar-close-footer-link-height: 55px;
+$drawer-transition-timing: 500ms;
+$drawer-transition-function: ease;
+
+:target::before {
+    content: " ";
+    display: block;
+    height: ($navbar-height + 10px); /* fixed header height*/
+    margin-top: -($navbar-height + 10px); /* negative fixed header height */
+    width: 1px;
+    pointer-events: none;
+}
+
+.pagelayout-embedded :target {
+    padding-top: initial;
+    margin-top: initial;
+}
+
+body {
+    #nav-drawer.closed {
+        .mycoursesubmenu .list-group-item {
+            padding: 16px !important;
+            & > div {
+                margin: 0 !important;
+                & > div.media {
+                    margin: 0 !important;
+                }
+            }
+        }
+    }
+}
+body.full-sidebar {
+    #nav-drawer.closed {
+        left: -($drawer-width + $drawer-offscreen-gutter);
+    }
+}
+body {
+    &:not(.drawer-open-left) {
+        .site-menubar-footer {
+            width: $drawer-closed-width;
+        }
+        .site-menubar-footer {
+            flex-direction: column;
+            &:not(:hover) {
+                a:not(:last-child) {
+                    display: none;
+                }
+            }
+            a {
+                height: $sidebar-close-footer-link-height;
+            }
+        }
+    }
+    &.drawer-open-left {
+        .site-menubar-footer {
+            a {
+                height: $sidebar-open-footer-link-height;
+            }
+        }
+        .list-group-item .media-body {
+            display: flex;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    #nav-drawer.closed {
+        left: -($drawer-width + $drawer-offscreen-gutter);
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    body:not(.drawer-open-left) {
+        &:not(.full-sidebar) {
+            #nav-drawer.closed {
+                .list-group-item {
+                    .media {
+                        .media-body {
+                            display: none;
+                        }
+                    }
+                }
+                .site-menubar-footer {
+                    width: $drawer-closed-width;
+                }
+                @include media-breakpoint-up(sm) {
+                    width: $drawer-closed-width;
+                }
+            }
+        }
+        #nav-drawer.closed {
+            // left: -($drawer-width + $drawer-offscreen-gutter);
+            .list-group-item {
+                .media {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .media-left .icon {
+                        margin: 0;
+                        font-size: 16px;
+                        width: 16px;
+                        height: 16px;
+                    }
+                }
+                &.hovered {
+                    background: '[[setting:left-sidebar-main-link-hover-background]]';
+                    .icon {
+                        color: '[[setting:left-sidebar-main-link-hover-text]]';
+                    }
+                    .media-body {
+                        background: '[[setting:left-sidebar-main-link-hover-background]]';
+                        color: '[[setting:left-sidebar-main-link-hover-text]]';
+                        display: inline-block !important;
+                        align-items: center;
+                        position: fixed;
+                        left: 80px;
+                        width: 250px;
+                        height: 54px;
+                        padding: 16px;
+                    }
+                }
+            }
+            .section-heading {
+                color: '[[setting:left-sidebar-main-link-text]]';
+            }
+        }
+    }
+}
+#page {
+    margin-top: $navbar-height;
+    // margin-right: 0;
+}
+
+/* Use a variable for the drawer background colors. */
+$drawer-bg: $gray-lighter !default;
+
+[data-region="drawer"] {
+    position: fixed;
+    padding: $drawer-padding-x $drawer-padding-y;
+    width: $drawer-width;
+    top: $navbar-height;
+    bottom: 0;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    z-index: $zindex-footer - 1;
+    background-color: '[[setting:left-sidebar-main-background-color]]';
+    transition: width $drawer-transition-timing $drawer-transition-function;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    .list-group-item {
+        border-radius: 0 !important;
+        color: '[[setting:left-sidebar-main-link-text]]';
+        background: '[[setting:left-sidebar-main-background-color]]';
+        a {
+            color: '[[setting:left-sidebar-main-link-text]]';
+        }
+        &:hover {
+            color: '[[setting:left-sidebar-main-link-hover-text]]' !important;
+            background-color: '[[setting:left-sidebar-main-link-hover-background]]' !important;
+            text-decoration: none;
+            a {
+                color: '[[setting:left-sidebar-main-link-hover-text]]' !important;
+            }
+        }
+    }
+    .list-group {
+        border-color: '[[setting:left-sidebar-main-background-color]]' !important;
+    }
+    .list-group-item {
+        border: none;
+        padding: 1rem 1.25rem;
+        margin-bottom: 0 !important;
+        &.active {
+            background: '[[setting:left-sidebar-main-active-link-background]]';
+            border: none;
+            color: '[[setting:left-sidebar-main-active-link-color]]';
+            a {
+                color: '[[setting:left-sidebar-main-active-link-color]]';
+            }
+            .icon {
+                color: '[[setting:left-sidebar-main-active-link-color]]';
+            }
+        }
+        .media-body {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .icon {
+            margin-right: 1rem;
+        }
+    }
+    .site-menubar-footer {
+        position: fixed;
+        bottom: 0;
+        width: $drawer-width;
+        transition: width $drawer-transition-timing $drawer-transition-function;
+        a {
+            background-color: '[[setting:left-sidebar-secondary-background-color]]';
+            text-decoration: none;
+            &:hover {
+                background-color: '[[setting:left-sidebar-secondary-link-hover-background]]';
+            }
+            .fa {
+                font-size: '[[setting:left-sidebar-secondary-font-size]]'rem;
+                color: '[[setting:left-sidebar-secondary-link-icon]]';
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    [data-region="drawer"] {
+        padding: $drawer-padding-x $drawer-padding-y;
+    }
+}
+#nav-drawer {
+    right: auto;
+    left: 0;
+    &:focus {
+        outline: none;
+    }
+}
+
+#nav-drawer-container {
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+        display: none;
+        border-top: none;
+    }
+    .list-group {
+        // Remove default list styling in nav menus.
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        // Add margin to be consistent with `.list-group-item` spacing.
+        li {
+            margin-bottom: -1px;
+        }
+        li:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+#page {
+    margin-top: $navbar-height;
+}
+.pagelayout-embedded #page {
+    margin-top: 0;
+}
+body.drawer-ease {
+    transition: margin-left $drawer-transition-timing $drawer-transition-function, margin-right $drawer-transition-timing $drawer-transition-function;
+}
+
+body {
+    margin-left: 0;
+    @include media-breakpoint-up(md) {
+        &:not(.pagelayout-login) {
+            margin-left: $drawer-closed-width;
+        }
+        &.pagelayout-secure {
+            margin-left: 0;
+        }
+    }
+}
+
+body.drawer-open-left {
+    @include media-breakpoint-up(md) {
+        margin-left: $drawer-width;
+
+        &.pagelayout-secure {
+            margin-left: 0;
+        }
+    }
+}
+body.drawer-open-right {
+    @include media-breakpoint-up(md) {
+        margin-right: $drawer-width;
+    }
+}
+
+$right-drawer-width: 280px;
+
+
+[data-region=right-hand-drawer] {
+    display: flex;
+    flex-direction: column;
+    @include transition(right .2s ease-in-out);
+
+    &.drawer {
+        z-index: $zindex-sticky;
+        position: fixed;
+        top: $navbar-height;
+        right: 0;
+        height: calc(100% - #{$navbar-height});
+        width: $right-drawer-width;
+        box-shadow: -2px 2px 4px rgba(0, 0, 0, .08);
+        padding: 0;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .closewidget {
+        display: none;
+    }
+
+    &.hidden {
+        display: block;
+        right: $right-drawer-width * -1;
+        // Turn off visibility so that nothing in the drawer can receive focus when
+        // it is hidden.
+        visibility: hidden;
+        opacity: 0;
+        // Delay visibility changes until after the slide right animation has completed.
+        @include transition(right .2s ease-in-out, visibility 0s ease-in-out .2s, opacity 0s ease-in-out .2s);
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    [data-region=right-hand-drawer] {
+        &.drawer {
+            top: 0;
+            height: 100%;
+            z-index: $zindex-fixed;
+        }
+        .closewidget {
+            display: block;
+            padding: 0 0.2rem;
+        }
+    }
+    body.drawer-open-left,
+    body.drawer-open-right {
+        overflow: hidden;
+    }
+}
+
+.dir-rtl {
+    [data-region=right-hand-drawer] {
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, .08);
+    }
+}
+// Merged Message Panel Css
+#sidebar-message {
+    [data-region=right-hand-drawer] {
+        &.drawer {
+            position: absolute;
+            height: calc(100% - #{$navbar-height});
+        }
+    }
+}

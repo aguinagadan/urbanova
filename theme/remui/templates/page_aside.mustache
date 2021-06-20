@@ -1,0 +1,69 @@
+<section data-region="blocks-column" class="d-print-none page-aside" aria-label="{{#str}}blocks{{/str}}">
+    {{#initrightsidebar}}
+    <div class="page-aside-switch d-flex align-items-center justify-content-center">
+        <i class="fa fa-angle-left icon m-0 d-flex align-items-center justify-content-center" aria-hidden="true">
+            {{#unreadrequestcount}}
+                <span class="unread-count-sidebarbutton font-size-10 count-container animation-shake position-absolute" style="top: 0px;left: -5px;">{{unreadrequestcount}}</span>
+            {{/unreadrequestcount}}
+        </i>
+        {{^disablesidebarpinning}}<i class="fa fa-thumb-tack icon m-0 d-none align-items-center justify-content-center" title="{{#pinaside}}{{#str}}unpinsidebar, theme_remui{{/str}}{{/pinaside}}{{^pinaside}}{{#str}}pinsidebar, theme_remui{{/str}}{{/pinaside}}" aria-hidden="true"></i>{{/disablesidebarpinning}}
+    </div>
+    <ul class="site-sidebar-nav nav nav-tabs nav-tabs-line" role="tablist">
+        {{#hasblocks}}
+            <li class="nav-item text-center">
+                <a class="nav-link active show py-3" data-toggle="tab" href="#sidebar-blocks" role="tab" aria-label="Post Side Blocks" aria-selected="true">
+                <i class="icon fa fa-th-large" aria-hidden="true"></i>
+                </a>
+            </li>
+        {{/hasblocks}}
+        {{{ messagetoggle }}}
+        {{#usercanmanage}}
+            <li class="nav-item text-center">
+                <a class="nav-link py-3 {{^hasblocks}}{{^messagetoggle}}active show{{/messagetoggle}}{{/hasblocks}}" data-toggle="tab" href="#sidebar-settings" role="tab" 
+                {{^hasblocks}}
+                    {{^messagetoggle}}
+                        aria-selected="true"
+                    {{/messagetoggle}}
+                {{/hasblocks}}
+                {{#hasblocks}}
+                    {{^messagetoggle}}
+                        aria-selected="false"
+                    {{/messagetoggle}}
+                {{/hasblocks}}
+                {{^hasblocks}}
+                    {{#messagetoggle}}
+                    aria-selected="false"
+                    {{/messagetoggle}}
+                {{/hasblocks}}
+
+                aria-label="Theme Color Customization"
+
+                >
+                <i class="icon fa fa-paint-brush" aria-hidden="true"></i>
+                </a>
+            </li>
+        {{/usercanmanage}}
+    </ul>
+    <div class="site-sidebar-tab-content tab-content">
+        {{#hasblocks}}
+            <div class="tab-pane fade p-0 active show" id="sidebar-blocks">
+                {{{ sidepreblocks }}}
+            </div>
+        {{/hasblocks}}
+        {{#messagedrawer}}
+            <div class="tab-pane fade p-0 {{^hasblocks}}active show{{/hasblocks}}" id="sidebar-message">
+                {{{ messagedrawer }}}
+            </div>
+        {{/messagedrawer}}
+        {{#usercanmanage}}
+            <div class="tab-pane fade p-0 {{^hasblocks}}{{^messagetoggle}}active show{{/messagetoggle}}{{/hasblocks}}" id="sidebar-settings">
+                <div class="p-3 text-center customizer-migrate-notice">
+                    {{#str}} customizer-migrate-notice, theme_remui {{/str}}
+                    <br>
+                    <a class="text-center btn btn-primary text-white customizer-turn-editing-on">{{#str}}customizer, theme_remui{{/str}}</a>
+                </div>
+            </div>
+        {{/usercanmanage}}
+    </div>
+    {{/initrightsidebar}}
+</section>

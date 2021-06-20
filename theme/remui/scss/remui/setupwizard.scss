@@ -1,0 +1,69 @@
+#page-theme-remui-setupwizard {
+	.edw.setupwizard-container{
+		.steps {
+			.step {
+				cursor: default;
+			}
+		}
+		.step-data{
+			.adminsettings {
+				display: none;
+				&.active {
+					display: block;
+				}
+			}
+
+			.license-box {
+				.box-container{
+					width: 400px;
+				}
+			}
+		}
+		.licensing-loader {
+			vertical-align: middle;
+		    width: 1rem;
+		    height: 1rem;
+		    margin-left: 10px;
+		}
+	}
+	.license-html {
+		.customizer-link {
+			&:hover {
+				text-decoration: none;
+				h4 {
+					.customizer-title {
+						color: #8e8e4c;
+						background-color: white;
+						border: 1px solid #8e8e4c;
+					}
+				}
+			}
+			h4{
+				transition: 0.3s;
+			}
+		}
+	}
+	.customizer-title {
+		font-size: 26px;
+		color: white;
+		font-weight: 600;
+	}
+	.license-notice {
+		display: none;
+	}
+}
+
+// Adding the css for current step
+.step{
+	&.active {
+		transform: scale(1.05);
+		z-index: 10;
+		box-shadow: 1px 5px 5px #d2d2c8;
+		&.current {
+		    border: 1px solid darken(#62a8ea, 5%);
+		}
+	    &.done {
+	    	border: 1px solid darken(#11c26d, 5%);
+	    }
+	}
+}

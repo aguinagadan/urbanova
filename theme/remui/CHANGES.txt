@@ -1,0 +1,80 @@
+Change Log:
+===========
+
+Version 3.10.7
+
+Fix - Sending ajax request only when filter is changed on Course archive page.
+Tweak - Higly optmized course stats load time.
+Tweak - CURL requests are now compatible with proxy settings.
+Tweak - Improved Services security.
+
+
+Version 3.10.6 - Hotfix
+
+Fix - Issue with Latest update for column2 layout.
+
+Version 3.10.5
+
+Fix - Site Home Page, messaging panel was not opening on click.
+Fix - Long Profile field name issue on Profile page.
+Fix - Block Navigation, accordion menus width issue with the theme.
+Fix - Custom Profile Field labels were not visible on sign up page.
+Fix - Gradebook scrolling issue.
+Fix - Course card title issue with long course name.
+Fix - Profile name alignment issue.
+Fix - Edit Quiz UI issue.
+Feature - Course Page Navigation Improvements.
+Feature - Login page settings in customizer.
+Feature - Footer advance and footer secondary settings in customizer.(With live preview)
+Tweak - Select category using url on course archive page. Minor UI improvements.
+
+
+Version 3.10.4
+
+Fix - Undefined index issue with the select element in customizer.
+Fix - Customizer controls visibility issue with Safari browser.
+Fix - Course format issue with visibility and width.
+Fix - Edit Quiz review option cluttered in all lang except English.
+Fix - Issue in icon size of competencies main page and nested course page.
+Fix - Some activities not displayed on the course enrollment page for guest users.
+Fix - One topic format issue with pix_icon.
+Fix - Exit scorm activity button.
+Fix - Search field on the course archive page was not working.
+Tweak - Disabled Edwiser RemUI plugin update functionality.
+Tweak - Flat navigation improvement.
+Feature - Added Edwiser Demo importer button in footer and tab in settings.
+
+
+Version 3.10.3
+
+Fix - Language strings escaping issue with special characters.
+Fix - Gravatar Profile image issue.
+Fix - Multiple custom fields issue.
+
+
+Version 3.10.2
+
+Fix - Deleted activities were visible on Enrollment page issue.
+Fix - Multilang support for Focus mode navigation.
+Fix - Messaging icon was visible in header when merged into sidebar.
+Fix - Multilang support on Course Description.
+Fix - Grades column background color issue.
+Fix - Added Safari browser support for Course archive page.
+Fix - Multilang support for footer section.
+Fix - Hidden and restricted sections were visible on Enrollment page.
+Fix - Instructors section issue on enrollment page.
+Fix - Global Search styling issue with Customizer.
+Fix - Site logo and Sitename issue on login page.
+Feature - One Click Bug reporting, helps users to send immediate feedback/report bugs in the theme.
+Feature - Setup Wizard, helps users to save required settings to setup Edwiser RemUI.
+
+Version 3.10.1
+
+Fix - Left sidebar footer title issue.
+Tweak - Course statistics displayed to guest users.
+
+Feature - Edwiser RemUI Theme Customizer.
+
+Version 3.10.0
+
+Initial Version of Edwiser RemUI, made compatible with latest version of Moodle 3.10.

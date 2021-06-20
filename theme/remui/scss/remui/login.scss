@@ -1,0 +1,184 @@
+#page-login-index,
+#page-login-signup {
+    &.site-identity-iconsitename {
+        .site-logo {
+            display: none;
+        }
+    }
+    &.site-identity-logo {
+        .site-name {
+            display: none;
+        }
+    }
+    &.site-identity-sitenamewithlogo {
+        .site-name .site-icon {
+            display: none;
+        }
+    }
+    background-image: url("[[setting:login_bg]]");
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-position: center top;
+    background-size: cover;
+    &::after {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background-color: rgba(38,50,56,.6);
+    }
+    .page-brand-info {
+        position: fixed;
+        top: 100px;
+        width: calc(100% - 500px);
+        padding: 75px;
+        color: '[[setting:signuptextcolor]]';
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6 {
+            color: '[[setting:signuptextcolor]]';
+        }
+    }
+    .logininfo {
+        color: white;
+    }
+    &.panel-position-left {
+        .loginform,
+        .signupform {
+            left: 0;
+            animation-name: slide-left;
+        }
+        .page-brand-info {
+            right: 0;
+        }
+    }
+    &.panel-position-right {
+        .loginform,
+        .signupform {
+            right: 0;
+            animation-name: slide-right;
+        }
+        .page-brand-info {
+            left: 0;
+        }
+    }
+    .loginform,
+    .signupform {
+        position: fixed;
+        top: 0;
+        background: '[[setting:loginpanelbackgroundcolor]]';
+        color: '[[setting:loginpaneltextcolor]]';
+        height: 100%;
+        width: 500px;
+        overflow-y: auto;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: both;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6 {
+            color: '[[setting:loginpaneltextcolor]]' !important;
+        }
+        a {
+            color: '[[setting:loginpanellinkcolor]]';
+            &:hover {
+                color: '[[setting:loginpanellinkhovercolor]]';
+            }
+        }
+        .card {
+            background-color: transparent;
+        }
+        .col-form-label {
+            display: none !important;
+        }
+        #fgroup_id_buttonar {
+            margin: 20px 0px;
+            .col-md-1 {
+                display: none;
+            }
+            .col-md-11 {
+                max-width: 100%;
+                flex: 1;
+                padding: 0px;
+            }
+        }
+        .custom-select {
+            width: 100%;
+        }
+    }
+    #page {
+        background: '[[setting:loginbackgroundopacity]]';
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .page-brand-info {
+        display: none;
+    }
+    .loginform, .signupform {
+        width: 100% !important;
+    }
+    #page-footer {
+        background: $primary;
+        width: 100%;
+        color:white;
+    }
+}
+@media screen and (max-width: 480px) {
+    .loginform, .signupform {
+        .card-block {
+            padding: 2rem 1rem 8rem 1rem !important;
+        }
+    }
+}
+@keyframes slide-right {
+    0% {
+      opacity: 0;
+      transform: translate3d(100%, 0, 0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Be default, lables are hidden. Make them visible*/
+#page-login-signup .signupform .col-form-label {
+    display: flex!important;
+    .ml-md-auto {
+        margin-left: initial !important;
+    }
+}
+
+/* Make info icon in center. */
+#page-login-signup .signupform .float-sm-right {
+    padding-top: calc(.429rem + 1px);
+    padding-bottom: calc(.429rem + 1px);
+}

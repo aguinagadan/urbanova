@@ -1,0 +1,70 @@
+.btn-round {
+    border-radius: 1000px;
+}
+.social-facebook {
+    background-color: #3b5998!important;
+}
+.social-twitter {
+    background-color: #55acee!important;
+}
+.social-linkedin {
+    background-color: #0976b4!important;
+}
+.social-google-plus  {
+    background-color: #c23321!important;
+}
+.social-instagram {
+    background-color: #3f729b!important
+}
+.social-youtube {
+    background-color: #b31217!important;
+}
+.social-pinterest,
+.social-quora {
+    background-color: #cc2127!important;
+}
+/* Footer column styling */
+#page-footer {
+    .footer-primary {
+        border-bottom: 1px solid rgba(255, 255, 255, .15);
+    }
+    .footer-column {
+        .custom-html,
+        .social-links,
+        .footer-menu {
+            display: none;
+        }
+        &.column-type-social {
+            .social-links {
+                display: block;
+                a.social-disabled {
+                    display: none;
+                }
+            }
+        }
+        &.column-type-customhtml {
+            .custom-html {
+                display: block;
+            }
+        }
+        &.column-type-menu {
+            .footer-menu {
+                display: block;
+                &.menu-vertical {
+                    a {
+                        display: block;
+                    }
+                }
+                &.menu-horizontal {
+                    a {
+                        margin-right: 15px;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+    .secondary-footer-logo {
+        height: $navbar-height;
+    }
+}

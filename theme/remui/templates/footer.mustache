@@ -1,0 +1,151 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    Page footer.
+}}
+<footer id="page-footer" class="py-3">
+    <div class="floating-buttons page-settings" data-html2canvas-ignore>
+        <button id="gotop" type="button" class=" btn btn-floating btn-primary {{#hasblock}}hasblock{{/hasblock}} d-none align-items-center justify-content-center" data-toggle="tooltip" data-original-title="Go Top" data-placement="left" data-trigger="hover" aria-label="Go To Top" role="button">
+            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+        </button>
+
+        {{#turneditingonurl}}
+		<button type="button" class="btn btn-floating align-items-center justify-content-center d-flex"
+    		style="background: #eb6709!important;"
+    		data-toggle="tooltip" data-original-title="Turn Editing {{^editingon}}On{{/editingon}} {{#editingon}}Off{{/editingon}}" data-placement="left" data-trigger="hover"
+    		aria-label="Turn Editing {{^editingon}}On{{/editingon}} {{#editingon}}Off{{/editingon}}"
+    		role="switch" aria-checked="false" >
+    		<a href="{{turneditingonurl}}" class="d-flex align-items-center text-decoration-none">
+            	<i class="fa {{#editingon}}fa-times{{/editingon}}{{^editingon}}fa-pencil{{/editingon}}" aria-hidden="
+            true"></i>
+            </a>
+    	</button>
+        {{/turneditingonurl}}
+
+        {{#focusdata.enabled}}
+            <button id="focusmodebutton" type="button" class="btn {{focusdata.btnbg}} btn-floating align-items-center justify-content-center d-flex" data-toggle="tooltip" data-original-title="Focus Mode" data-placement="left" data-trigger="hover" aria-label="Toggle Focus Mode" role="Button" aria-pressed="false" >
+                <i class="fa {{focusdata.btnicon}}" aria-hidden="true"></i>
+            </button>
+        {{/focusdata.enabled}}
+        {{#floating_buttons}}
+            {{{floating_buttons}}}
+        {{/floating_buttons}}
+    </div>
+    {{# footerdata }}
+    <div class="container-fluid">
+        <div class="container footer-primary {{#emptyprimary}}d-none{{/emptyprimary}}">
+            <div class="row m-0 p-0">
+                {{# sections }}
+                <div id="footer-column-{{index}}"
+                class="{{ classes }} text-xs-center footer-column column-type-{{ type }} {{^visible}}d-none{{/visible}}"
+                style="flex: 0 0 {{#width}}{{width}}{{/width}}{{^width}}25{{/width}}%;">
+                    <div class="p-2 custom-html {{^hascontent}}invisible{{/hascontent}}">
+                        <h4 class="card-title mt-1 font-weight-normal font-size-18">{{{ title }}}</h4>
+                        <div class="card-text">{{{ content }}}</div>
+                    </div>
+                    {{> theme_remui/social_links }}
+                    {{> theme_remui/footer_menu }}
+                </div>
+                {{/ sections }}
+            </div>
+        </div>
+
+        <div class="footer-bottom row mx-3 px-0 py-2">
+            <div class="site-footer-legal pt-2 col-md-6">
+                <nav class="nav navbar-nav d-none" aria-label="{{#str}}custommenu, admin{{/str}}">
+                    {{# output.custom_menu_flat }}
+                        <ul class="list-unstyled pt-3">
+                            {{> theme_remui/custom_menu_footer }}
+                        </ul>
+                    {{/ output.custom_menu_flat }}
+                </nav>
+                <a href="{{ bottomlink }}">{{{ bottomtext }}}</a>
+                <img class="secondary-footer-logo {{^footershowlogo}}d-none{{/footershowlogo}}" src="{{logo}}"/>
+                <div class="secondary-footer-social social-links my-2 {{^footersecondarysocial}}d-none{{/footersecondarysocial}}">
+                    <p class="card-text">
+                        <a href="{{ social.facebook }}"
+                            class="{{^ social.facebook }}d-none{{/ social.facebook }} btn btn-icon btn-round social-facebook m-1">
+                            <i class="icon fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{ social.twitter }}"
+                            class="{{^ social.twitter }}d-none{{/ social.twitter }} btn btn-icon btn-round social-twitter m-1">
+                            <i class="icon fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{ social.quora }}"
+                            class="{{^ social.quora }}d-none{{/ social.quora }} btn btn-icon btn-round social-quora m-1">
+                            <i class="icon fa fa-quora" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{ social.linkedin }}"
+                            class="{{^ social.linkedin }}d-none{{/ social.linkedin }} btn btn-icon btn-round social-linkedin m-1">
+                            <i class="icon fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{ social.gplus }}"
+                            class="{{^ social.gplus }}d-none{{/ social.gplus }} btn btn-icon btn-round social-google-plus m-1">
+                            <i class="icon fa fa-google-plus" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{ social.instagram }}"
+                            class="{{^ social.instagram }}d-none{{/ social.instagram }} btn btn-icon btn-round social-instagram m-1">
+                            <i class="icon fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{ social.youtube }}"
+                            class="{{^ social.youtube }}d-none{{/ social.youtube }} btn btn-icon btn-round social-youtube m-1">
+                            <i class="icon fa fa-youtube" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{ social.pinterest }}"
+                            class="{{^ social.pinterest }}d-none{{/ social.pinterest }} btn btn-icon btn-round social-pinterest m-1">
+                            <i class="icon fa fa-pinterest" aria-hidden="true"></i>
+                        </a>
+                    </p>
+                </div>
+                {{#footercopyrights}}
+                    <div class="secondary-footer-copyright px-2 {{^footercopyrightsshow}}d-none{{/footercopyrightsshow}}"
+                    {{#attributes}}
+                        {{{.}}}
+                    {{/attributes}}>
+                        {{{content}}}
+                    </div>
+                {{/footercopyrights}}
+            </div>
+            <div class="site-footer-right pt-2 col-md-6 text-right">
+                <a class="footer-terms-and-conditions
+                    {{^footertermsandconditionsshow}}d-none{{/footertermsandconditionsshow}}
+                    {{#footertermsandconditionsshow}}d-block{{/footertermsandconditionsshow}}"
+                    href="
+                    {{^footertermsandconditionsshow}}#{{/footertermsandconditionsshow}}
+                    {{#footertermsandconditionsshow}}{{footertermsandconditions}}{{/footertermsandconditionsshow}}"
+                    target="_blank">{{#str}} termsandconditions, theme_remui {{/str}}</a>
+
+                <a class="footer-privacy-policy
+                    {{^footerprivacypolicyshow}}d-none{{/footerprivacypolicyshow}}
+                    {{#footerprivacypolicyshow}}d-block{{/footerprivacypolicyshow}}"
+                    href="
+                    {{^footerprivacypolicyshow}}#{{/footerprivacypolicyshow}}
+                    {{#footerprivacypolicyshow}}{{footerprivacypolicy}}{{/footerprivacypolicyshow}}"
+                    target="_blank">{{#str}} privacypolicy, theme_remui {{/str}}</a>
+                {{# poweredby }}
+                    <a href="https://edwiser.org/remui/" rel="nofollow" target="_blank" >{{# str }} poweredby, theme_remui {{/ str }}</a>
+                {{/ poweredby }}
+                {{{ output.login_info }}}
+                <div class="tool_usertours-resettourcontainer"></div>
+                {{{ output.standard_footer_html }}}
+            </div>
+        </div>
+        <div id="course-footer">{{{ output.course_footer }}}</div>
+        {{{ output.standard_end_of_body_html }}}
+    </div>
+    {{/ footerdata }}
+</footer>

@@ -1,0 +1,73 @@
+Change Log:
+===========
+
+Version 1.0.9
+=============
+Feature - Added support to Edwiser Demo importer.
+
+Version 1.0.8
+=============
+Tweak - Added support for Edwiser RemUI Theme Customizer.
+
+Version 1.0.7
+=============
+Fix - Compatible with Moodle 3.10
+Fix - Added limit to Filepickers.
+
+Version 1.0.6
+=============
+
+Fix - Rewrite Plugin url when course description has image in it.
+Fix - Fixed course section with temporary table.
+Fix - Supported special characters in category names in course & category section.
+
+Version 1.0.5
+=============
+Fix - Fixed 'Settings' modal scrolling issue
+Fix - Left sidebar Issue with RemUI HomePage builder in Theme RemUI.
+
+Version 1.0.4
+=============
+Fix - Image uneven cropping issue in mobile device for rtl and ltr direction.
+Fix - Page crashing issue with invalid css in html section.
+Fix - Slider Arrows Positioning Center.
+Tweak - Using core_scss class to preprocess html section css content at server side.
+
+Version 1.0.3
+=============
+Fix - Homepage Padding Issue and Sections were not able to delete
+Fix - Added multi-lang support
+Fix - Category selection course listing issue
+Fix - Javascript error resolved when moodle caching is off.
+
+Version 1.0.2
+=============
+Compatible with RemUI 3.5, 3.6, 3.7, 3.8
+
+Tweak: Now screenshot functionality is not longer available.
+Fix - DB issue with draftconfig and configdata column
+Fix - DB issue related to default value of some column.
+Fix - Unable to use editing option of Slider section.
+
+Version 1.0.1
+=============
+
+Fix - Compatibility with Internet Explorer 11
+Fix - Styling issue with Courses section cards
+Fix - Improved migrator
+Fix - Fixed Slider section height issue in Mobile view
+Feature - Fetching courses using ajax instead on page load. Improve page load time for large number of courses.
+
+
+Version 1.0.0
+=============
+
+Initial version of Homepage builder plugin, this was inbuild feature in theme Edwiser RemUI before now it is independent plugin.
+
+Fix - Courses section custom loader icon.
+Fix - Html section filter checkbox value issue when unset.
+Fix - Improved migrator validator.
+Tweak - Loading Courses in courses section using ajax service.
+Tweak - Added migrator button on Home page settings form of RemUI settings.
+Feature - Multilang support for all sections.
+Feature - Custom css style setting in all frontpage sections.

@@ -1,7 +1,7 @@
 <?php
 global $CFG, $PAGE, $OUTPUT, $USER;
 
-require_once(dirname(__FILE__) . '/../../config.php');
+require_once(dirname(__FILE__) . '/../config.php');
 
 require_login();
 $context = context_user::instance($USER->id);

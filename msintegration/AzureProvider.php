@@ -118,9 +118,6 @@ class AzureProvider {
 			}
 		}
 
-		var_dump($allUsers[0]);
-		exit;
-
 		return $allUsers;
 	}
 

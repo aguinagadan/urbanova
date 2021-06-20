@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__) . '/../../config.php');
 
 spl_autoload_register(function ($clase) {
-	include 'msintegration/' . $clase . '.php';
+	include '/../../msintegration/' . $clase . '.php';
 });
 
 $provider = new AzureProvider();

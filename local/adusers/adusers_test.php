@@ -40,13 +40,16 @@ function execCurl($data) {
 	}
 
 	curl_close($curl);
+	var_dump($response);
+	exit;
 	$responseData = json_decode($response,true);
 	return $responseData;
 }
 function getADToken() {
 	$data = array(
 		'url' => AD_URL,
-		'postFields' => http_build_query(array('grant_type' => 'client_credentials',
+		'postFields' => http_build_query(array(
+			'grant_type' => 'client_credentials',
 			'client_id' => AD_CLIENT_ID,
 			'client_secret' => AD_CLIENT_SECRET,
 			'scope' => 'https://graph.microsoft.com/.default'), '', '&'),
@@ -55,9 +58,6 @@ function getADToken() {
 			'Content-Type: application/x-www-form-urlencoded',
 			'Cookie: buid=0.AQYASG_it5IiFEqjVRrrhImuPRgFD1jTGCJMjrrTt_PN72QGAAA.AQABAAEAAAAGV_bv21oQQ4ROqh0_1-tAW_7_lkPgDNNQcc9ndJ6-VT_fKycsxUQA_fsiaenVHh0m1dZmFiOVou0VgVUcdSWQcKUXNWy0yeSTtMjrE4vBvIZsvOjiuXWYPgfnevpPNZAgAA; fpc=AlKOys_Nd-FDqTUucSXhED6Lv60HAQAAAEAZ29YOAAAA; x-ms-gateway-slice=estsfd; stsservicecookie=estsfd')
 	);
-
-	var_dump($data);
-	exit;
 
 	$responseData = execCurl($data);
 

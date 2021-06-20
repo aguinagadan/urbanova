@@ -118,7 +118,7 @@ class AzureProvider {
 			}
 		}
 
-		return $allUsers;
+		return $usersAD;
 	}
 
 }

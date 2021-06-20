@@ -2,11 +2,13 @@
 global $CFG;
 
 require_once(dirname(__FILE__) . '/../../config.php');
-require_once(realpath(dirname(__FILE__)) . '/../../msintegration/AzureProvider.php');
+require_once(dirname(__FILE__) . '/../../msintegration/AzureProvider.php');
 
 use azure\provider\azureprovider;
 
-$users = azureprovider::getUsers();
+$provider = new azureprovider();
+var_dump($provider);
+exit;
 
 var_dump($users);
 exit;

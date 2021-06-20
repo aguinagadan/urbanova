@@ -2,11 +2,11 @@
 require_once(dirname(__FILE__) . '/../../config.php');
 
 spl_autoload_register(function ($clase) {
-	include $clase . '.php';
+	include 'msintegration/' . $clase . '.php';
 });
 
-$provider = new ADProvider();
-var_dump($provider->getUsers());
+$provider = new AzureProvider();
+var_dump($provider);
 exit;
 
 /*

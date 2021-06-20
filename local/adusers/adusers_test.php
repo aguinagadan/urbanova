@@ -29,12 +29,11 @@ curl_setopt_array($ch, array(
 	CURLOPT_POSTFIELDS => json_encode($postData)
 ));
 
-var_dump($ch);
-exit;
-
-
 // Send the request
 $response = curl_exec($ch);
+
+var_dump($response);
+exit;
 
 // Check for errors
 if($response === FALSE){

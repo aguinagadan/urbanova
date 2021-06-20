@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . '/../../config.php');
 
+//autoload resources
 spl_autoload_register(function ($clase) {
 	include dirname(__FILE__) . '/../../msintegration/' . $clase . '.php';
 });

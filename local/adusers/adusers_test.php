@@ -32,14 +32,15 @@ function execCurl($data) {
 	}
 	$curlSetOptArray[CURLOPT_HTTPHEADER] = $httpHeader;
 
+	echo '<pre>';
 	var_dump($curlSetOptArray);
+	exit;
 
 	curl_setopt_array($curl, $curlSetOptArray);
 	$response = curl_exec($curl);
 
 	if (curl_errno($curl)) {
-		var_dump('error');
-		var_dump(curl_error($curl));
+		print curl_error($curl);
 	}
 
 	curl_close($curl);

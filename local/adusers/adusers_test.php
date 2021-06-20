@@ -40,8 +40,6 @@ function execCurl($data) {
 	}
 
 	curl_close($curl);
-	var_dump($response);
-	exit;
 	$responseData = json_decode($response,true);
 	return $responseData;
 }
@@ -60,6 +58,8 @@ function getADToken() {
 	);
 
 	$responseData = execCurl($data);
+	var_dump($responseData);
+	exit;
 
 	return $responseData['access_token'];
 }

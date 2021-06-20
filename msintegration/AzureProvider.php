@@ -93,9 +93,6 @@ class AzureProvider {
 		$usersAD = array();
 		$allUsers = array();
 
-		var_dump('test');
-		exit;
-
 		while(true) {
 			if($key>1 && $skipToken=='') {
 				break;
@@ -113,6 +110,9 @@ class AzureProvider {
 				$count++;
 			}
 		}
+
+		var_dump($allUsers[0]);
+		exit;
 
 		return $allUsers;
 	}

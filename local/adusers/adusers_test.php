@@ -5,8 +5,7 @@ require_once(dirname(__FILE__) . '/../../config.php');
 
 use azure\provider\azureprovider;
 
-$adProvider = new azureprovider();
-$users = $adProvider->getUsers();
+$users = azureprovider::getUsers();
 
 var_dump($users);
 exit;

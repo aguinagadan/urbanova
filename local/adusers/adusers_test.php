@@ -7,6 +7,8 @@ spl_autoload_register(function ($clase) {
 });
 
 $provider = new AzureProvider();
+echo '<pre>';
+echo 'son: ' . count($provider->getUsers());
 var_dump($provider->getUsers());
 exit;
 

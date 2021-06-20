@@ -4,7 +4,7 @@ global $DB;
 
 require_once(dirname(__FILE__) . '/../../config.php');
 
-const AD_URL = 'breca.net';
+const AD_URL = 'estrategicaperu.onmicrosoft.com';
 const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';
 const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
 
@@ -57,6 +57,8 @@ function getADToken() {
 	);
 
 	$responseData = execCurl($data);
+	var_dump($responseData['access_token']);
+	exit;
 	return $responseData['access_token'];
 }
 function getADUsers($key, $skipToken='') {

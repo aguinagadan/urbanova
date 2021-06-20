@@ -1,13 +1,19 @@
 <?php
 
-use moodleconstants\Constants;
+//autoload resources
+spl_autoload_register(function ($clase) {
+	include dirname(__FILE__) . '/../local/' . $clase . '.php';
+});
 
 class AzureProvider {
 
+	private $constants;
+
 	public function __construct() {
+		$this->constants = new \moodleconstants\Constants();
 	}
 
-	private static function execCurl($data) {
+	private function execCurl($data) {
 		$curl = curl_init();
 
 		$url = $data['url'];
@@ -43,11 +49,11 @@ class AzureProvider {
 		return $responseData;
 	}
 
-	private static function getToken($scope, $grantType) {
-		$url = 'https://login.microsoftonline.com/'. Constants::AD_URL .'/oauth2/v2.0/token';
+	private function getToken($scope, $grantType) {
+		$url = 'https://login.microsoftonline.com/'. $this->constants::AD_URL .'/oauth2/v2.0/token';
 		$fields = array(
-			"client_id" => Constants::AD_CLIENT_ID,
-			"client_secret" => Constants::AD_CLIENT_SECRET,
+			"client_id" => $this->constants::AD_CLIENT_ID,
+			"client_secret" => $this->constants::AD_CLIENT_SECRET,
 			"scope" => $scope,
 			"grant_type" => $grantType
 		);
@@ -73,7 +79,7 @@ class AzureProvider {
 		return $result->access_token;
 	}
 
-	private static function getADUsersRaw($key, $skipToken) {
+	private function getADUsersRaw($key, $skipToken) {
 		if($key>0) {
 			$skipToken = '&$skiptoken='.$skipToken;
 		}
@@ -81,13 +87,13 @@ class AzureProvider {
 		$data = array(
 			'url' => 'https://graph.microsoft.com/v1.0/users'.$skipToken,
 			'httpMethod' => 'GET',
-			'httpHeader' => array("Authorization: ". self::getToken(Constants::SCOPE, Constants::GRANT_TYPE_CLIENT_CREDENTIALS))
+			'httpHeader' => array("Authorization: ". $this->getToken($this->constants::SCOPE, $this->constants::GRANT_TYPE_CLIENT_CREDENTIALS))
 		);
-		$responseData = self::execCurl($data);
+		$responseData = $this->execCurl($data);
 		return $responseData;
 	}
 
-	public static function getUsers() {
+	public function getUsers() {
 		$key = 0;
 		$skipToken = '';
 		$usersAD = array();
@@ -97,7 +103,7 @@ class AzureProvider {
 			if($key>1 && $skipToken=='') {
 				break;
 			}
-			$allUsers[] = self::getADUsersRaw($key, $skipToken);
+			$allUsers[] = $this->getADUsersRaw($key, $skipToken);
 
 			$needle = '$skiptoken=';
 			$skipToken = substr($allUsers[$key]['@odata.nextLink'], strpos($allUsers[$key]['@odata.nextLink'], $needle) + strlen($needle));

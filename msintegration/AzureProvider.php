@@ -108,6 +108,8 @@ class AzureProvider {
 
 			$needle = '$skiptoken=';
 			$skipToken = substr($allUsers[$key]['@odata.nextLink'], strpos($allUsers[$key]['@odata.nextLink'], $needle) + strlen($needle));
+			var_dump($skipToken);
+			exit;
 			$key++;
 		}
 

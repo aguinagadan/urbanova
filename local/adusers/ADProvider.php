@@ -1,7 +1,5 @@
 <?php
 
-namespace azure\provider;
-
 use moodleconstants\Constants;
 
 class ADProvider {

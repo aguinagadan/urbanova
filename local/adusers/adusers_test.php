@@ -45,7 +45,8 @@ $result = curl_exec($ch);
 $result = json_decode($result);
 curl_close($ch);
 
-var_dump($result->access_token);
+var_dump($fields_string);
+//var_dump($result->access_token);
 exit;
 
 /*const AD_URL = 'estrategicaperu.onmicrosoft.com';

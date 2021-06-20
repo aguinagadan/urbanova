@@ -100,8 +100,6 @@ function getADUsers($key, $skipToken='') {
 		'httpHeader' => array("Authorization: ". getADToken())
 	);
 	$responseData = execCurl($data);
-	var_dump($responseData[0]);
-	exit;
 	return $responseData;
 }
 function createUsers($usersAD) {

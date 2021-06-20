@@ -3,34 +3,37 @@ global $CFG;
 
 require_once(dirname(__FILE__) . '/../../config.php');
 
+use azureprovider\AzureProvider;
+
+$adProvider = new AzureProvider();
+$users = $adProvider->getUsers();
+
+var_dump($users);
+exit;
+
+/*
 const AD_URL = 'estrategicaperu.onmicrosoft.com';
 const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';
 const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
+const SCOPE = 'https://graph.microsoft.com/.default';
 
-// Set params
-$client_id = '15694cd7-31c2-4b7c-acf8-f257c754d499'; // Client App ID (from Microsoft)
-$client_secret = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';; // Client App Secrect (from Microsoft)
-$client_space = 'estrategicaperu.onmicrosoft.com'; // Microsoft Domain ID
-$client_redirect = "https://www.campusqroma.com/local/systemscripts/testSSO.php"; // Where to redirect after authenticated
-$scopes = 'https://graph.microsoft.com/.default'; // Scopes of data requested (ex. 'openid+profile+user.read')
-// Get Auth Code from MS API
+// Build API Token Url
+$url = "https://login.microsoftonline.com/" . AD_URL . "/oauth2/v2.0/token";
+// Url passed parameters
+$fields = array(
+	"client_id" => AD_CLIENT_ID,
+	"client_secret" => AD_CLIENT_SECRET,
+	"scope" => SCOPE,
+	"grant_type" => "client_credentials"
+);
 
-	// Build API Token Url
-	$url = "https://login.microsoftonline.com/" . $client_space . "/oauth2/v2.0/token";
-	// Url passed parameters
-	$fields = array(
-		"client_id" => $client_id,
-		"client_secret" => $client_secret,
-		"scope" => $scopes,
-		"grant_type" => "client_credentials"
-	);
+// For each API Url field
+foreach($fields as $key=>$value) {
+	$fields_string .= $key . "=" . $value . "&";
+}
 
-	// For each API Url field
-	foreach($fields as $key=>$value) {
-		$fields_string .= $key . "=" . $value . "&";
-	}
-	// Trim, prep query string
-	rtrim($fields_string, "&");
+// Trim, prep query string
+rtrim($fields_string, "&");
 
 	// Make HTTP request
 	$ch = curl_init();

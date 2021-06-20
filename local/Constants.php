@@ -1,7 +1,5 @@
 <?php
 
-namespace moodleconstants;
-
 class Constants {
 
 	const AD_URL = 'estrategicaperu.onmicrosoft.com';

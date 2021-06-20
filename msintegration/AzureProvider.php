@@ -10,7 +10,7 @@ class AzureProvider {
 	private $constants;
 
 	public function __construct() {
-		$this->constants = new \moodleconstants\Constants();
+		$this->constants = new Constants();
 	}
 
 	private function execCurl($data) {

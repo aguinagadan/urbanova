@@ -7,5 +7,4 @@ class Constants {
 	const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
 	const SCOPE = 'https://graph.microsoft.com/.default';
 	const GRANT_TYPE_CLIENT_CREDENTIALS = 'client_credentials';
-
 }

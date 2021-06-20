@@ -1,0 +1,36 @@
+/**
+   DEFAULT PAGE SITE
+*/
+
+#page-site-index #nav-drawer {
+    display: none;
+}
+
+body#page-site-index {
+    margin-left: 0 !important;
+}
+
+#page-site-index #page-header {
+    display: none;
+}
+
+#page-site-index #region-main {
+    padding: 0 !important;
+}
+
+#page-site-index .card-body {
+    padding: 0 !important;
+}
+
+#page-site-index .container {
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+#page-site-index #page-footer {
+    display: none !important;
+}
+
+#page-site-index #page-content {
+    padding-bottom: 0 !important;
+}

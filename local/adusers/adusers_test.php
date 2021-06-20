@@ -6,11 +6,11 @@ spl_autoload_register(function ($clase) {
 	include dirname(__FILE__) . '/../../msintegration/' . $clase . '.php';
 });
 
-$provider = new AzureProvider();
-var_dump($provider->getUsers());
-exit;
+//$provider = new AzureProvider();
+//var_dump($provider->getUsers());
+//exit;
 
-/*
+
 const AD_URL = 'estrategicaperu.onmicrosoft.com';
 const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';
 const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
@@ -34,19 +34,19 @@ foreach($fields as $key=>$value) {
 // Trim, prep query string
 rtrim($fields_string, "&");
 
-	// Make HTTP request
-	$ch = curl_init();
-	curl_setopt($ch,CURLOPT_URL, $url);
-	curl_setopt($ch,CURLOPT_HTTPHEADER, array("Content-Type: application/x-www-form-urlencoded"));
-	curl_setopt($ch,CURLOPT_POST, count($fields));
-	curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-	$result = curl_exec($ch);
-	$result = json_decode($result);
-	curl_close($ch);
+// Make HTTP request
+$ch = curl_init();
+curl_setopt($ch,CURLOPT_URL, $url);
+curl_setopt($ch,CURLOPT_HTTPHEADER, array("Content-Type: application/x-www-form-urlencoded"));
+curl_setopt($ch,CURLOPT_POST, count($fields));
+curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+$result = curl_exec($ch);
+$result = json_decode($result);
+curl_close($ch);
 
-	var_dump($result->access_token);
-	exit;
+var_dump($result->access_token);
+exit;
 
 /*const AD_URL = 'estrategicaperu.onmicrosoft.com';
 const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';

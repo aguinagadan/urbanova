@@ -10,12 +10,12 @@ const AD_CLIENT_ID = '15694cd7-31c2-4b7c-acf8-f257c754d499';
 const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
 
 // The data to send to the API
-$postData = array(
+$postData = http_build_query(array(
 	'grant_type' => 'client_credentials',
 	'client_id' => AD_CLIENT_ID,
 	'client_secret' => AD_CLIENT_SECRET,
 	'scope' => 'https://graph.microsoft.com/.default'
-);
+), '', '&');
 
 // Setup cURL
 $ch = curl_init("https://login.windows.net/".$tenant."/oauth2/token");

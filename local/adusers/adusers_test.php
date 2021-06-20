@@ -2,13 +2,13 @@
 
 namespace azure\provider\adusers;
 
+use azure\provider\azureprovider;
+
 var_dump(dirname(__FILE__));
 exit;
 
 require_once(dirname(__FILE__) . '/../../config.php');
 require_once(dirname(__FILE__) . '/../../msintegration/AzureProvider.php');
-
-use azure\provider\azureprovider;
 
 $provider = new azureprovider();
 var_dump($provider);

@@ -13,11 +13,12 @@ const AD_CLIENT_SECRET = '30rhja.scIjTqcv_.~61-M2gSrzbvO71Z9';
 $postData = array(
 	'grant_type' => 'client_credentials',
 	'client_id' => AD_CLIENT_ID,
-	'client_secret' => AD_CLIENT_SECRET
+	'client_secret' => AD_CLIENT_SECRET,
+	'scope' => 'https://graph.microsoft.com/.default'
 );
 
 // Setup cURL
-$ch = curl_init("https://login.windows.net/".$tenant."/oauth2/token?api-version=1.0");
+$ch = curl_init("https://login.windows.net/".$tenant."/oauth2/token");
 curl_setopt_array($ch, array(
 	CURLOPT_POST => TRUE,
 	CURLOPT_RETURNTRANSFER => TRUE,

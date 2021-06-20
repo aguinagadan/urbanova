@@ -17,6 +17,9 @@ $postData = http_build_query(array(
 	'scope' => 'https://graph.microsoft.com/.default'
 ), '', '&');
 
+var_dump($postData);
+exit;
+
 // Setup cURL
 $ch = curl_init("https://login.windows.net/".$tenant."/oauth2/token");
 curl_setopt_array($ch, array(
@@ -26,7 +29,7 @@ curl_setopt_array($ch, array(
 		'Authorization: '.$authToken,
 		'Content-Type: application/json'
 	),
-	CURLOPT_POSTFIELDS => '&'.json_encode($postData)
+	CURLOPT_POSTFIELDS => json_encode($postData)
 ));
 
 // Send the request

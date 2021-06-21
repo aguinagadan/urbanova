@@ -48,21 +48,17 @@
         "hasregionmainsettingsmenu": false
     }
 }}
-{{> theme_remui/common_start }}
+{{> theme_remui/head }}
 
-<section id="region-main" {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}} aria-label="{{#str}}content{{/str}}">
-        {{#hasregionmainsettingsmenu}}
-            <div class="region_main_settings_menu_proxy"></div>
-        {{/hasregionmainsettingsmenu}}
-        {{{ output.course_content_header }}}
-        {{{ output.main_content }}}
-        {{{ output.activity_navigation }}}
-        {{{ output.course_content_footer }}}
-</section>
+<body {{{ bodyattributes }}}>
 
-{{> theme_remui/common_end }}
-{{#js}}
-require(['theme_remui/loader'], function () {
-  Breakpoints();
-});
-{{/js}}
+{{#focusdata.enabled}} {{> theme_remui/navbar_fm }} {{/focusdata.enabled}}
+{{> theme_remui/navbar }}
+{{> theme_remui/nav-drawer }}
+
+<div id="page-wrapper">
+    {{{ output.standard_top_of_body_html }}}
+    <div id="page">
+        <div class="edwiser-notice position-fixed mt-10" style="display: none; z-index: 1500;left: 50%;transform: translateX(-50%);" role="alert">
+        </div>
+        {{{ output.render_site_announcement }}}

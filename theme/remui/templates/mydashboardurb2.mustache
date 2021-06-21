@@ -1,0 +1,25 @@
+<div id="page-content" class="row {{^homepage}}pb-4{{/homepage}} {{#homepage}}m-0 w-p10 pb-0{{/homepage}}">
+<div id="region-main-box" class="col-12">
+{{#hasregionmainsettingsmenu}}
+        <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
+            <div> {{{ output.region_main_settings_menu }}} </div>
+        </div>
+{{/hasregionmainsettingsmenu}}
+{{> theme_remui/page_aside}}
+
+<section id="region-main" {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}} aria-label="{{#str}}content{{/str}}">
+    {{#hasregionmainsettingsmenu}}
+        <div class="region_main_settings_menu_proxy"></div>
+    {{/hasregionmainsettingsmenu}}
+    {{{ output.course_content_header }}}
+    {{{ output.main_content }}}
+    {{{ output.activity_navigation }}}
+    {{{ output.course_content_footer }}}
+</section>
+
+{{> theme_remui/common_end }}
+{{#js}}
+    require(['theme_remui/loader'], function () {
+    Breakpoints();
+    });
+{{/js}}

@@ -7,5 +7,5 @@ $PAGE->set_url('/catalogo/index.php', $urlparams);
 $PAGE->set_pagetype('site-catalogo');
 $PAGE->set_title($SITE->fullname);
 echo $OUTPUT->header();
-//include('index.html');
+include('home.html');
 echo $OUTPUT->footer();

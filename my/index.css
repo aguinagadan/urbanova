@@ -1,0 +1,25 @@
+#page-my-index #nav-drawer {
+    display: none;
+}
+
+body#page-my-index {
+    margin-left: 0 !important;
+}
+
+#page-my-index #page-header {
+    display: none;
+}
+
+/*#page-my-index #page-footer {*/
+/*    display: none !important;*/
+/*}*/
+
+#page-my-index #page-content {
+    padding-bottom: 0 !important;
+    width: 75%;
+    margin: auto;
+}
+
+#page-my-index .profile .point {
+    display: none !important;
+}

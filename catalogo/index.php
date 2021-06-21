@@ -23,7 +23,7 @@
  */
 
 
-require_once('config.php');
+require_once(__DIR__ . '/../config.php');
 
 $urlparams = array();
 $PAGE->set_url('/catalogo/index.php', $urlparams);

@@ -1,36 +1,36 @@
 /**
-   DEFAULT PAGE SITE
+   CATALOGO
 */
 
-#page-site-index #nav-drawer {
+#page-site-catalogo #nav-drawer {
     display: none;
 }
 
-body#page-site-index {
+body#page-site-catalogo {
     margin-left: 0 !important;
 }
 
-#page-site-index #page-header {
+#page-site-catalogo #page-header {
     display: none;
 }
 
-#page-site-index #region-main {
+#page-site-catalogo #region-main {
     padding: 0 !important;
 }
 
-#page-site-index .card-body {
+#page-site-catalogo .card-body {
     padding: 0 !important;
 }
 
-#page-site-index .container {
+#page-site-catalogo .container {
     padding: 0 !important;
     max-width: 100% !important;
 }
 
-/*#page-site-index #page-footer {*/
+/*#page-site-catalogo #page-footer {*/
 /*    display: none !important;*/
 /*}*/
 
-#page-site-index #page-content {
+#page-site-catalogo #page-content {
     padding-bottom: 0 !important;
 }

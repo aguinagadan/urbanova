@@ -27,5 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once('common.php');
 echo $OUTPUT->render_from_template('theme_remui/mydashboard', $templatecontext);
+echo $OUTPUT->render_from_template('theme_remui/urbanova_dashboard', $templatecontext);
 echo $OUTPUT->render_from_template('theme_remui/mydashboardurb2', $templatecontext);
 

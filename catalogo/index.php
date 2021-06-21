@@ -27,7 +27,7 @@ require_once(__DIR__ . '/../config.php');
 
 $urlparams = array();
 $PAGE->set_url('/catalogo/index.php', $urlparams);
-$PAGE->set_pagelayout('frontpage');
+//$PAGE->set_pagelayout('frontpage');
 
 $PAGE->set_pagetype('site-index');
 $PAGE->set_docs_path('');

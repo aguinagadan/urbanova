@@ -8,4 +8,5 @@ $PAGE->set_pagetype('site-catalogo');
 $PAGE->set_title($SITE->fullname);
 $PAGE->set_heading($SITE->fullname);
 echo $OUTPUT->header();
+include('index.html');
 echo $OUTPUT->footer();

@@ -10,9 +10,9 @@ body#page-my-index {
     display: none;
 }
 
-/*#page-my-index #page-footer {*/
-/*    display: none !important;*/
-/*}*/
+#page-my-index #page-footer {
+    display: none !important;
+}
 
 #page-my-index #page-content {
     padding-bottom: 0 !important;

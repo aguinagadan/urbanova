@@ -8,5 +8,5 @@ spl_autoload_register(function ($clase) {
 
 $provider = new AzureProvider();
 echo '<pre>';
-var_dump(json_encode($provider->getUsers(),1));
+var_dump($provider->getUsers());
 exit;

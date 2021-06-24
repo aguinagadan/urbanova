@@ -892,6 +892,8 @@ html{
   }
   .carousel-container .carusel .col{
       width: 33.33%;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
   }
   .carousel-container .carusel .col img{
       width: 100%!important;

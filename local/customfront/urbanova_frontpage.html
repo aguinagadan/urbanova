@@ -249,6 +249,9 @@
                 {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
             ],
         },
+        mounted(){
+            this.loadSlider();
+        },
         created(){
             this.carruselCreated();
             window.onresize = (event)=> {
@@ -290,7 +293,6 @@
                 this.carrusel.items.push(this.carrusel.items[1]);
                 this.resizeCarrusel();
                 this.resizeCarrusel2();
-                this.loadSlider();
             },
             resizeCarrusel(){
                 this.carrusel.config.anchoView = document.documentElement.clientWidth;

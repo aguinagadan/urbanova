@@ -42,3 +42,8 @@ body#page-site-index {
     margin-right: 0 !important;
     margin-left: 0 !important;
 }
+
+.urb-slider-image {
+    width: 71.5% !important;
+    display: block;
+}

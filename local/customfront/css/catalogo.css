@@ -3,7 +3,7 @@
   }
   .course-header{
     position: relative;
-    background-image: url(../images/course/header_back.png);
+    background-image: url(/images/course/header_back.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

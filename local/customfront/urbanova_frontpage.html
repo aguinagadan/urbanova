@@ -230,11 +230,9 @@
             },
             tetimonio: {
                 items: [
-                    {avatar: "./images/home/avatar1.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
-                    {avatar: "./images/home/avatar2.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
-                    {avatar: "./images/home/avatar3.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
-                    {avatar: "./images/home/avatar4.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
-                    {avatar: "./images/home/avatar1.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
+                    {avatar: "", text:""},
+                    {avatar: "", text:""},
+                    {avatar: "", text:""},
                 ],
                 config: {
                     anchoView: 0,
@@ -258,6 +256,7 @@
         },
         mounted(){
             this.loadSlider();
+            this.loadTestimonios();
         },
         created(){
             this.carruselCreated();
@@ -292,6 +291,27 @@
                             slides.push(newElem);
                         });
                         this.carrusel.items = slides;
+                    });
+            },
+            loadTestimonios: function() {
+                let frm = new FormData();
+                frm.append('request_type','obtenerTestimonios');
+                axios.post('local/qroma_front/api/ajax_controller.php',frm)
+                    .then((response) => {
+                        // handle success
+                        let data = response.data.data;
+                        let testimonios = Array();
+
+                        Object.keys(data).forEach(key => {
+                            let dataVal = data[key];
+                            let text = dataVal.text;
+                            let avatar = dataVal.avatar;
+
+                            let newElem = {'text': text, 'avatar': avatar};
+                            testimonios.push(newElem);
+                        });
+
+                        this.tetimonio.items = testimonios;
                     });
             },
             //agregar los 2 primero elementos para generar el scroll

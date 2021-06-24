@@ -51,7 +51,7 @@ function obtenerTestimonios() {
 
 	foreach($testimonialData['testimonials'] as $testimonial) {
 		$testimonial['image'] = str_replace('//aulavirtual.urbanova.com.pe','',$testimonial['image']);
-		$testimonios[] = ['name' => $testimonial['name'],'content' => strip_tags($testimonial['text']), 'url' => $testimonial['image']];
+		$testimonios[] = ['text' => strip_tags($testimonial['text']), 'avatar' => $testimonial['image']];
 	}
 
 	$response['status'] = true;

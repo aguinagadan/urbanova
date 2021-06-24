@@ -7,7 +7,7 @@
         <div class="carousel-container">
             <div class="carusel" ref="carousel" :style="'width:'+carrusel.config.anchoCarrusel+'px; margin-left: '+carrusel.config.position+'px'">
                 <div v-for="item in carrusel.items" class="col" :style="'width:'+carrusel.config.anchoItem+'px'">
-                    <img :src="item.src"/>
+                    <img :src="item.src" class="urb-slider-image"/>
                 </div>
             </div>
         </div>
@@ -211,7 +211,13 @@
                 ]
             },
             carrusel:{
-                items: [],
+                items: [
+                    {src: "./images/home/head_car_1.png"},
+                    {src: "./images/home/head_car_2.png"},
+                    {src: "./images/home/head_car_3.png"},
+                    {src: "./images/home/head_car_3.png"},
+                    {src: "./images/home/head_car_3.png"}
+                ],
                 config: {
                     anchoView: 0,
                     anchoCarrusel: 0,

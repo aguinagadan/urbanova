@@ -275,7 +275,7 @@
             loadSlider: function() {
                 let frm = new FormData();
                 frm.append('request_type','obtenerSlider');
-                axios.post('local/customfront/api/ajax_controller',frm)
+                axios.post('local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
                         let data = response.data.data;
                         let slides = Array();

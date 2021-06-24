@@ -6,7 +6,7 @@
         </div>
         <div class="carousel-container">
             <div class="carusel" ref="carousel" :style="'width:'+carrusel.config.anchoCarrusel+'px; margin-left: '+carrusel.config.position+'px'">
-                <div v-for="item in carrusel.items" class="col" :style="'width:'+carrusel.config.anchoItem+'px'">
+                <div v-for="item in carrusel.items" :style="'width:'+carrusel.config.anchoItem+'px'">
                     <img :src="item.src" class="urb-slider-image"/>
                 </div>
             </div>

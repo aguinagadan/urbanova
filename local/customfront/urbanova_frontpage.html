@@ -129,3 +129,196 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isBlack: '',
+            isSelected: '',
+            view: {
+                atTopOfPage: true
+            },
+            mobileNavShow:false,
+            fadeShow1: 1,
+            cookie_hide: false,
+            isPlay:true,
+            isActive: 0,
+            isShow: 1,
+            first_slide: false,
+            settings:{
+                "dots": true,
+                "edgeFriction": 0.35,
+                "infinite": false,
+                "speed": 500,
+                "autoplay":true,
+                "autoplaySpeed": 20000,
+                "slidesToShow": 3,
+                "slidesToScroll": 1,
+                "arrows": true,
+                "infinite": true,
+                "responsive": [
+                    {
+                        "breakpoint": 1500,
+                        "settings": {
+                            "slidesToShow": 2,
+                            "slidesToScroll": 1,
+                            "infinite": true,
+                            "dots": true
+                        }
+                    },
+                    {
+                        "breakpoint": 785,
+                        "settings": {
+                            "slidesToShow": 1,
+                            "slidesToScroll": 1,
+                            "infinite": true,
+                            "dots": true
+                        }
+                    }
+                ]
+            },
+            settings1:{
+                "dots": true,
+                "edgeFriction": 0.35,
+                "infinite": false,
+                "speed": 500,
+                "autoplay":true,
+                "autoplaySpeed": 20000,
+                "slidesToShow": 4,
+                "slidesToScroll": 1,
+                "arrows": true,
+                "infinite": true,
+                "responsive": [
+                    {
+                        "breakpoint": 1350,
+                        "settings": {
+                            "slidesToShow": 2,
+                            "slidesToScroll": 1,
+                            "infinite": true,
+                            "dots": true
+                        }
+                    },
+                    {
+                        "breakpoint": 785,
+                        "settings": {
+                            "slidesToShow": 1,
+                            "slidesToScroll": 1,
+                            "infinite": true,
+                            "dots": true
+                        }
+                    }
+                ]
+            },
+            carrusel:{
+                items: [
+                    {src: "./images/home/head_car_1.png"},
+                    {src: "./images/home/head_car_2.png"},
+                    {src: "./images/home/head_car_3.png"},
+                ],
+                config: {
+                    anchoView: 0,
+                    anchoCarrusel: 0,
+                    anchoItem: 0,
+                    heigthCarrusel: 0,
+                    actual: 1,
+                    position: 0,
+                }
+            },
+            tetimonio: {
+                items: [
+                    {avatar: "./images/home/avatar1.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
+                    {avatar: "./images/home/avatar2.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
+                    {avatar: "./images/home/avatar3.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
+                    {avatar: "./images/home/avatar4.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
+                    {avatar: "./images/home/avatar1.png", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"},
+                ],
+                config: {
+                    anchoView: 0,
+                    anchoCarrusel: 0,
+                    anchoItem: 0,
+                    heigthCarrusel: 0,
+                    actual: 1,
+                    position: 0,
+                }
+            },
+            cursos: [
+                {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
+                {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
+                {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
+                {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
+                {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
+                {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
+                {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
+                {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
+            ],
+        },
+        created(){
+            this.carruselCreated();
+            window.onresize = (event)=> {
+                this.resizeCarrusel();
+                this.resizeCarrusel2();
+            };
+            setInterval(() => {
+                if(this.carrusel.config.actual < this.tetimonio.items.length - 2){
+                    this.movLeft(this.carrusel.config.actual+1);
+                } else{
+                    this.movLeft(1);
+                }
+            }, 3000);
+        },
+        methods: {
+            //agregar los 2 primero elementos para generar el scroll
+            carruselCreated(){
+                this.carrusel.items.push(this.carrusel.items[0]);
+                this.carrusel.items.push(this.carrusel.items[1]);
+                this.resizeCarrusel();
+                this.resizeCarrusel2();
+            },
+            resizeCarrusel(){
+                this.carrusel.config.anchoView = document.documentElement.clientWidth;
+                let cant = this.carrusel.items.length;
+
+                if(this.carrusel.config.anchoView > 1480){
+                    this.carrusel.config.anchoItem = this.carrusel.config.anchoView/3;
+                    this.carrusel.config.heigthCarrusel = this.carrusel.config.anchoItem*0.9;
+                } else if(this.carrusel.config.anchoView > 768){
+                    this.carrusel.config.anchoItem = this.carrusel.config.anchoView/2;
+                    this.carrusel.config.heigthCarrusel = this.carrusel.config.anchoItem*0.87;
+                } else{
+                    this.carrusel.config.anchoItem = this.carrusel.config.anchoView;
+                    this.carrusel.config.heigthCarrusel = this.carrusel.config.anchoItem*0.91;
+                }
+
+                this.carrusel.config.anchoCarrusel = this.carrusel.config.anchoItem*cant;
+            },
+            resizeCarrusel2(){
+                this.tetimonio.config.anchoView = document.getElementById("test").clientWidth;
+                let cant = this.tetimonio.items.length;
+
+                if(this.carrusel.config.anchoView > 1480){
+                    this.tetimonio.config.anchoItem = this.tetimonio.config.anchoView/3;
+                    this.tetimonio.config.heigthCarrusel = this.tetimonio.config.anchoItem*0.9;
+                } else if(this.carrusel.config.anchoView > 768){
+                    this.tetimonio.config.anchoItem = this.tetimonio.config.anchoView/2;
+                    this.tetimonio.config.heigthCarrusel = this.tetimonio.config.anchoItem*0.87;
+                } else{
+                    this.tetimonio.config.anchoItem = this.tetimonio.config.anchoView;
+                    this.tetimonio.config.heigthCarrusel = this.tetimonio.config.anchoItem*0.91;
+                }
+
+                this.tetimonio.config.anchoCarrusel = this.tetimonio.config.anchoItem*cant;
+                console.log(this.tetimonio.config);
+            },
+            movLeft(key){
+                this.carrusel.config.actual = key;
+                let p = this.carrusel.config.actual-1;
+                this.carrusel.config.position = this.carrusel.config.anchoItem*p*-1;
+            },
+            movLeft2(key){
+                this.tetimonio.config.actual = key;
+                let p = this.tetimonio.config.actual-1;
+                this.tetimonio.config.position = this.tetimonio.config.anchoItem*p*-1;
+            }
+        }
+    })
+</script>

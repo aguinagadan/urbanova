@@ -574,7 +574,7 @@ html{
 }
 
 /*------------- NAV --------------*/
-.navbar *{
+/*.navbar *{
     transition: 0.5s;
   }
   *, *:before, *:after {
@@ -822,7 +822,7 @@ html{
       display: none;
     }
   }
-
+*/
 /*---------- FOOTER ------------------*/
 #footer{
     background-color: rgba(40, 58, 90, 0.9);

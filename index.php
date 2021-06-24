@@ -95,7 +95,7 @@ $PAGE->set_pagetype('site-index');
 $PAGE->set_docs_path('');
 $editing = $PAGE->user_is_editing();
 $PAGE->set_title($SITE->fullname);
-$PAGE->set_heading($SITE->fullname);
+//$PAGE->set_heading($SITE->fullname);
 $courserenderer = $PAGE->get_renderer('core', 'course');
 echo $OUTPUT->header();
 

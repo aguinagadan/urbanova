@@ -1,9 +1,6 @@
 .b-none{
     background: none!important;
   }
-  #scrollView1{
-    margin-top: 65px!important;
-  }
   #playbtn{
     position:absolute;
     height: 100%;

@@ -13,7 +13,7 @@ try {
 
 	switch ($_REQUEST['request_type']) {
 		case 'obtenerSlider':
-			$returnArr = obtenerSlider($_POST['ferreterias']);
+			$returnArr = obtenerSlider();
 			break;
 		case 'obtenerTestimonios':
 			$returnArr = obtenerTestimonios();
@@ -30,23 +30,13 @@ header('Content-type: application/json');
 echo json_encode($returnArr);
 exit();
 
-function obtenerSlider($ferreteria) {
+function obtenerSlider() {
 	$slides = array();
 	$sliderData = \theme_remui\sitehomehandler::get_slider_data();
 
 	foreach($sliderData['slides'] as $slide) {
-		$slide['background'] = str_replace('//aulavirtual.urbanova.com.pe','', $slide['img']);
-
-		$title = strip_tags($slide['img_txt']) ? strip_tags($slide['img_txt']) : false;
-		$btnText =  $slide['btn_txt'] ?  $slide['btn_txt'] : false;
-
-		$slides[] = ['title' => $title, 'btnText' => $btnText, 'background' => $slide['background'], 'url' => $slide['btn_link']];
-	}
-
-	if(isset($ferreteria) && $ferreteria) {
-		$slides = array_slice($slides,3,2);
-	} else {
-		$slides = array_slice($slides,0,3);
+		$image = str_replace('//aulavirtual.urbanova.com.pe','', $slide['img']);
+		$slides[] = ['src' => $image];
 	}
 
 	$response['status'] = true;

@@ -252,6 +252,9 @@
                 {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link: "#"},
             ],
         },
+        loadData: function(){
+            this.loadSlider();
+        },
         created(){
             this.carruselCreated();
             window.onresize = (event)=> {
@@ -267,6 +270,26 @@
             }, 3000);
         },
         methods: {
+            //custom methods
+            loadSlider: function() {
+                let frm = new FormData();
+                frm.append('request_type','obtenerSlider');
+                axios.post('local/customfront/api/ajax_controller',frm)
+                    .then((response) => {
+                        let data = response.data.data;
+                        let slides = Array();
+
+                        Object.keys(data).forEach(key => {
+                            let dataVal = data[key];
+                            let src = dataVal.src;
+                            let newElem = {
+                                'src': src,
+                            };
+                            slides.push(newElem);
+                        });
+                        this.carrusel.items = slides;
+                    });
+            },
             //agregar los 2 primero elementos para generar el scroll
             carruselCreated(){
                 this.carrusel.items.push(this.carrusel.items[0]);

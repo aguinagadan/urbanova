@@ -1,1 +1,131 @@
-<div>test frontpage</div>
+<div id="app" class="hello">
+    <div id="scrollView1" class="carousel-wrap" data-aos="fade-up" :style="'height:'+carrusel.config.heigthCarrusel+'px'">
+        <div class="gradiend_img u-flex-between">
+            <img src="./images/home/grad.png" />
+            <img src="./images/home/grad.png" />
+        </div>
+        <div class="carousel-container">
+            <div class="carusel" ref="carousel" :style="'width:'+carrusel.config.anchoCarrusel+'px; margin-left: '+carrusel.config.position+'px'">
+                <div v-for="item in carrusel.items" class="col" :style="'width:'+carrusel.config.anchoItem+'px'">
+                    <img :src="item.src" />
+                </div>
+            </div>
+        </div>
+        <div class="slick-slider slick-initialized">
+            <ul class="slick-dots">
+                <li v-for="(item, key) in (carrusel.items.length - 2)" :class="{'slick-active': carrusel.config.actual == (key + 1)}">
+                    <button @click="movLeft(key+1)">{{key + 1}}</button>
+                </li>
+            </ul>
+        </div>
+        <div class="header_title u-flex-around u-flex-column" >
+            <p>¡Bienvenido!</p>
+            <div>loreM IPSUM<br>LOREM IPSU</div>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <a href="#" id="btn-acc" class="header_title_btn u-flex-around">ACCEDER</a>
+        </div>
+    </div>
+    <div class="footer-learn">
+        <div class="footer-learn-background u-flex-around">
+            <img src="./images/home/learn_back.png" />
+        </div>
+        <div class="section_title u-flex-around u-flex-column">
+            <p><span>Lorem</span> ipsum dolor sit amet.</p>
+            <div></div>
+        </div>
+        <div class="u-flex-center u-responsive">
+            <a href="#" class="footer-learn-item u-flex-around">
+                <div class="footer-learn-item-blue"></div>
+                <div class="footer-learn-item-a">
+                    <div class="footer-learn-item-opac u-flex-between">
+                        <img src="./images/home/hart.png" />
+                        <p>MIS CURSOS</p>
+                    </div>
+                    <p class="p-bottom">Acumula puntos</p>
+                </div>
+            </a>
+            <a href="#" class="footer-learn-item u-flex-around">
+                <div class="footer-learn-item-blue"></div>
+                <div class="footer-learn-item-a">
+                    <div class="footer-learn-item-opac u-flex-between">
+                        <img src="./images/home/hart4.png" />
+                        <p>CATÁLOGO<br>DE CURSOS</p>
+                    </div>
+                    <p class="p-bottom">+ de 100 cursos para ti</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id="scrollView2" class="carousel-wrap u-container">
+        <div class="section_title u-flex-around u-flex-column">
+            <p>Testimonio</p>
+            <div></div>
+        </div>
+        <div id="test" class="carousel-container">
+            <div class="carusel2" :style="'width:'+tetimonio.config.anchoCarrusel+'px; margin-left: '+tetimonio.config.position+'px'">
+                <div v-for="item in tetimonio.items" class="col" :style="'width:'+tetimonio.config.anchoItem+'px'">
+                    <div class="col-items u-flex-center">
+                        <div class="team-cards u-flex-center">
+                            <img :src="item.avatar" />
+                            <img class="team-cards-sign" src="./images/home/sign.png" />
+                            <div class="team-cards-desc u-flex-between u-flex-column">
+                                <p>{{item.text}}</p>
+                                <div>
+                                    <div class="team-cards-desc-line"></div>
+                                    <div class="team-cards-desc-star u-flex-around">
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scrollView2-text">Nuestros alumnos respaldan nuestra calidad educativa</div>
+        <div class="slick-slider slick-initialized2">
+            <ul class="slick-dots">
+                <li v-if="carrusel.config.anchoView > 1480" v-for="(item, key) in tetimonio.items.length - 2" :class="{'slick-active': tetimonio.config.actual == key+1}">
+                    <button @click="movLeft2(key+1)">{{key}}</button>
+                </li>
+                <li v-if="carrusel.config.anchoView > 768 && carrusel.config.anchoView <= 1480" v-for="(item, key) in tetimonio.items.length - 1" :class="{'slick-active': tetimonio.config.actual == key+1}">
+                    <button @click="movLeft2(key+1)">{{key}}</button>
+                </li>
+                <li v-if="carrusel.config.anchoView <= 768" v-for="(item, key) in tetimonio.items.length" :class="{'slick-active': tetimonio.config.actual == key+1}">
+                    <button @click="movLeft2(key+1)">{{key}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="linetriangle u-flex-around u-container">
+        <img src="./images/home/linetriangle.png" />
+    </div>
+    <div class="section_title u-flex-around u-flex-column">
+        <p>Accede a los útimos cursos</p>
+        <div></div>
+    </div>
+    <div class="section3 u-container">
+        <div class="section3-items1" :class="{ 'display_block': true }">
+            <div v-for="item in cursos" class="section3-item-div u-flex-around">
+                <div class="section3-item">
+                    <img :src="item.image"/>
+                    <div class="section3-itemd-desc" >
+                        <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
+                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
+                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
+                        </div>
+                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                        <div class="section3-itemd-desc-line" ></div>
+                        <div class="section3-itemd-desc-text" >{{item.conten}}</div>
+                        <img src="./images/course/item_b.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>

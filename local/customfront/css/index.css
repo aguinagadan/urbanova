@@ -29,6 +29,10 @@ body#page-site-index {
     max-width: 100% !important;
 }
 
+#page-site-index #scrollView1 {
+    margin-top: 0 !important;
+}
+
 /*#page-site-index #page-footer {*/
 /*    display: none !important;*/
 /*}*/

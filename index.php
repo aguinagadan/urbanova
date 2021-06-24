@@ -97,7 +97,7 @@ $editing = $PAGE->user_is_editing();
 $PAGE->set_title($SITE->fullname);
 //$PAGE->set_heading($SITE->fullname);
 $courserenderer = $PAGE->get_renderer('core', 'course');
-echo $OUTPUT->header();
+//echo $OUTPUT->header();
 
 $siteformatoptions = course_get_format($SITE)->get_format_options();
 $modinfo = get_fast_modinfo($SITE);

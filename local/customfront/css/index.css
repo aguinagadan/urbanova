@@ -14,6 +14,12 @@ body#page-site-index {
     padding: 0 !important;
 }
 
+#page-site-index #region-main-box {
+    padding: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
 #page-site-index .card-body {
     padding: 0 !important;
 }
@@ -29,4 +35,6 @@ body#page-site-index {
 
 #page-site-index #page-content {
     padding-bottom: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
 }

@@ -296,7 +296,7 @@
             loadTestimonios: function() {
                 let frm = new FormData();
                 frm.append('request_type','obtenerTestimonios');
-                axios.post('local/qroma_front/api/ajax_controller.php',frm)
+                axios.post('local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
                         // handle success
                         let data = response.data.data;

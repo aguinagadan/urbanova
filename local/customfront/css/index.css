@@ -7,7 +7,7 @@ body#page-site-index {
 }
 
 #page-site-index #page-header {
-    display: none;
+    display: none !important;
 }
 
 #page-site-index #region-main {

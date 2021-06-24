@@ -1,1 +1,325 @@
-<div style="text-align: center">catalogo de cursos here</div>
+<div id="app" class="course">
+    <nav class="navbar" id="nav" :class="{ 'nav-fix': !view.atTopOfPage, 'mobile-nav-show': mobileNavShow, 'back-black': isBlack }" >
+        <ul class="mobile-nav navbar-nav">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a href="catalogo.html" class="nav-link active">CATÁLOGO DE CURSOS</a>
+            </li>
+            <li class="nav-item">
+                <a href="mis-cursos.html" class="nav-link">MIS CURSOS</a>
+            </li>
+            <li class="nav-item">
+                <a href="perfil.html" class="nav-link"><img src="./images/navbar/person.png">&nbsp;&nbsp;INGRESAR</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a href="/contact_us"><a class="nav-link" :class="{'active': isSelected==5?true:false}">Contacts</a></router-link>
+            </li>
+            <li class="nav-item">
+              <a href="/"><a class="nav-link" :class="{'active': isSelected==6?true:false}">Technical Support</a></router-link>
+            </li>
+            <li class="nav-item">
+              <a href="/loginpage"><a class="nav-link" :class="{'active': isSelected==7?true:false}">Login</a></router-link>
+            </li>
+            <li class="nav-item">
+              <a href="/"><a class="nav-link" :class="{'active': isSelected==8?true:false}">Sign up</a></router-link>
+            </li> -->
+        </ul>
+        <div class="collapse navbar-collapse" id="navb">
+            <a class="navbar-brand" href="/">
+                <img src="./images/navbar/logo.png">
+            </a>
+            <ul class="navbar-nav mr-auto web-nav" id="nav-link-main">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a href="catalogo.html" class="nav-link active">CATÁLOGO DE CURSOS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="mis-cursos.html" class="nav-link">MIS CURSOS</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a href="/blogpage"><a class="nav-link" :class="{'active': isSelected==4?true:false}">Blog</a></router-link>
+                </li>
+                <li class="nav-item">
+                  <a href="/contact_us"><a class="nav-link" :class="{'active': isSelected==5?true:false}">Contacts</a></router-link>
+                </li> -->
+            </ul>
+        </div>
+        <button class="navbar-toggler navbar-toggler-right" type="button"  @click="mobileNavShow = true" :class="{ 'show': !mobileNavShow }">
+            <img src="./images/navbar/ham_btn.svg">
+        </button>
+        <button class="navbar-toggler navbar-toggler-right" type="button"  @click="mobileNavShow = false"  :class="{ 'show': mobileNavShow }">
+            &times;
+        </button>
+        <div class="ingreser-item">
+            <div class="nav-item">
+                <a href="perfil.html" class="nav-link"><img src="./images/navbar/person.png">&nbsp;&nbsp;INGRESAR </a>
+            </div>
+        </div>
+    </nav>
+    <div class="course-header">
+        <div class="gradiend_img u-flex-between">
+            <img src="./images/home/grad.png" />
+            <img src="./images/home/grad.png" />
+        </div>
+        <div class="header_title u-flex-around u-flex-column" >
+            <div>CATÁLOGO DE<br>CURSOS</div>
+            <div class="header_title_btn u-flex-around"><input placeholder="¿qué curso estás buscando?" /><img src="./images/course/search.png"/></div>
+        </div>
+    </div>
+    <div class="footer-learn">
+        <div class="footer-learn-background u-flex-around">
+            <img src="./images/course/section2_back.png" />
+        </div>
+        <div class="section_title u-flex-around u-flex-column">
+            <p><span>116 cursos</span> disponibles para ti</p>
+            <div></div>
+        </div>
+        <div class="u-flex-center u-responsive">
+            <div class="footer-learn-item u-flex-around" @click="display_b=1">
+                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==1?true:false }"></div>
+                <div class="footer-learn-item-a">
+                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==1?true:false }">
+                        <p>nuestro<br>consumidor</p>
+                    </div>
+                </div>
+                <div class="triangle-bottom" :class="{ 'display_block': display_b==1?true:false }"></div>
+            </div>
+            <div class="footer-learn-item u-flex-around" @click="display_b=2">
+                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==2?true:false }"></div>
+                <div class="footer-learn-item-a">
+                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==2?true:false }">
+                        <p>tu<br>onboarding</p>
+                    </div>
+                </div>
+                <div class="triangle-bottom" :class="{ 'display_block': display_b==2?true:false }"></div>
+            </div>
+            <div class="footer-learn-item u-flex-around" @click="display_b=3">
+                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==3?true:false }"></div>
+                <div class="footer-learn-item-a">
+                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==3?true:false }">
+                        <p>SEGURIDAD</p>
+                    </div>
+                </div>
+                <div class="triangle-bottom" :class="{ 'display_block': display_b==3?true:false }"></div>
+            </div>
+            <div class="footer-learn-item u-flex-around" @click="display_b=4">
+                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==4?true:false }"></div>
+                <div class="footer-learn-item-a">
+                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==4?true:false }">
+                        <p>CURSOS DEL<br>CLIENTE</p>
+                    </div>
+                </div>
+                <div class="triangle-bottom" :class="{ 'display_block': display_b==4?true:false }"></div>
+            </div>
+        </div>
+    </div>
+    <div class="section3 u-container">
+        <div class="section3-items1" :class="{ 'display_block': display_b==1?true:false }">
+            <div v-for="item in cursos.p1" class="section3-item-div u-flex-around">
+                <div class="section3-item">
+                    <img :src="item.image"/>
+                    <div class="section3-itemd-desc" >
+                        <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
+                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
+                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
+                        </div>
+                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                        <div class="section3-itemd-desc-line" ></div>
+                        <div class="section3-itemd-desc-text" >{{item.conten}}</div>
+                        <img src="./images/course/item_b.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section3-items1" :class="{ 'display_block': display_b==2?true:false }">
+            <div v-for="item in cursos.p2" class="section3-item-div u-flex-around">
+                <div class="section3-item">
+                    <img :src="item.image"/>
+                    <div class="section3-itemd-desc" >
+                        <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
+                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
+                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
+                        </div>
+                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                        <div class="section3-itemd-desc-line" ></div>
+                        <div class="section3-itemd-desc-text" >{{item.conten}}</div>
+                        <img src="./images/course/item_b.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section3-items1" :class="{ 'display_block': display_b==3?true:false }">
+            <div v-for="item in cursos.p3" class="section3-item-div u-flex-around">
+                <div class="section3-item">
+                    <img :src="item.image"/>
+                    <div class="section3-itemd-desc" >
+                        <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
+                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
+                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
+                        </div>
+                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                        <div class="section3-itemd-desc-line" ></div>
+                        <div class="section3-itemd-desc-text" >{{item.conten}}</div>
+                        <img src="./images/course/item_b.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section3-items1" :class="{ 'display_block': display_b==4?true:false }">
+            <div v-for="item in cursos.p4" class="section3-item-div u-flex-around">
+                <div class="section3-item">
+                    <img :src="item.image"/>
+                    <div class="section3-itemd-desc" >
+                        <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
+                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
+                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
+                        </div>
+                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                        <div class="section3-itemd-desc-line" ></div>
+                        <div class="section3-itemd-desc-text" >{{item.conten}}</div>
+                        <img src="./images/course/item_b.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-triangle-div u-flex-around">
+            <div class="section-triangle"></div>
+        </div>
+    </div>
+    <div class="section41">
+        <div class="section_title u-flex-around u-flex-column">
+            <p><span>116 cursos</span> disponibles para ti</p>
+            <div></div>
+        </div>
+        <div class="footer-learn-background u-flex-around">
+            <img src="./images/course/sec4_back.png" />
+        </div>
+        <div class="section3-items5 u-container">
+            <div v-for="item in cursos2" class="section3-item-div u-flex-around">
+                <div class="section3-item">
+                    <div class="video_icon u-flex-around">
+                        <img src="./images/course/video.png" />
+                    </div>
+                    <img :src="item.image" />
+                    <div class="section3-itemd-desc" >
+                        <div class="section3-itemd-desc-gra" v-if="item.progress > 0">
+                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.progress+'%'"></div>
+                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.progress+'%'">{{item.progress}}%</div>
+                        </div>
+                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footer-top u-responsive">
+            <div class="footer-top-left u-flex-around u-responsive">
+                <div class="foooter-top-left-item">
+                    <p>MAPA DEL AULA VIRTUAL</p>
+                    <ul>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">CATÁLOGO</a></li>
+                        <li><a href="#">TIENDA</a></li>
+                    </ul>
+                </div>
+                <div class="foooter-top-left-item">
+                    <p>MI PERFIL</p>
+                    <ul>
+                        <li><a href="#">MI DASHBOARD</a></li>
+                        <li><a href="#">MIS CURSOS</a></li>
+                        <li><a href="#">¿AYUDA?</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-top-right">
+                <p>SÍGUENOS EN NUESTRAS REDES</p>
+                <a><img src="./images/footer/social1.png" /></a>
+                <a><img src="./images/footer/social2.png" /></a>
+                <a><img src="./images/footer/social3.png" /></a>
+            </div>
+        </div>
+        <div class="footer-down">2021 URBANOVA todos los derechos recervados</div>
+    </div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isBlack: '',
+            view: {
+                atTopOfPage: true
+            },
+            mobileNavShow:false,
+            msg: 'Welcome to Your Vue.js App',
+            maxi_clicked: true,
+            lite_clicked: false,
+            isShow: 0,
+            plus_clicked: false,
+            display_b: 1,
+            cursos: {
+                p1: [
+                    {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                ],
+                p2: [
+                    {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                ],
+                p3: [
+                    {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                ],
+                p4: [
+                    {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                    {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                ],
+            },
+            cursos2: [
+                {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", link:"#"},
+                {image:"./images/course/item2.png", title:"TÍTULO DEL CURSO LOREM", progress:"60", link:"#"},
+                {image:"./images/course/item3.png", title:"TÍTULO DEL CURSO LOREM", progress:"0", link:"#"},
+                {image:"./images/course/item4.png", title:"TÍTULO DEL CURSO LOREM", progress:"0", link:"#"},
+                {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"80", link:"#"},
+                {image:"./images/course/item2.png", title:"TÍTULO DEL CURSO LOREM", progress:"90", link:"#"},
+                {image:"./images/course/item3.png", title:"TÍTULO DEL CURSO LOREM", progress:"10", link:"#"},
+                {image:"./images/course/item4.png", title:"TÍTULO DEL CURSO LOREM", progress:"0", link:"#"},
+            ]
+        },
+        created(){
+
+        },
+        methods: {
+            //agregar los 2 primero elementos para generar el scroll
+
+        }
+    })
+</script>

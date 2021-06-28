@@ -78,7 +78,7 @@ function obtenerUsuario() {
 
 	$userArr = array(
 		'id' => $USER->id,
-		'photo' => getUserImage(),
+		'userPhoto' => getUserImage(),
 		'username' => strtoupper($USER->firstname . ' ' . $USER->lastname),
 		'dateReg' => convertDateToSpanish($USER->firstaccess)
 	);

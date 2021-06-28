@@ -18,6 +18,9 @@ try {
 		case 'obtenerTestimonios':
 			$returnArr = obtenerTestimonios();
 			break;
+		case 'obtenerUsuario':
+			$returnArr = obtenerUsuario();
+			break;
 	}
 
 } catch (Exception $e) {
@@ -29,6 +32,16 @@ header('Content-type: application/json');
 
 echo json_encode($returnArr);
 exit();
+
+function convertDateToSpanish($timestamp) {
+	setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish');
+	return strftime("%d de %B de %Y", $timestamp);
+}
+
+function getUserImage() {
+	global $USER;
+	return '/user/pix.php/'.$USER->id.'/f1.jpg';
+}
 
 function obtenerSlider() {
 	$slides = array();
@@ -56,6 +69,22 @@ function obtenerTestimonios() {
 
 	$response['status'] = true;
 	$response['data'] = $testimonios;
+
+	return $response;
+}
+
+function obtenerUsuario() {
+	global $USER;
+
+	$userArr = array(
+		'id' => $USER->id,
+		'photo' => getUserImage(),
+		'username' => strtoupper($USER->firstname . ' ' . $USER->lastname),
+		'dateReg' => convertDateToSpanish($USER->firstaccess)
+	);
+
+	$response['status'] = true;
+	$response['data'] = $userArr;
 
 	return $response;
 }

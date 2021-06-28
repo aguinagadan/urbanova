@@ -2,8 +2,8 @@
     <div class="course-header">
         <div class="header_title u-flex-around u-responsive" >
             <div>
-                <p>ACTIVO DESDE EL 22 DE SETIEMBRE 2020!</p>
-                <div>JOHN DOE ADMIN</div>
+                <p>ACTIVO DESDE EL {(dateReg)}</p>
+                <div>{(username)}</div>
             </div>
             <div class="header_title-person u-flex-around">
                 <img src="./images/mycourse/person.png" />
@@ -97,11 +97,14 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script>
     var app = new Vue({
         el: '#app',
         delimiters: ['{(', ')}'],
         data: {
+            dateReg: '',
+            username: '',
             isBlack: '',
             view: {
                 atTopOfPage: true
@@ -144,6 +147,9 @@
                 this.resizeCarrusel();
             };
         },
+        mounted(){
+            this.obtenerUsuario();
+        },
         computed: {
             searchCurse: function (){
                 return this.cursosPen.filter((item) => item.title.includes(this.searchCursos));
@@ -153,6 +159,16 @@
             // },
         },
         methods: {
+            obtenerUsuario() {
+                let frm = new FormData();
+                frm.append('request_type','obtenerUsuario');
+                axios.post('../local/customfront/api/ajax_controller.php',frm)
+                        .then((response) => {
+                            let data = response.data.data;
+                            this.dateReg = data.dateReg;
+                            this.username = data.username;
+                        });
+            },
             resizeCarrusel(){
                 this.cursos.config.anchoView = document.documentElement.clientWidth*0.8;
                 let cant = this.cursos.item.length;

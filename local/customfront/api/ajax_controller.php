@@ -107,7 +107,7 @@ function obtenerUltimosCursosUrbanova() {
 		$percentage = round(progress::get_course_progress_percentage($courseObj, $USER->id));
 		$courses[] = [
 			'title'=> $course->fullname,
-			'content'=> $course->summary,
+			'content'=> strip_tags($course->summary),
 			'link'=> 'course/view.php?id='.$course->id,
 			'porcent' => $percentage,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),

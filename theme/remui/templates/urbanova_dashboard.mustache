@@ -40,7 +40,14 @@
             </div>
             <div class="options">
                 <ul data-v-3d1a4f76="" class="slick-dots">
-
+                    <div v-if="cursos.item.length > 1">
+                        <li v-if="cursos.config.anchoView > 1350 && cursos.item.length > 3" v-for="(item, key) in cursos.item.length - 3" :class="{'slick-active':cursos.config.actual == key+1}">
+                            <button @click="movLeft(key+1)">{(key)}</button>
+                        </li>
+                        <li v-if="cursos.config.anchoView > 768 && cursos.config.anchoView <= 1350" v-for="(item, key) in cursos.item.length - 2" :class="{'slick-active':cursos.config.actual == key+1}">
+                            <button @click="movLeft(key+1)">{(key)}</button>
+                        </li>
+                    </div>
                     <li v-if="cursos.config.anchoView <= 786" v-for="(item, key) in cursos.item.length" :class="{'slick-active':cursos.config.actual == key+1}">
                         <button @click="movLeft(key+1)">{(key)}</button>
                     </li>

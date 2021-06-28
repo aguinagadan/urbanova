@@ -40,10 +40,10 @@
             </div>
             <div class="options">
                 <ul data-v-3d1a4f76="" class="slick-dots">
-                    <li v-if="cursos.config.anchoView > 1350" v-for="(item, key) in cursos.item.length - 3" :class="{'slick-active':cursos.config.actual == key+1}">
+                    <li v-if="cursos.config.anchoView > 1350 && cursos.item.length > 3" v-for="(item, key) in cursos.item.length - 3" :class="{'slick-active':cursos.config.actual == key+1}">
                         <button @click="movLeft(key+1)">{(key)}</button>
                     </li>
-                    <li v-if="cursos.config.anchoView > 768 && cursos.config.anchoView <= 1350" v-for="(item, key) in cursos.item.length - 2" :class="{'slick-active':cursos.config.actual == key+1}">
+                    <li v-if="cursos.config.anchoView > 768 && cursos.config.anchoView <= 1350 && cursos.item.length > 2" v-for="(item, key) in cursos.item.length - 2" :class="{'slick-active':cursos.config.actual == key+1}">
                         <button @click="movLeft(key+1)">{(key)}</button>
                     </li>
                     <li v-if="cursos.config.anchoView <= 786" v-for="(item, key) in cursos.item.length" :class="{'slick-active':cursos.config.actual == key+1}">
@@ -118,10 +118,6 @@
             display_b: 1,
             cursos: {
                 item:[
-                    {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
-                    {image:"./images/course/item2.png", title:"TÍTULO DEL CURSO LOREM", progress:"50", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
-                    {image:"./images/course/item3.png", title:"TÍTULO DEL CURSO LOREM", progress:"80", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
-                    {image:"./images/course/item4.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
                     {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
                 ],
                 config: {

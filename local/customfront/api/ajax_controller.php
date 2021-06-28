@@ -98,6 +98,9 @@ function obtenerUsuario() {
 function obtenerUltimosCursosUrbanova() {
 	global $USER;
 
+	var_dump('test');
+	exit;
+
 	$courses = array();
 	$allcourses = core_course_category::get(1)->get_courses(
 		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));

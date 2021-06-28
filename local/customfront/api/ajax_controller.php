@@ -24,7 +24,7 @@ try {
 		case 'obtenerUsuario':
 			$returnArr = obtenerUsuario();
 			break;
-		case 'obtenerCursosByCat':
+		case 'obtenerUltimosCursosUrbanova':
 			$returnArr = obtenerUltimosCursosUrbanova();
 			break;
 	}
@@ -97,9 +97,6 @@ function obtenerUsuario() {
 
 function obtenerUltimosCursosUrbanova() {
 	global $USER;
-
-	var_dump('test');
-	exit;
 
 	$courses = array();
 	$allcourses = core_course_category::get(1)->get_courses(

@@ -1,1 +1,209 @@
-<div style="text-align: center">custom dashboard</div>
+<div id="app" class="course">
+    <div class="course-header">
+        <div class="header_title u-flex-around u-responsive" >
+            <div>
+                <p>ACTIVO DESDE EL 22 DE SETIEMBRE 2020!</p>
+                <div>JOHN DOE ADMIN</div>
+            </div>
+            <div class="header_title-person u-flex-around">
+                <img src="./images/mycourse/person.png" />
+            </div>
+        </div>
+    </div>
+    <div id="scrollView3" class="carousel-wrap" data-aos="fade-up">
+        <div class="section_title u-flex-around u-flex-column">
+            <p><span>Tus cursos </span>pendientes</p>
+            <div></div>
+        </div>
+        <div class="footer-learn-background u-flex-around">
+            <img src="./images/mycourse/section2.png" />
+        </div>
+        <div class="carousel u-container">
+            <div id="carousel-conten" :style="'width:'+cursos.config.anchoCarrusel+'px; margin-left:'+cursos.config.position+'px'">
+                <div v-for="item in cursos.item" class="col" :style="'width:'+cursos.config.anchoItem+'px'">
+                    <div class="section3-item-div u-flex-around">
+                        <div class="section3-item">
+                            <img :src="item.image" />
+                            <div class="section3-itemd-desc" >
+                                <div class="section3-itemd-desc-gra">
+                                    <div class="section3-itemd-desc-gra-red" :style="'width: '+item.progress+'%'"></div>
+                                    <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left: '+item.progress+'%'">{{item.progress}}%</div>
+                                </div>
+                                <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                                <div class="section3-itemd-desc-line" ></div>
+                                <div class="section3-itemd-desc-text" >{{item.content}}</div>
+                                <img src="./images/course/item_b.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="options">
+                <ul data-v-3d1a4f76="" class="slick-dots">
+                    <li v-if="cursos.config.anchoView > 1350" v-for="(item, key) in cursos.item.length - 3" :class="{'slick-active':cursos.config.actual == key+1}">
+                        <button @click="movLeft(key+1)">{{key}}</button>
+                    </li>
+                    <li v-if="cursos.config.anchoView > 768 && cursos.config.anchoView <= 1350" v-for="(item, key) in cursos.item.length - 2" :class="{'slick-active':cursos.config.actual == key+1}">
+                        <button @click="movLeft(key+1)">{{key}}</button>
+                    </li>
+                    <li v-if="cursos.config.anchoView <= 786" v-for="(item, key) in cursos.item.length" :class="{'slick-active':cursos.config.actual == key+1}">
+                        <button @click="movLeft(key+1)">{{key}}</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="section4">
+        <div class="section_title u-flex-around u-flex-column">
+            <p><span>Tus cursos </span>pendientes 2</p>
+            <div></div>
+        </div>
+        <div class="section_search u-flex-between u-responsive">
+            <div class="header_title_btn u-flex-around"><input placeholder="¿qué curso estás buscando?" v-model="searchCursos"/><img src="./images/mycourse/search.png"/></div>
+            <div class="header_title_btn u-flex-around">
+                <select>
+                    <Option>filtrar por categoría</Option>
+                    <Option>filtrar por categoría</Option>
+                    <Option>filtrar por categoría</Option>
+                </select>
+            </div>
+        </div>
+        <div v-for="item in searchCurse" class="section4-item u-flex-between u-responsive">
+            <div class="section4-itemd-img">
+                <img :src="item.image" />
+                <div class="team-cards-desc-star u-flex-around">
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+            </div>
+            <div class="section4-itemd-desc u-flex-between u-flex-column" >
+                <div class="section4-itemd-desc-title" >{{item.title}}</div>
+                <div class="section4-itemd-desc-gra">
+                    <div class="section4-itemd-desc-gra-red" :style="'width:'+item.progress+'%'"></div>
+                    <div class="section4-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.progress+'%'">{{item.progress}}%</div>
+                </div>
+            </div>
+            <div class="section4-itemd-desc-buttons">
+                <div class="u-flex-between">
+                    <img src="./images/mycourse/cal.png" />
+                    <p>{{item.date}}</p>
+                </div>
+                <a :href="item.link" class="section4-itemd-desc-button">ACCEDER</a>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footer-top u-responsive">
+            <div class="footer-top-left u-flex-around u-responsive">
+                <div class="foooter-top-left-item">
+                    <p>MAPA DEL AULA VIRTUAL</p>
+                    <ul>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">CATÁLOGO</a></li>
+                        <li><a href="#">TIENDA</a></li>
+                    </ul>
+                </div>
+                <div class="foooter-top-left-item">
+                    <p>MI PERFIL</p>
+                    <ul>
+                        <li><a href="#">MI DASHBOARD</a></li>
+                        <li><a href="#">MIS CURSOS</a></li>
+                        <li><a href="#">¿AYUDA?</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-top-right">
+                <p>SÍGUENOS EN NUESTRAS REDES</p>
+                <a><img src="./images/footer/social1.png" /></a>
+                <a><img src="./images/footer/social2.png" /></a>
+                <a><img src="./images/footer/social3.png" /></a>
+            </div>
+        </div>
+        <div class="footer-down">2021 URBANOVA todos los derechos recervados</div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isBlack: '',
+            view: {
+                atTopOfPage: true
+            },
+            mobileNavShow:false,
+            maxi_clicked: true,
+            lite_clicked: false,
+            isShow: 0,
+            plus_clicked: false,
+            display_b: 1,
+            cursos: {
+                item:[
+                    {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
+                    {image:"./images/course/item2.png", title:"TÍTULO DEL CURSO LOREM", progress:"50", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
+                    {image:"./images/course/item3.png", title:"TÍTULO DEL CURSO LOREM", progress:"80", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
+                    {image:"./images/course/item4.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
+                    {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
+                ],
+                config: {
+                    anchoView: 0,
+                    items: 0,
+                    anchoItem: 0,
+                    anchoCarrusel: 0,
+                    actual: 1,
+                    position: 0,
+                }
+            },
+            cursosPen: [
+                {image: './images/mycourse/item1.png', title:'Curso de asdf', date:'14 de abril, 2020', progress:'30', link:"#"},
+                {image: './images/mycourse/item2.png', title:'Nombre completo el primer curso de prueba con dos filas de texto para nombres largos', date:'14 de abril, 2020', progress:'50', link:"#"},
+                {image: './images/mycourse/item3.png', title:'Nombre completo el primer curso de prueba con dos filas de texto para nombres largos', date:'14 de abril, 2020', progress:'30', link:"#"},
+                {image: './images/mycourse/item4.png', title:'Nombre completo el primer curso de prueba con dos filas de texto para nombres largos', date:'14 de abril, 2020', progress:'70', link:"#"},
+                {image: './images/mycourse/item1.png', title:'Nombre completo el primer curso de prueba con dos filas de texto para nombres largos', date:'14 de abril, 2020', progress:'30', link:"#"},
+            ],
+            searchCursos: '',
+        },
+        created(){
+            this.resizeCarrusel();
+            window.onresize = (event)=> {
+                this.resizeCarrusel();
+            };
+        },
+        computed: {
+            searchCurse: function (){
+                return this.cursosPen.filter((item) => item.title.includes(this.searchCursos));
+            },
+            // searchUsers: function(){
+            //   return this.usuarios.filter((item) => item.name.includes(this.searchAlumnos));
+            // },
+        },
+        methods: {
+            resizeCarrusel(){
+                this.cursos.config.anchoView = document.documentElement.clientWidth*0.8;
+                let cant = this.cursos.item.length;
+
+                if(this.cursos.config.anchoView > 1350*0.8){
+                    this.cursos.config.anchoItem = this.cursos.config.anchoView/4;
+
+                } else if(this.cursos.config.anchoView > 768*0.8){
+                    this.cursos.config.anchoItem = this.cursos.config.anchoView/2;
+
+                } else{
+                    this.cursos.config.anchoItem = this.cursos.config.anchoView;
+                }
+
+                this.cursos.config.anchoCarrusel = this.cursos.config.anchoItem*cant;
+                console.log(this.cursos.config);
+                this.movLeft(1);
+            },
+            movLeft(key){
+                this.cursos.config.actual = key;
+                let p = this.cursos.config.actual-1;
+                this.cursos.config.position = this.cursos.config.anchoItem*p*-1;
+            },
+        },
+    })
+</script>

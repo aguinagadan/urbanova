@@ -90,7 +90,7 @@ $PAGE->set_subpage($currentpage->id);
 $PAGE->set_title($pagetitle);
 $PAGE->set_heading($header);
 
-$PAGE->requires->css('css/my-curso.css');
+$PAGE->requires->css('/my/css/my-curso.css');
 
 if (!isguestuser()) {   // Skip default home page for guests
     if (get_home_page() != HOMEPAGE_MY) {

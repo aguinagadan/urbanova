@@ -243,9 +243,9 @@
             cursos: [
                 {
                     image: "./images/course/item1.png",
-                    porcent:"60",
-                    title:"TÍTULO DEL CURSO LOREM",
-                    content:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ",
+                    porcent: "60",
+                    title: "TÍTULO DEL CURSO LOREM",
+                    content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ",
                     link: "#"
                 },
             ],
@@ -253,6 +253,7 @@
         mounted(){
             this.loadSlider();
             this.loadTestimonios();
+            this.getCourses();
         },
         created(){
             this.carruselCreated();
@@ -308,6 +309,34 @@
                         });
 
                         this.tetimonio.items = testimonios;
+                    });
+            },
+            getCourses: function() {
+                let frm = new FormData();
+                frm.append('request_type','obtenerCursosUrbanova');
+                axios.post('local/customfront/api/ajax_controller.php',frm)
+                    .then((response) => {
+                        let data = response.data.data;
+                        let courses = Array();
+
+                        Object.keys(data).forEach(key => {
+                            let dataVal = data[key];
+                            let title = dataVal.title;
+                            let content = dataVal.content;
+                            let porcent = dataVal.porcent;
+                            let link = dataVal.link;
+                            let image = dataVal.image;
+
+                            let newElem = {
+                                'title': title,
+                                'content': content,
+                                'porcent': porcent,
+                                'url': link,
+                                'image': image
+                            };
+                            courses.push(newElem);
+                        });
+                        this.cursos = courses;
                     });
             },
             //agregar los 2 primero elementos para generar el scroll

@@ -1,4 +1,7 @@
 <?php
+
+use core_completion\progress;
+
 error_reporting(E_ALL);
 require_once(dirname(__FILE__) . '/../../../config.php');
 
@@ -20,6 +23,9 @@ try {
 			break;
 		case 'obtenerUsuario':
 			$returnArr = obtenerUsuario();
+			break;
+		case 'obtenerCursosByCat':
+			$returnArr = obtenerCursosUrbanova();
 			break;
 	}
 
@@ -85,6 +91,43 @@ function obtenerUsuario() {
 
 	$response['status'] = true;
 	$response['data'] = $userArr;
+
+	return $response;
+}
+
+function obtenerCursosUrbanova() {
+	global $USER;
+
+	$courses = array();
+	$cursoTxt = 'Curso';
+	$disponibleTxt = 'disponible';
+	$allcourses = core_course_category::get(1)->get_courses(
+		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
+
+	foreach($allcourses as $course) {
+		$courseObj = get_course($course->id);
+		$percentage = round(progress::get_course_progress_percentage($courseObj, $USER->id));
+		$courses[] = [
+			'title'=> $course->fullname,
+			'content'=> $course->summary,
+			'link'=> 'course/view.php?id='.$course->id,
+			'porcent' => $percentage,
+			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
+		];
+	}
+
+	$response['status'] = true;
+	$response['data'] = $courses;
+	$response['totalCourses'] = count($courses);
+
+	if(count($courses) != 1) {
+		$cursoTxt = 'Cursos';
+		$disponibleTxt = 'disponibles';
+	}
+
+	$response['totalCourses'] = count($courses);
+	$response['cursoTxt'] = $cursoTxt;
+	$response['disponibleTxt'] = $disponibleTxt;
 
 	return $response;
 }

@@ -27,11 +27,11 @@
                             <div class="section3-itemd-desc" >
                                 <div class="section3-itemd-desc-gra">
                                     <div class="section3-itemd-desc-gra-red" :style="'width: '+item.progress+'%'"></div>
-                                    <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left: '+item.progress+'%'">{{item.progress}}%</div>
+                                    <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left: '+item.progress+'%'">{(item.progress)}%</div>
                                 </div>
-                                <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                                <a :href="item.link" class="section3-itemd-desc-title" >{(item.title)}</a>
                                 <div class="section3-itemd-desc-line" ></div>
-                                <div class="section3-itemd-desc-text" >{{item.content}}</div>
+                                <div class="section3-itemd-desc-text" >{(item.content)}</div>
                                 <img src="./images/course/item_b.png" />
                             </div>
                         </div>
@@ -41,13 +41,13 @@
             <div class="options">
                 <ul data-v-3d1a4f76="" class="slick-dots">
                     <li v-if="cursos.config.anchoView > 1350" v-for="(item, key) in cursos.item.length - 3" :class="{'slick-active':cursos.config.actual == key+1}">
-                        <button @click="movLeft(key+1)">{{key}}</button>
+                        <button @click="movLeft(key+1)">{(key)}</button>
                     </li>
                     <li v-if="cursos.config.anchoView > 768 && cursos.config.anchoView <= 1350" v-for="(item, key) in cursos.item.length - 2" :class="{'slick-active':cursos.config.actual == key+1}">
-                        <button @click="movLeft(key+1)">{{key}}</button>
+                        <button @click="movLeft(key+1)">{(key)}</button>
                     </li>
                     <li v-if="cursos.config.anchoView <= 786" v-for="(item, key) in cursos.item.length" :class="{'slick-active':cursos.config.actual == key+1}">
-                        <button @click="movLeft(key+1)">{{key}}</button>
+                        <button @click="movLeft(key+1)">{(key)}</button>
                     </li>
                 </ul>
             </div>
@@ -80,16 +80,16 @@
                 </div>
             </div>
             <div class="section4-itemd-desc u-flex-between u-flex-column" >
-                <div class="section4-itemd-desc-title" >{{item.title}}</div>
+                <div class="section4-itemd-desc-title" >{(item.title)}</div>
                 <div class="section4-itemd-desc-gra">
                     <div class="section4-itemd-desc-gra-red" :style="'width:'+item.progress+'%'"></div>
-                    <div class="section4-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.progress+'%'">{{item.progress}}%</div>
+                    <div class="section4-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.progress+'%'">{(item.progress)}%</div>
                 </div>
             </div>
             <div class="section4-itemd-desc-buttons">
                 <div class="u-flex-between">
                     <img src="./images/mycourse/cal.png" />
-                    <p>{{item.date}}</p>
+                    <p>{(item.date)}</p>
                 </div>
                 <a :href="item.link" class="section4-itemd-desc-button">ACCEDER</a>
             </div>
@@ -100,6 +100,7 @@
 <script>
     var app = new Vue({
         el: '#app',
+        delimiters: ['{(', ')}'],
         data: {
             isBlack: '',
             view: {

@@ -114,6 +114,7 @@ function obtenerUltimosCursosUrbanova() {
 		];
 	}
 
+	var_dump('test');
 	var_dump($courses);
 	exit;
 

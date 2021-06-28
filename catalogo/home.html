@@ -236,7 +236,7 @@
                 let frm = new FormData();
                 frm.append('request_type','obtenerCursosByCat');
                 frm.append('idCat', 3);
-                axios.post('../qroma_front/api/ajax_controller_qroma.php',frm)
+                axios.post('local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
                         let data = response.data.data;
                         let courses = Array();
@@ -265,7 +265,7 @@
                 let frm = new FormData();
                 frm.append('request_type','obtenerCursosByCat');
                 frm.append('idCat', 4);
-                axios.post('../qroma_front/api/ajax_controller_qroma.php',frm)
+                axios.post('local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
                         let data = response.data.data;
                         let courses = Array();
@@ -294,7 +294,7 @@
                 let frm = new FormData();
                 frm.append('request_type','obtenerCursosByCat');
                 frm.append('idCat', 5);
-                axios.post('../qroma_front/api/ajax_controller_qroma.php',frm)
+                axios.post('local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
                         let data = response.data.data;
                         let courses = Array();
@@ -323,7 +323,7 @@
                 let frm = new FormData();
                 frm.append('request_type','obtenerCursosByCat');
                 frm.append('idCat', 6);
-                axios.post('../qroma_front/api/ajax_controller_qroma.php',frm)
+                axios.post('local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
                         let data = response.data.data;
                         let courses = Array();

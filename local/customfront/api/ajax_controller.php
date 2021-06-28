@@ -24,8 +24,8 @@ try {
 		case 'obtenerUsuario':
 			$returnArr = obtenerUsuario();
 			break;
-		case 'obtenerUltimosCursosUrbanova':
-			$returnArr = obtenerUltimosCursosUrbanova();
+		case 'obtenerCursosByCat':
+			$returnArr = obtenerCursosByCat($_POST['idCat']);
 			break;
 	}
 
@@ -95,7 +95,7 @@ function obtenerUsuario() {
 	return $response;
 }
 
-function obtenerUltimosCursosUrbanova() {
+function obtenerCursosByCat($idCat) {
 	global $USER;
 
 	$courses = array();

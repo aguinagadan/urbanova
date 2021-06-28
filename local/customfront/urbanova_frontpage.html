@@ -313,7 +313,8 @@
             },
             getCourses: function() {
                 let frm = new FormData();
-                frm.append('request_type','obtenerUltimosCursosUrbanova');
+                frm.append('request_type','obtenerCursosByCat');
+                frm.append('idCat', 1);
                 axios.post('local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
                         let data = response.data.data;

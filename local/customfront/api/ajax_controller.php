@@ -103,7 +103,7 @@ function obtenerBasicInfo() {
 		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
 
 	$response['status'] = true;
-	$response['data']['cantidadCursos'] = count($allcourses);
+	$response['data'] = count($allcourses);
 
 	return $response;
 }

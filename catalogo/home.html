@@ -239,14 +239,7 @@
                 frm.append('request_type','obtenerBasicInfo');
                 axios.post('/local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
-                        let data = response.data.data;
-                        let cantidadCursos = 0;
-
-                        Object.keys(data).forEach(key => {
-                            let dataVal = data[key];
-                            this.cantidadCursos = dataVal.cantidadCursos;
-                        });
-                        this.cantidadCursos = cantidadCursos;
+                        this.cantidadCursos = response.data.data;
                     });
             },
             getP1: function(){

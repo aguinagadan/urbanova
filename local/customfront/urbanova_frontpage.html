@@ -120,7 +120,7 @@
                         </div>
                         <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
                         <div class="section3-itemd-desc-line" ></div>
-                        <div class="section3-itemd-desc-text" >{{item.content}}</div>
+                        <div class="section3-itemd-desc-text" v-html="item.content">{{item.content}}</div>
                         <img src="./images/course/item_b.png" />
                     </div>
                 </div>

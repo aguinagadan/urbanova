@@ -91,6 +91,7 @@ $PAGE->set_title($pagetitle);
 $PAGE->set_heading($header);
 
 $PAGE->requires->css('/my/css/my-curso.css');
+$PAGE->requires->css('/local/customfront/css/grid.css');
 
 if (!isguestuser()) {   // Skip default home page for guests
     if (get_home_page() != HOMEPAGE_MY) {

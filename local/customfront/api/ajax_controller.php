@@ -40,7 +40,7 @@ function convertDateToSpanish($timestamp) {
 
 function getUserImage() {
 	global $USER;
-	return '/user/pix.php/'.$USER->id.'/f1.jpg';
+	return '/user/pix.php/'.$USER->id.'/f2.jpg';
 }
 
 function obtenerSlider() {

@@ -25,7 +25,7 @@ try {
 			$returnArr = obtenerUsuario();
 			break;
 		case 'obtenerCursosByCat':
-			$returnArr = obtenerCursosUrbanova();
+			$returnArr = obtenerUltimosCursosUrbanova();
 			break;
 	}
 
@@ -95,12 +95,10 @@ function obtenerUsuario() {
 	return $response;
 }
 
-function obtenerCursosUrbanova() {
+function obtenerUltimosCursosUrbanova() {
 	global $USER;
 
 	$courses = array();
-	$cursoTxt = 'Curso';
-	$disponibleTxt = 'disponible';
 	$allcourses = core_course_category::get(1)->get_courses(
 		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
 
@@ -116,18 +114,11 @@ function obtenerCursosUrbanova() {
 		];
 	}
 
+	var_dump($courses);
+	exit;
+
 	$response['status'] = true;
 	$response['data'] = $courses;
-	$response['totalCourses'] = count($courses);
-
-	if(count($courses) != 1) {
-		$cursoTxt = 'Cursos';
-		$disponibleTxt = 'disponibles';
-	}
-
-	$response['totalCourses'] = count($courses);
-	$response['cursoTxt'] = $cursoTxt;
-	$response['disponibleTxt'] = $disponibleTxt;
 
 	return $response;
 }

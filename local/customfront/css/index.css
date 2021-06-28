@@ -46,3 +46,8 @@ body#page-site-index {
 .padding-top-8 {
     padding-top: 8% !important;
 }
+
+.section3-item img {
+    width: 200px !important;
+    height: 200px !important;
+}

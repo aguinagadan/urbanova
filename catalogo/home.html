@@ -14,7 +14,7 @@
             <img src="/images/course/section2_back.png" />
         </div>
         <div class="section_title u-flex-around u-flex-column">
-            <p><span>116 cursos</span> disponibles para ti</p>
+            <p><span>{{cantidadCursos}} cursos</span> disponibles para ti</p>
             <div></div>
         </div>
         <div class="u-flex-center u-responsive">
@@ -162,6 +162,7 @@
     var app = new Vue({
         el: '#app',
         data: {
+            cantidadCursos: 0,
             isBlack: '',
             view: {
                 atTopOfPage: true
@@ -222,6 +223,7 @@
             ]
         },
         mounted(){
+            this.getBasicInfo();
             this.getP1();
             this.getP2();
             this.getP3();
@@ -232,6 +234,20 @@
         },
         methods: {
             //agregar los 2 primero elementos para generar el scroll
+            getBasicInfo: function(){
+                let frm = new FormData();
+                frm.append('request_type','obtenerBasicInfo');
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
+                    .then((response) => {
+                        let data = response.data.data;
+
+                        Object.keys(data).forEach(key => {
+                            let dataVal = data[key];
+                            this.cantidadCursos = dataVal.cantidadCursos;
+                        });
+
+                    });
+            },
             getP1: function(){
                 let frm = new FormData();
                 frm.append('request_type','obtenerCursosByCat');

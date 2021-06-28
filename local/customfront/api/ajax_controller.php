@@ -27,6 +27,9 @@ try {
 		case 'obtenerCursosByCat':
 			$returnArr = obtenerCursosByCat($_POST['idCat']);
 			break;
+		case 'obtenerBasicInfo':
+			$returnArr = obtenerBasicInfo();
+			break;
 	}
 
 } catch (Exception $e) {
@@ -91,6 +94,16 @@ function obtenerUsuario() {
 
 	$response['status'] = true;
 	$response['data'] = $userArr;
+
+	return $response;
+}
+
+function obtenerBasicInfo() {
+	$allcourses = core_course_category::get(1)->get_courses(
+		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
+
+	$response['status'] = true;
+	$response['data']['cantidadCursos'] = count($allcourses);
 
 	return $response;
 }

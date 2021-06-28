@@ -30,3 +30,8 @@ body#page-site-catalogo {
 #page-site-catalogo #page-content {
     padding-bottom: 0 !important;
 }
+
+#page-site-catalogo .section3-item img {
+    width: 200px !important;
+    height: 200px !important;
+}

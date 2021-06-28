@@ -338,3 +338,10 @@
 }
 .header_title_btn input::-webkit-input-placeholder { color: white; } /* WebKit */
 .header_title_btn input ::-moz-placeholder { color: white; }
+
+/*custom*/
+
+#page-site-catalogo .section3-item img {
+  width: 200px !important;
+  height: 200px !important;
+}

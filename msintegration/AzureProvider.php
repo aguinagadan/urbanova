@@ -113,6 +113,10 @@ class AzureProvider {
 
 		foreach($allUsers as $allUser) {
 			foreach($allUser['value'] as $key=>$val) {
+				$val['userPrincipalName'] = strtolower($val['userPrincipalName']);
+				if (strpos($val['userPrincipalName'], '@urbanova.com.pe') === false) {
+					continue;
+				}
 				$usersAD[$count] = $val;
 				$count++;
 			}

@@ -212,6 +212,7 @@
             resizeCarrusel(){
                 this.cursos.config.anchoView = document.documentElement.clientWidth*0.8;
                 let cant = this.cursos.item.length;
+                console.log(cant);
 
                 if(this.cursos.config.anchoView > 1350*0.8){
                     this.cursos.config.anchoItem = this.cursos.config.anchoView/4;

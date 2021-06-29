@@ -120,10 +120,13 @@
             display_b: 1,
             cursos: {
                 item:[
-                    {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
-                    {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM 2", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
-                    {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM 2", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
-                    {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM 2", progress:"30", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam", link:"#"},
+                    {
+                        image: "./images/course/item1.png",
+                        title: "TÍTULO DEL CURSO LOREM",
+                        progress: "30",
+                        content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam",
+                        link: "#"
+                    },
                 ],
                 config: {
                     anchoView: 0,
@@ -135,7 +138,13 @@
                 }
             },
             cursosPen: [
-                {image: './images/mycourse/item1.png', title:'Curso de asdf', date:'14 de abril, 2020', progress:'30', link:"#"},
+                {
+                    image: './images/mycourse/item1.png',
+                    title:'Curso de asdf',
+                    date:'14 de abril, 2020',
+                    progress:'30',
+                    link:"#"
+                },
             ],
             searchCursos: '',
         },
@@ -147,6 +156,7 @@
         },
         mounted(){
             this.obtenerUsuario();
+            this.obtenerCursosPendientes();
         },
         computed: {
             searchCurse: function (){
@@ -166,6 +176,37 @@
                             this.dateReg = data.dateReg;
                             this.username = data.username;
                             this.userPhoto = data.userPhoto;
+                        });
+            },
+            obtenerCursosPendientes: function(){
+                let frm = new FormData();
+                frm.append('request_type','obtenerCursosPendientes');
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
+                        .then((response) => {
+                            let data = response.data.data;
+                            let courses = Array();
+
+                            Object.keys(data).forEach(key => {
+                                let dataVal = data[key];
+                                let title = dataVal.title;
+                                let content = dataVal.content;
+                                let progress = dataVal.progress;
+                                let link = dataVal.link;
+                                let image = dataVal.image;
+                                let date = dataVal.dateEnd;
+
+                                let newElem = {
+                                    'title': title,
+                                    'content': content,
+                                    'progress': progress,
+                                    'link': link,
+                                    'image': image,
+                                    'date': date,
+                                };
+                                courses.push(newElem);
+                            });
+                            this.cursos.item = courses;
+                            this.cursosPen = courses;
                         });
             },
             resizeCarrusel(){

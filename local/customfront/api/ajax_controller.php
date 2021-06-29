@@ -1,6 +1,7 @@
 <?php
 
 use core_completion\progress;
+use core_course\external\course_summary_exporter;
 
 error_reporting(E_ALL);
 require_once(dirname(__FILE__) . '/../../../config.php');
@@ -29,6 +30,9 @@ try {
 			break;
 		case 'obtenerBasicInfo':
 			$returnArr = obtenerBasicInfo();
+			break;
+		case 'obtenerCursosPendientes':
+			$returnArr = obtenerCursosPendientes();
 			break;
 	}
 
@@ -65,6 +69,23 @@ function obtenerSlider() {
 	$response['data'] = $slides;
 
 	return $response;
+}
+
+function getCourseImage($course) {
+	$data = new \stdClass();
+	$data->id = $course->id;
+	$data->fullname = $course->fullname;
+	$data->hidden = $course->visible;
+	$options = [
+		'course' => $course->id,
+	];
+	$viewurl = new \moodle_url('/admin/tool/moodlenet/options.php', $options);
+	$data->viewurl = $viewurl->out(false);
+	$category = \core_course_category::get($course->category);
+	$data->coursecategory = $category->name;
+	$courseimage = course_summary_exporter::get_course_image($data);
+
+	return $courseimage;
 }
 
 function obtenerTestimonios() {
@@ -129,6 +150,32 @@ function obtenerCursosByCat($idCat) {
 
 	$response['status'] = true;
 	$response['data'] = $courses;
+
+	return $response;
+}
+
+function obtenerCursosPendientes() {
+	global $USER;
+	$returnArr = array();
+	$userCourses = enrol_get_users_courses($USER->id, true);
+
+	foreach($userCourses as $course) {
+		$percentage = progress::get_course_progress_percentage($course, $USER->id);
+		if($percentage == 100) {
+			continue;
+		}
+		$returnArr[] = [
+			'title' => $course->fullname,
+			'content' => strip_tags($course->summary),
+			'progress' => round($percentage),
+			'link' => 'course/view.php?id='.$course->id,
+			'image' => getCourseImage($course),
+			'dateEnd' => !empty($course->enddate) ? convertDateToSpanish($course->enddate) : ''
+		];
+	}
+
+	$response['status'] = true;
+	$response['data'] = $returnArr;
 
 	return $response;
 }

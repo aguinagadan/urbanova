@@ -49,7 +49,7 @@ class AzureProvider {
 		return $responseData;
 	}
 
-	private function getToken($scope, $grantType) {
+	public function getToken($scope, $grantType, $isLogin=false, $params=array()) {
 		$url = 'https://login.microsoftonline.com/'. $this->constants::AD_URL .'/oauth2/v2.0/token';
 		$fields = array(
 			"client_id" => $this->constants::AD_CLIENT_ID,
@@ -57,6 +57,11 @@ class AzureProvider {
 			"scope" => $scope,
 			"grant_type" => $grantType
 		);
+
+		if($isLogin) {
+			$fields['code'] = $params['getCode'];
+			$fields['redirect_uri'] = $params['redirectUri'];
+		}
 
 		// For each API Url field
 		foreach($fields as $key=>$value) {
@@ -77,7 +82,7 @@ class AzureProvider {
 		$result = json_decode($result);
 		curl_close($ch);
 
-		return $result->access_token;
+		return $result;
 	}
 
 	private function getADUsersRaw($key, $skipToken) {
@@ -85,10 +90,12 @@ class AzureProvider {
 			$skipToken = '?$skiptoken='.$skipToken;
 		}
 
+		$accessToken = $this->getToken($this->constants::SCOPE, $this->constants::GRANT_TYPE_CLIENT_CREDENTIALS)->access_token;
+
 		$data = array(
 			'url' => 'https://graph.microsoft.com/v1.0/users'.$skipToken,
 			'httpMethod' => 'GET',
-			'httpHeader' => array("Authorization: ". $this->getToken($this->constants::SCOPE, $this->constants::GRANT_TYPE_CLIENT_CREDENTIALS))
+			'httpHeader' => array("Authorization: ". $accessToken)
 		);
 		$responseData = $this->execCurl($data);
 		return $responseData;

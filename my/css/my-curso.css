@@ -662,3 +662,10 @@
   position: relative;
   z-index: 99;
 }
+
+/*custom*/
+
+.section3-item img {
+  width: 200px !important;
+  height: 200px !important;
+}

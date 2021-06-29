@@ -345,3 +345,13 @@
   width: 200px !important;
   height: 200px !important;
 }
+
+#page-site-catalogo #page-content {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+#page-site-catalogo #region-main-box {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}

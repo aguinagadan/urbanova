@@ -157,7 +157,8 @@ function obtenerCursosByCat($idCat) {
 function obtenerCursosPendientes() {
 	global $USER;
 	$returnArr = array();
-	$userCourses = enrol_get_users_courses($USER->id, true);
+	$userCourses = core_course_category::get(1)->get_courses(
+		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
 
 	foreach($userCourses as $course) {
 		$percentage = progress::get_course_progress_percentage($course, $USER->id);

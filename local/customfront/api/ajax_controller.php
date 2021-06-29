@@ -46,9 +46,9 @@ header('Content-type: application/json');
 echo json_encode($returnArr);
 exit();
 
-function convertDateToSpanish($timestamp) {
+function convertDateToSpanish($timestamp, $comma) {
 	setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish');
-	return strftime("%d de %B de %Y", $timestamp);
+	return strftime("%d de %B$comma%Y", $timestamp);
 }
 
 function getUserImage() {
@@ -110,7 +110,7 @@ function obtenerUsuario() {
 		'id' => $USER->id,
 		'userPhoto' => getUserImage(),
 		'username' => strtoupper($USER->firstname . ' ' . $USER->lastname),
-		'dateReg' => convertDateToSpanish($USER->firstaccess)
+		'dateReg' => convertDateToSpanish($USER->firstaccess,' de ')
 	);
 
 	$response['status'] = true;
@@ -171,7 +171,7 @@ function obtenerCursosPendientes() {
 			'progress' => round($percentage),
 			'link' => 'course/view.php?id='.$course->id,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
-			'dateEnd' => !empty($course->enddate) ? convertDateToSpanish($course->enddate) : ''
+			'dateEnd' => !empty($course->enddate) ? convertDateToSpanish($course->enddate,', ') : ''
 		];
 	}
 

@@ -1,8 +1,5 @@
 <?php
-require_once(__DIR__ . '/../config.php');
-
-echo 'a';
-exit;
+require_once(__DIR__ . '/../../config.php');
 
 require_login();
 

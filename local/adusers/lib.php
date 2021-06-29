@@ -11,11 +11,7 @@ spl_autoload_register(function ($clase) {
 
 function migrate_users_task() {
 	$provider = new AzureProvider();
-	echo '<pre>';
-	var_dump($provider->getUsers()[1]);
-	exit;
-
-	//createUsers($usersAD);
+	createUsers($provider->getUsers());
 }
 function createUsers($usersAD) {
 	global $DB;

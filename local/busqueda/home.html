@@ -6,7 +6,12 @@
         </div>
         <div class="header_title u-flex-around u-flex-column">
             <div>Resultados<br>de búsqueda</div>
-            <div class="header_title_btn u-flex-around"><input placeholder="¿qué curso estás buscando?" /><img src="/images/course/search.png" /></div>
+            <div class="header_title_btn u-flex-around">
+                <form action="/local/busqueda/index.php" id="coursesearch" method="get">
+                    <input name="q" placeholder="¿qué curso estás buscando?" />
+                    <img src="/images/course/search.png" />
+                </form>
+            </div>
         </div>
     </div>
     <div class="section3 u-container">
@@ -35,52 +40,52 @@
             <div class="section-triangle"></div>
         </div>
     </div>
-    <div class="section4">
-        <div class="section_title u-flex-around u-flex-column">
-            <p>Hemos encontrado {{videos.length}} videos</p>
-            <div></div>
-        </div>
-        <div class="footer-learn-background u-flex-around">
-            <img src="/images/result/section3_back.png" />
-        </div>
-        <div class="section3-items5 u-container">
-            <div v-for="item in videos" class="section3-item-div u-flex-around">
-                <div class="section3-item">
-                    <div class="video_icon u-flex-around">
-                        <img src="/images/course/video.png" />
-                    </div>
-                    <img :src="item.image" />
-                    <div class="section3-itemd-desc">
-                        <div v-if="item.porcent > 0" class="section3-itemd-desc-gra">
-                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%;'"></div>
-                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%;'">{{item.porcent}}</div>
-                        </div>
-                        <a :href="item.link" class="section3-itemd-desc-title">{{item.title}}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section-triangle-diva u-flex-around">
-            <div class="section-trianglea"></div>
-        </div>
-    </div>
-    <div class="section3 u-container">
-        <div class="section3-items1">
-            <div class="section_title u-flex-around u-flex-column">
-                <p>Hemos encontrado <span>{{productos.length}} productos</span></p>
-                <div></div>
-            </div>
-            <div v-for="item in productos" class="section3-item-div u-flex-around">
-                <div class="section3-item4">
-                    <img :src="item.image" />
-                    <div class="section3-itemd-desc">
-                        <div class="section3-itemd-desc-title4">{{item.title}}</div>
-                        <a :href="item.link" class="section3-itemd-desc-button">saber más</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="section4">-->
+<!--        <div class="section_title u-flex-around u-flex-column">-->
+<!--            <p>Hemos encontrado {{videos.length}} videos</p>-->
+<!--            <div></div>-->
+<!--        </div>-->
+<!--        <div class="footer-learn-background u-flex-around">-->
+<!--            <img src="/images/result/section3_back.png" />-->
+<!--        </div>-->
+<!--        <div class="section3-items5 u-container">-->
+<!--            <div v-for="item in videos" class="section3-item-div u-flex-around">-->
+<!--                <div class="section3-item">-->
+<!--                    <div class="video_icon u-flex-around">-->
+<!--                        <img src="/images/course/video.png" />-->
+<!--                    </div>-->
+<!--                    <img :src="item.image" />-->
+<!--                    <div class="section3-itemd-desc">-->
+<!--                        <div v-if="item.porcent > 0" class="section3-itemd-desc-gra">-->
+<!--                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%;'"></div>-->
+<!--                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%;'">{{item.porcent}}</div>-->
+<!--                        </div>-->
+<!--                        <a :href="item.link" class="section3-itemd-desc-title">{{item.title}}</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="section-triangle-diva u-flex-around">-->
+<!--            <div class="section-trianglea"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="section3 u-container">-->
+<!--        <div class="section3-items1">-->
+<!--            <div class="section_title u-flex-around u-flex-column">-->
+<!--                <p>Hemos encontrado <span>{{productos.length}} productos</span></p>-->
+<!--                <div></div>-->
+<!--            </div>-->
+<!--            <div v-for="item in productos" class="section3-item-div u-flex-around">-->
+<!--                <div class="section3-item4">-->
+<!--                    <img :src="item.image" />-->
+<!--                    <div class="section3-itemd-desc">-->
+<!--                        <div class="section3-itemd-desc-title4">{{item.title}}</div>-->
+<!--                        <a :href="item.link" class="section3-itemd-desc-button">saber más</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 <link rel="stylesheet" href="/local/busqueda/css/index.css">
 <link rel="stylesheet" href="/local/customfront/css/grid.css">

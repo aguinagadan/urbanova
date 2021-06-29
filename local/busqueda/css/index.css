@@ -393,3 +393,10 @@ body#page-local-busqueda-index {
     margin-right: 0 !important;
     margin-left: 0 !important;
 }
+
+/*custom*/
+
+.section3-item img {
+    width: 200px !important;
+    height: 200px !important;
+}

@@ -34,6 +34,9 @@ try {
 		case 'obtenerCursosPendientes':
 			$returnArr = obtenerCursosPendientes();
 			break;
+		case 'obtenerCursosByQuery':
+			$returnArr = obtenerCursosByQuery($_POST['q']);
+			break;
 	}
 
 } catch (Exception $e) {
@@ -137,8 +140,7 @@ function obtenerCursosByCat($idCat) {
 		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
 
 	foreach($allcourses as $course) {
-		$courseObj = get_course($course->id);
-		$percentage = round(progress::get_course_progress_percentage($courseObj, $USER->id));
+		$percentage = round(progress::get_course_progress_percentage($course, $USER->id));
 		$courses[] = [
 			'title'=> $course->fullname,
 			'content'=> strip_tags($course->summary),
@@ -177,6 +179,32 @@ function obtenerCursosPendientes() {
 
 	$response['status'] = true;
 	$response['data'] = $returnArr;
+
+	return $response;
+}
+
+function obtenerCursosByQuery($q) {
+	global $USER;
+
+	$courses = array();
+	$allcourses = core_course_category::get(1)->get_courses(
+		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
+
+	foreach($allcourses as $course) {
+		if(strpos(strtolower($course->fullname), strtolower($q)) !== false) {
+			$percentage = round(progress::get_course_progress_percentage($course, $USER->id));
+			$courses[] = [
+				'title' => $course->fullname,
+				'content' => strip_tags($course->summary),
+				'link' => 'course/view.php?id=' . $course->id,
+				'porcent' => $percentage,
+				'image' => \theme_remui_coursehandler::get_course_image($course, 1),
+			];
+		}
+	}
+
+	$response['status'] = true;
+	$response['data'] = $courses;
 
 	return $response;
 }

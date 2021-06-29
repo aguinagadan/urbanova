@@ -30,7 +30,7 @@
                         </div>
                         <a href="item.link" class="section3-itemd-desc-title">{{item.title}}</a>
                         <div class="section3-itemd-desc-line"></div>
-                        <div class="section3-itemd-desc-text">{{item.conten}}</div>
+                        <div class="section3-itemd-desc-text">{{item.content}}</div>
                         <img src="/images/course/item_b.png" />
                     </div>
                 </div>
@@ -108,10 +108,10 @@
             first_slide: false,
 
             cursos: [
-                {image: "/images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
-                {image: "/images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
-                {image: "/images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
-                {image: "/images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                {image: "/images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",content:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                {image: "/images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",content:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                {image: "/images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",content:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                {image: "/images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",content:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
             ],
             videos: [
                 {image: "/images/course/item1.png", title: "TÍTULO DEL CURSO LOREM", porcent: "30", link:"#"},
@@ -128,7 +128,40 @@
         },
         created(){
         },
+        mounted(){
+            this.obtenerCursosByQuery();
+        },
         methods: {
+            obtenerCursosByQuery: function(){
+                let q = new URL(location.href).searchParams.get('q');
+                let frm = new FormData();
+                frm.append('request_type','obtenerCursosByQuery');
+                frm.append('q', q);
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
+                    .then((response) => {
+                        let data = response.data.data;
+                        let courses = Array();
+
+                        Object.keys(data).forEach(key => {
+                            let dataVal = data[key];
+                            let title = dataVal.title;
+                            let content = dataVal.content;
+                            let progress = dataVal.progress;
+                            let link = dataVal.link;
+                            let image = dataVal.image;
+
+                            let newElem = {
+                                'title': title,
+                                'content': content,
+                                'progress': progress,
+                                'link': link,
+                                'image': image
+                            };
+                            courses.push(newElem);
+                        });
+                        this.cursos = courses;
+                    });
+            }
         }
     })
 </script>

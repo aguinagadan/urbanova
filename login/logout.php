@@ -59,6 +59,14 @@ foreach($authsequence as $authname) {
     $authplugin->logoutpage_hook();
 }
 
-require_logout();
+if($USER->institution == 'azure') {
+	setcookie("mg_sso_profile", "", time() - 3600, '/');
+	setcookie("mg_sso_refresh_token", "", time() - 3600, '/');
+	setcookie("mg_sso_token", "", time() - 3600, '/');
+	session_destroy();
+	redirect('https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=https://aulavirtual.urbanova.com.pe');
+}
 
+
+require_logout();
 redirect($redirect);

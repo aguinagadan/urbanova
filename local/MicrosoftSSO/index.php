@@ -15,14 +15,15 @@ $params['redirectUri'] = 'https://aulavirtual.urbanova.com.pe/local/MicrosoftSSO
 // Set your redirect locations
 $authenticated_url = 'https://aulavirtual.urbanova.com.pe';
 $error_url = '';
-$client_id = "15694cd7-31c2-4b7c-acf8-f257c754d499";
-$client_space = "estrategicaperu.onmicrosoft.com";
-$scopes = "User.Read";
+$client_id = '15694cd7-31c2-4b7c-acf8-f257c754d499';
+$client_space = 'estrategicaperu.onmicrosoft.com';
+$scopes = 'User.Read';
+$grantType = 'authorization_code';
 
 if(isset($_GET["code"])) {
 
 	$provider = new AzureProvider();
-	$accessResult = $provider->getToken('User.Read', 'authorization_code', true, $params);
+	$accessResult = $provider->getToken($scopes, $grantType, true, $params);
 
 	// If result has Access Token
 	if ($accessResult->access_token) {

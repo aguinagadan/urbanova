@@ -5,4 +5,4 @@ $plugin->requires   = 2020011106;                       // This plugin requires 
 $plugin->version    = 2020011106;                       // This plugins version number.
 $plugin->release    = 'v1.0';                           // This plugins release number.
 $plugin->maturity   = MATURITY_STABLE;
-$plugin->component  = 'local_MicrosoftSSO';
+$plugin->component  = 'local_busqueda';

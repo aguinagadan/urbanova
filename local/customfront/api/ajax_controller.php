@@ -170,7 +170,7 @@ function obtenerCursosPendientes() {
 			'content' => strip_tags($course->summary),
 			'progress' => round($percentage),
 			'link' => 'course/view.php?id='.$course->id,
-			'image' => getCourseImage($course),
+			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
 			'dateEnd' => !empty($course->enddate) ? convertDateToSpanish($course->enddate) : ''
 		];
 	}

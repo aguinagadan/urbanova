@@ -1,0 +1,127 @@
+<div id="app" class="resultpage">
+    <div class="course-header">
+        <div class="gradiend_img u-flex-between">
+            <img src="./images/home/grad.png" />
+            <img src="./images/home/grad.png" />
+        </div>
+        <div class="header_title u-flex-around u-flex-column">
+            <div>Resultados<br>de búsqueda</div>
+            <div class="header_title_btn u-flex-around"><input placeholder="¿qué curso estás buscando?" /><img src="./images/course/search.png" /></div>
+        </div>
+    </div>
+    <div class="section3 u-container">
+        <div class="section3-items1">
+            <div class="section_title u-flex-around u-flex-column">
+                <p>Hemos encontrado <span>{{cursos.length}} cursos</span></p>
+                <div></div>
+            </div>
+            <div v-for="item in cursos" class="section3-item-div u-flex-around">
+                <div class="section3-item">
+                    <img :src="item.image" />
+                    <div class="section3-itemd-desc">
+                        <div v-if="item.porcent > 0" class="section3-itemd-desc-gra">
+                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
+                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}</div>
+                        </div>
+                        <a href="item.link" class="section3-itemd-desc-title">{{item.title}}</a>
+                        <div class="section3-itemd-desc-line"></div>
+                        <div class="section3-itemd-desc-text">{{item.conten}}</div>
+                        <img src="./images/course/item_b.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-triangle-div u-flex-around">
+            <div class="section-triangle"></div>
+        </div>
+    </div>
+    <div class="section4">
+        <div class="section_title u-flex-around u-flex-column">
+            <p>Hemos encontrado {{videos.length}} videos</p>
+            <div></div>
+        </div>
+        <div class="footer-learn-background u-flex-around">
+            <img src="./images/result/section3_back.png" />
+        </div>
+        <div class="section3-items5 u-container">
+            <div v-for="item in videos" class="section3-item-div u-flex-around">
+                <div class="section3-item">
+                    <div class="video_icon u-flex-around">
+                        <img src="./images/course/video.png" />
+                    </div>
+                    <img :src="item.image" />
+                    <div class="section3-itemd-desc">
+                        <div v-if="item.porcent > 0" class="section3-itemd-desc-gra">
+                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%;'"></div>
+                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%;'">{{item.porcent}}</div>
+                        </div>
+                        <a :href="item.link" class="section3-itemd-desc-title">{{item.title}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-triangle-diva u-flex-around">
+            <div class="section-trianglea"></div>
+        </div>
+    </div>
+    <div class="section3 u-container">
+        <div class="section3-items1">
+            <div class="section_title u-flex-around u-flex-column">
+                <p>Hemos encontrado <span>{{productos.length}} productos</span></p>
+                <div></div>
+            </div>
+            <div v-for="item in productos" class="section3-item-div u-flex-around">
+                <div class="section3-item4">
+                    <img :src="item.image" />
+                    <div class="section3-itemd-desc">
+                        <div class="section3-itemd-desc-title4">{{item.title}}</div>
+                        <a :href="item.link" class="section3-itemd-desc-button">saber más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isBlack: '',
+            isSelected: '',
+            view: {
+                atTopOfPage: true
+            },
+            mobileNavShow:false,
+            fadeShow1: 1,
+            cookie_hide: false,
+            isPlay:true,
+            isActive: 0,
+            isShow: 1,
+            first_slide: false,
+
+            cursos: [
+                {image: "./images/course/item1.png",porcent:"60", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                {image: "./images/course/item2.png",porcent:"30", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                {image: "./images/course/item3.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+                {image: "./images/course/item4.png",porcent:"0", title:"TÍTULO DEL CURSO LOREM",conten:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ", link:"#"},
+            ],
+            videos: [
+                {image: "./images/course/item1.png", title: "TÍTULO DEL CURSO LOREM", porcent: "30", link:"#"},
+                {image: "./images/course/item1.png", title: "TÍTULO DEL CURSO LOREM", porcent: "70", link:"#"},
+                {image: "./images/course/item1.png", title: "TÍTULO DEL CURSO LOREM", porcent: "0", link:"#"},
+                {image: "./images/course/item1.png", title: "TÍTULO DEL CURSO LOREM", porcent: "0", link:"#"},
+            ],
+            productos: [
+                {image:"./images/result/itemx.png", title: "TÍTULO DEL CURSO LOREM", link: "#"},
+                {image:"./images/result/itemx.png", title: "TÍTULO DEL CURSO LOREM", link: "#"},
+                {image:"./images/result/itemx.png", title: "TÍTULO DEL CURSO LOREM", link: "#"},
+                {image:"./images/result/itemx.png", title: "TÍTULO DEL CURSO LOREM", link: "#"},
+            ]
+        },
+        created(){
+        },
+        methods: {
+        }
+    })
+</script>

@@ -113,7 +113,9 @@ class AzureProvider {
 
 		foreach($allUsers as $allUser) {
 			foreach($allUser['value'] as $key=>$val) {
+				$val['mail'] = strtolower($val['mail']);
 				$val['userPrincipalName'] = strtolower($val['userPrincipalName']);
+				//si no es urbanova
 				if (strpos($val['userPrincipalName'], '@urbanova.com.pe') === false) {
 					continue;
 				}

@@ -98,7 +98,6 @@ $PAGE->set_title($SITE->fullname);
 //$PAGE->set_heading($SITE->fullname);
 $PAGE->requires->css('/local/customfront/css/grid.css');
 $PAGE->requires->css('/local/customfront/css/style.css');
-$PAGE->requires->css('/local/customfront/css/catalogo.css');
 $courserenderer = $PAGE->get_renderer('core', 'course');
 echo $OUTPUT->header();
 

@@ -142,7 +142,7 @@ function obtenerCursosByCat($idCat) {
 	foreach($allcourses as $course) {
 		$percentage = round(progress::get_course_progress_percentage($course, $USER->id));
 		$courses[] = [
-			'title'=> $course->fullname,
+			'title'=> strtoupper($course->fullname),
 			'content'=> strip_tags($course->summary),
 			'link'=> '/course/view.php?id='.$course->id,
 			'porcent' => $percentage,
@@ -168,7 +168,7 @@ function obtenerCursosPendientes() {
 			continue;
 		}
 		$returnArr[] = [
-			'title' => $course->fullname,
+			'title' => strtoupper($course->fullname),
 			'content' => strip_tags($course->summary),
 			'progress' => round($percentage),
 			'link' => '/course/view.php?id='.$course->id,
@@ -194,7 +194,7 @@ function obtenerCursosByQuery($q) {
 		if(strpos(strtolower($course->fullname), strtolower($q)) !== false) {
 			$percentage = round(progress::get_course_progress_percentage($course, $USER->id));
 			$courses[] = [
-				'title' => $course->fullname,
+				'title' => strtoupper($course->fullname),
 				'content' => strip_tags($course->summary),
 				'link' => '/course/view.php?id=' . $course->id,
 				'porcent' => $percentage,

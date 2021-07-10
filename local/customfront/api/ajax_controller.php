@@ -144,7 +144,7 @@ function obtenerCursosByCat($idCat) {
 		$courses[] = [
 			'title'=> $course->fullname,
 			'content'=> strip_tags($course->summary),
-			'link'=> 'course/view.php?id='.$course->id,
+			'link'=> '/course/view.php?id='.$course->id,
 			'porcent' => $percentage,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
 		];
@@ -171,7 +171,7 @@ function obtenerCursosPendientes() {
 			'title' => $course->fullname,
 			'content' => strip_tags($course->summary),
 			'progress' => round($percentage),
-			'link' => 'course/view.php?id='.$course->id,
+			'link' => '/course/view.php?id='.$course->id,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
 			'dateEnd' => !empty($course->enddate) ? convertDateToSpanish($course->enddate,', ') : ''
 		];
@@ -196,7 +196,7 @@ function obtenerCursosByQuery($q) {
 			$courses[] = [
 				'title' => $course->fullname,
 				'content' => strip_tags($course->summary),
-				'link' => 'course/view.php?id=' . $course->id,
+				'link' => '/course/view.php?id=' . $course->id,
 				'porcent' => $percentage,
 				'image' => \theme_remui_coursehandler::get_course_image($course, 1),
 			];

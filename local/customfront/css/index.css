@@ -51,11 +51,3 @@ body#page-site-index {
     width: 200px !important;
     height: 200px !important;
 }
-
-a {
-    color: #e83d4a !important;
-}
-
-a:hover {
-    color: #478aa6 !important;
-}

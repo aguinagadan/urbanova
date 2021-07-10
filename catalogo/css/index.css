@@ -37,3 +37,12 @@ body#page-site-catalogo {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
+
+#page-site-catalogo #page-header {
+    display: none !important;
+}
+
+#page-site-catalogo .card .card-body {
+    display: none !important;
+    overflow: hidden !important;
+}

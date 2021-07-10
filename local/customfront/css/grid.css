@@ -266,11 +266,11 @@ a:focus {
 }
 
 a {
-    color: #478aa6 !important;
+    color: #FFF;
 }
 
 a:hover {
-    color: #e83d4a !important;
+    color: #3BC9DB;
 }
 
 .slick-next {

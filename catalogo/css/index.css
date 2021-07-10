@@ -45,3 +45,11 @@ body#page-site-catalogo {
 #page-site-catalogo .card-body {
     overflow: hidden !important;
 }
+
+a {
+    color: #e83d4a !important;
+}
+
+a:hover {
+    color: #478aa6 !important;
+}

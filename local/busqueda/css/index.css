@@ -400,3 +400,7 @@ body#page-local-busqueda-index {
     width: 200px !important;
     height: 200px !important;
 }
+
+#page-local-busqueda-index .card-body {
+    overflow: hidden !important;
+}

@@ -28,7 +28,7 @@
                             <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
                             <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}</div>
                         </div>
-                        <a href="item.link" class="section3-itemd-desc-title">{{item.title}}</a>
+                        <a :href="item.link" class="section3-itemd-desc-title">{{item.title}}</a>
                         <div class="section3-itemd-desc-line"></div>
                         <div class="section3-itemd-desc-text">{{item.content}}</div>
                         <img src="/images/course/item_b.png" />

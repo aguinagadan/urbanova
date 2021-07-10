@@ -42,7 +42,6 @@ body#page-site-catalogo {
     display: none !important;
 }
 
-#page-site-catalogo .card .card-body {
-    display: none !important;
+#page-site-catalogo .card-body {
     overflow: hidden !important;
 }

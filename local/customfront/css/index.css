@@ -62,3 +62,11 @@ body#page-site-index {
     border-radius: 26px;
     opacity: 1;
 }
+
+.urbanova-login-text {
+    height: 11px;
+    text-align: left;
+    letter-spacing: 3.19px;
+    color: #00314B;
+    opacity: 1;
+}

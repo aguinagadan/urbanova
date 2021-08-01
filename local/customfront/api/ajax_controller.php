@@ -174,7 +174,7 @@ function obtenerCursosPendientes() {
 			continue;
 		}
 		$returnArr[] = [
-			'title' => strtoupper($course->fullname),
+			'title' => strtolower($course->fullname),
 			'content' => strip_tags($course->summary),
 			'progress' => round($percentage) + 1,
 			'link' => '/course/view.php?id='.$course->id,

@@ -157,7 +157,7 @@
         },
         computed: {
             searchCurse: function (){
-                return this.cursosPen.filter((item) => item.title.includes(this.searchCursos));
+                return this.cursosPen.filter((item) => item.title.includes(this.searchCursos.toLowerCase()));
             },
             // searchUsers: function(){
             //   return this.usuarios.filter((item) => item.name.includes(this.searchAlumnos));

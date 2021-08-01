@@ -525,10 +525,9 @@
     display: flex;
   }
   .section4-itemd-desc-title{
-    font-size: 16px;
+    font-size: 13px;
     color: #00314b;
     padding-top: 5px;
-    width: 100%;
   }
   .section4-itemd-desc-line{
     width: 50px;

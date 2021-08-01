@@ -6,6 +6,7 @@ require_once($CFG->dirroot.'/user/profile/lib.php');
 
 //autoload resources
 spl_autoload_register(function ($clase) {
+	global $CFG;
 	include $CFG->dirroot.'/msintegration/' . $clase . '.php';
 });
 

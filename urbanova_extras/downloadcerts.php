@@ -1,5 +1,7 @@
 <?php
 
+global $CFG;
+
 // Get real path for our folder
 $rootPath = realpath(__DIR__ . '/../mod/customcert/files');
 
@@ -37,6 +39,8 @@ foreach ($files as $name => $file)
 			$rootPath."/",
 			'_-_');
 
+		var_dump($idGet);
+
 		if($idGet != $idCurso || $idGet == false) {
 			$cont++;
 			continue;
@@ -54,6 +58,7 @@ foreach ($files as $name => $file)
 		$zip->addFile($filePath, $relativePath);
 	}
 }
+exit();
 
 if($contfiles == 0) {
 	echo 'Este curso no tiene certificados';

@@ -35,11 +35,12 @@ foreach ($files as $name => $file) {
 
 	if(!empty($idCurso)) {
 		// Skip directories (they would be added automatically)
+		var_dump($name);
+		var_dump($rootPath);
+		exit;
 		$idGet = get_string_between($name,
 			$rootPath."\\",
 			'_-_');
-		var_dump($idGet);
-		exit;
 
 		if($idGet != $idCurso) {
 			$cont++;

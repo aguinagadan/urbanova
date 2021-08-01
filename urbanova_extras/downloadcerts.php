@@ -52,11 +52,6 @@ foreach ($files as $name => $file) {
 		$filePath = $file->getRealPath();
 		$relativePath = substr($filePath, strlen($rootPath) + 1);
 
-		var_dump($filePath);
-		var_dump($relativePath);
-		var_dump($zip->addFile($filePath, $relativePath));
-		exit;
-
 		// Add current file to archive
 		$zip->addFile($filePath, $relativePath);
 	}
@@ -74,10 +69,9 @@ $zip->close();
 echo 'Archivo creado!';
 ob_clean();
 ob_end_flush();
-header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
-header('Content-Type: application/zip;\n');
-header("Content-Transfer-Encoding: Binary");
-header("Content-Disposition: attachment; filename=Certificados.zip");
+header('Content-disposition: attachment; filename=Certificados.zip');
+header('Content-type: application/zip');
 readfile($tmpFile);
+// remove zip file is exists in temp path
 unlink($tmpFile);
 exit();

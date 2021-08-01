@@ -53,7 +53,7 @@ foreach ($files as $name => $file) {
 		$relativePath = substr($filePath, strlen($rootPath) + 1);
 
 		// Add current file to archive
-		$zip->addFile(ltrim($filePath), $relativePath);
+		$zip->addFile($filePath, $relativePath);
 	}
 }
 
@@ -68,7 +68,6 @@ $zip->close();
 
 echo 'Archivo creado!';
 ob_clean();
-ob_end_flush();
 header('Content-disposition: attachment; filename=Certificados.zip');
 header('Content-type: application/zip');
 readfile($tmpFile);

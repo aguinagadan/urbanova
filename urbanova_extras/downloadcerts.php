@@ -39,7 +39,7 @@ foreach ($files as $name => $file) {
 	if(!empty($idCurso)) {
 		// Skip directories (they would be added automatically)
 		$idGet = get_string_between($name,
-			$rootPath."\\/",
+			$rootPath."/",
 			'_-_');
 
 		if($idGet != $idCurso || $idGet == false) {

@@ -169,18 +169,19 @@ function obtenerCursosByCat($idCat) {
 function obtenerCursosPendientes() {
 	global $USER;
 	$returnArr = array();
-	$userCourses = enrol_get_users_courses($USER->id, true);
-	var_dump($userCourses);
-	exit;
+	$userCourses = core_course_category::get(1)->get_courses(
+		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
+	$enrolledCourses = enrol_get_users_courses($USER->id, true);
+	$enrolledIds = array_keys($enrolledCourses);
 
 	foreach($userCourses as $course) {
 		$percentage = progress::get_course_progress_percentage($course, $USER->id);
-		if($percentage == 100) {
+		if($percentage == 100 || !in_array($course->id, $enrolledIds)) {
 			continue;
 		}
 		$returnArr[] = [
 			'title' => strtolower($course->fullname),
-			'content' => strip_tags($course->summary),
+			'content' => 'test',
 			'progress' => round($percentage) + 1,
 			'link' => '/course/view.php?id='.$course->id,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
@@ -198,12 +199,15 @@ function obtenerTotalCursosbyCat($idCat) {
 	global $USER;
 
 	$returnArr = array();
-	$userCourses = enrol_get_users_courses($USER->id, true);
-
-	var_dump($userCourses);
-	exit;
+	$userCourses = core_course_category::get($idCat)->get_courses(
+		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
+	$enrolledCourses = enrol_get_users_courses($USER->id, true);
+	$enrolledIds = array_keys($enrolledCourses);
 
 	foreach($userCourses as $course) {
+		if(!in_array($course->id, $enrolledIds)) {
+			continue;
+		}
 		$percentage = progress::get_course_progress_percentage($course, $USER->id);
 		$returnArr[] = [
 			'title'=> strtolower($course->fullname),

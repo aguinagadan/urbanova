@@ -157,6 +157,7 @@
         },
         created(){
             this.obtenerCursosPendientes();
+            this.filteredCourses(1);
             this.resizeCarrusel();
             window.onresize = (event)=> {
                 this.resizeCarrusel();

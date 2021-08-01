@@ -39,7 +39,7 @@ foreach ($files as $name => $file) {
 	if(!empty($idCurso)) {
 		// Skip directories (they would be added automatically)
 		$idGet = get_string_between($name,
-			$rootPath."\\/",
+			$rootPath."/",
 			'_-_');
 
 		if($idGet != $idCurso || $idGet == false) {
@@ -64,6 +64,9 @@ if($contfiles == 0) {
 	echo '<br><a href="/my">Regresar a la página anterior</a>';
 	exit;
 }
+
+var_dump($zip);
+exit;
 
 // Zip archive will be created only after closing object
 $zip->close();

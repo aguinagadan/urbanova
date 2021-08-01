@@ -74,4 +74,3 @@ header('Content-type: application/zip');
 readfile($tmpFile);
 // remove zip file is exists in temp path
 unlink($tmpFile);
-?>

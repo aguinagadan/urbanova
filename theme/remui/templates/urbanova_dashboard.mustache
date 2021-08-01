@@ -182,7 +182,7 @@
                 let frm = new FormData();
                 frm.append('request_type','obtenerTotalCursosbyCat');
 
-                idCat = event.target.value ? event.target.value : 1;
+                idCat = event ? event.target.value : 1;
 
                 frm.append('idCat', idCat);
                 axios.post('/local/customfront/api/ajax_controller.php',frm)

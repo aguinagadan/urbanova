@@ -52,10 +52,6 @@ foreach ($files as $name => $file) {
 		$filePath = $file->getRealPath();
 		$relativePath = substr($filePath, strlen($rootPath) + 1);
 
-		var_dump($filePath);
-		var_dump($relativePath);
-		exit;
-
 		// Add current file to archive
 		$zip->addFile($filePath, $relativePath);
 	}

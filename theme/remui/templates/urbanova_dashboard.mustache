@@ -160,7 +160,7 @@
         },
         created(){
             this.obtenerCursosPendientes();
-            this.filteredCourses(1);
+            this.filteredCourses();
             this.resizeCarrusel();
             window.onresize = (event)=> {
                 this.resizeCarrusel();
@@ -178,11 +178,11 @@
             // },
         },
         methods: {
-            filteredCourses: function(idCat){
+            filteredCourses: function(event){
                 let frm = new FormData();
                 frm.append('request_type','obtenerTotalCursosbyCat');
 
-                idCat = idCat ? idCat : event.target.value;
+                idCat = event.target.value ? event.target.value : 1;
 
                 frm.append('idCat', idCat);
                 axios.post('/local/customfront/api/ajax_controller.php',frm)

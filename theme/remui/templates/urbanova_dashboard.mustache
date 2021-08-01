@@ -66,11 +66,11 @@
                 <img src="./images/mycourse/search.png"/>
             </div>
             <div class="header_title_btn u-flex-around">
-                <select>
-                    <Option @click="filteredCourses(3)">Nuestro Consumidor</Option>
-                    <Option @click="filteredCourses(4)">Tu Onboarding</Option>
-                    <Option @click="filteredCourses(5)">Seguridad</Option>
-                    <Option @click="filteredCourses(6)">Cursos del cliente</Option>
+                <select @change="filteredCourses($event)">
+                    <Option value="3">Nuestro Consumidor</Option>
+                    <Option value="4">Tu Onboarding</Option>
+                    <Option value="5">Seguridad</Option>
+                    <Option value="6">Cursos del cliente</Option>
                 </select>
             </div>
         </div>
@@ -181,6 +181,9 @@
             filteredCourses: function(idCat){
                 let frm = new FormData();
                 frm.append('request_type','obtenerTotalCursosbyCat');
+
+                idCat = idCat ? idCat : event.target.value;
+
                 frm.append('idCat', idCat);
                 axios.post('/local/customfront/api/ajax_controller.php',frm)
                         .then((response) => {

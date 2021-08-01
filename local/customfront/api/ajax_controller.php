@@ -182,7 +182,7 @@ function obtenerCursosPendientes() {
 		$returnArr[] = [
 			'title' => strtolower($course->fullname),
 			'content' => 'test',
-			'progress' => round($percentage) + 1,
+			'progress' => round($percentage),
 			'link' => '/course/view.php?id='.$course->id,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
 			'dateEnd' => !empty($course->enddate) ? convertDateToSpanish($course->enddate,', ') : ''
@@ -212,7 +212,7 @@ function obtenerTotalCursosbyCat($idCat) {
 		$returnArr[] = [
 			'title'=> strtolower($course->fullname),
 			'content' => strip_tags($course->summary),
-			'progress' => round($percentage) + 1,
+			'progress' => round($percentage),
 			'link' => '/course/view.php?id='.$course->id,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
 			'dateEnd' => !empty($course->enddate) ? convertDateToSpanish($course->enddate,', ') : ''

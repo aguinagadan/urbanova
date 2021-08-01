@@ -61,13 +61,16 @@
             <div></div>
         </div>
         <div class="section_search u-flex-between u-responsive">
-            <div class="header_title_btn u-flex-around"><input placeholder="¿qué curso estás buscando?" v-model="searchCursos"/><img src="./images/mycourse/search.png"/></div>
+            <div class="header_title_btn u-flex-around">
+                <input placeholder="¿qué curso estás buscando?" v-model="searchCursos"/>
+                <img src="./images/mycourse/search.png"/>
+            </div>
             <div class="header_title_btn u-flex-around">
                 <select>
-                    <Option @click="filteredCourses()">Nuestro Consumidor</Option>
-                    <Option>Tu Onboarding</Option>
-                    <Option>Seguridad</Option>
-                    <Option>Cursos del cliente</Option>
+                    <Option @click="filteredCourses(3)">Nuestro Consumidor</Option>
+                    <Option @click="filteredCourses(4)">Tu Onboarding</Option>
+                    <Option @click="filteredCourses(5)">Seguridad</Option>
+                    <Option @click="filteredCourses(6)">Cursos del cliente</Option>
                 </select>
             </div>
         </div>

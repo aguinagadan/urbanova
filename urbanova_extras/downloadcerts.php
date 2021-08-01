@@ -57,12 +57,6 @@ foreach ($files as $name => $file) {
 	}
 }
 
-if($contfiles == 0) {
-	echo 'Este curso no tiene certificados';
-	echo '<br><a href="/my">Regresar a la página anterior</a>';
-	exit;
-}
-
 // Zip archive will be created only after closing object
 $zip->close();
 

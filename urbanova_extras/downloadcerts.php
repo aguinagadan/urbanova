@@ -36,8 +36,9 @@ foreach ($files as $name => $file) {
 
 	if(!empty($idCurso)) {
 		// Skip directories (they would be added automatically)
+		echo '<pre>';
 		var_dump('name =>' . $name);
-		var_dump('name =>' . $rootPath."\\",
+		var_dump('rootpath =>' . $rootPath."\\",
 			'_-_');
 		$idGet = get_string_between($name,
 			$rootPath."\\",

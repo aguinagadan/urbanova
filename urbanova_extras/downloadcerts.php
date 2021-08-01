@@ -40,9 +40,7 @@ foreach ($files as $name => $file) {
 			$rootPath."/",
 			'_-_');
 
-		var_dump($idGet);
-
-		if($idGet != $idCurso) {
+		if($idGet != $idCurso || $idGet == false) {
 			$cont++;
 			continue;
 		}
@@ -54,11 +52,16 @@ foreach ($files as $name => $file) {
 		$filePath = $file->getRealPath();
 		$relativePath = substr($filePath, strlen($rootPath) + 1);
 
+		var_dump($filePath);
+		var_dump($relativePath);
+		var_dump($zip->addFile($filePath, $relativePath));
+		exit;
+
 		// Add current file to archive
 		$zip->addFile($filePath, $relativePath);
 	}
 }
-exit;
+
 if($contfiles == 0) {
 	echo 'Este curso no tiene certificados';
 	echo '<br><a href="/my">Regresar a la página anterior</a>';

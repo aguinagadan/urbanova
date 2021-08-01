@@ -140,7 +140,8 @@
 
                     <div class="row justify-content-md-center">
                         <div class="col-md-12">
-                            <h3 class="mb-4">{{# str }} signin, theme_remui {{/ str }}</h3>
+<!--                        <h3 class="mb-4">{{# str }} signin, theme_remui {{/ str }}</h3> -->
+                            <h3 class="mb-2">¿NO TIENES CUENTA URBANOVA?</h3>
                             <form class="my-3" action="{{loginurl}}" method="post" id="login">
                                 <input id="anchor" type="hidden" name="anchor" value="">
                                 <script>document.getElementById('anchor').value = location.hash;</script>
@@ -170,8 +171,10 @@
                                 {{#rememberusername}}
                                     <div class="rememberpass mt-3 checkbox-custom">
                                         <input type="checkbox" name="rememberusername" id="rememberusername" value="1" {{#username}}checked="checked"{{/username}} />
-                                        <label for="rememberusername">{{#str}} rememberusername, admin {{/str}}</label>
-                                        <a class="float-right" href="{{forgotpasswordurl}}">{{# str }} forgotpassword, theme_remui {{/ str }}</a>
+<!--                                    <label for="rememberusername">{{#str}} rememberusername, admin {{/str}}</label>-->
+                                        <label for="rememberusername">RECORDAR NOMBRE DE USUARIO</label>
+<!--                                    <a class="float-right" href="{{forgotpasswordurl}}">{{# str }} forgotpassword, theme_remui {{/ str }}</a> -->
+                                        <a class="float-right" href="{{forgotpasswordurl}}">¿OLVIDASTE TU CONTRASEÑA?</a>
                                     </div>
                                 {{/rememberusername}}
 

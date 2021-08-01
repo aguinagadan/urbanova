@@ -36,12 +36,8 @@ foreach ($files as $name => $file) {
 
 	if(!empty($idCurso)) {
 		// Skip directories (they would be added automatically)
-		echo '<pre>';
-		var_dump('name =>' . $name);
-		var_dump('rootpath =>' . $rootPath."\\",
-			'_-_');
 		$idGet = get_string_between($name,
-			$rootPath."\\",
+			$rootPath."/",
 			'_-_');
 
 		if($idGet != $idCurso) {
@@ -60,7 +56,6 @@ foreach ($files as $name => $file) {
 		$zip->addFile($filePath, $relativePath);
 	}
 }
-exit;
 
 if($contfiles == 0) {
 	echo 'Este curso no tiene certificados';

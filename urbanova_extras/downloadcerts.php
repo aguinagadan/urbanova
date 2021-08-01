@@ -3,7 +3,7 @@
 global $CFG;
 
 // Get real path for our folder
-$rootPath = realpath($CFG->dirroot.'/mod/customcert/files');
+$rootPath = realpath(__DIR__ . '/../mod/customcert/files');
 
 
 $idCurso = isset($_GET['idCurso']) ?? null;
@@ -36,11 +36,12 @@ foreach ($files as $name => $file) {
 
 	if(!empty($idCurso)) {
 		// Skip directories (they would be added automatically)
+		var_dump('name =>' . $name);
+		var_dump('name =>' . $rootPath."\\",
+			'_-_');
 		$idGet = get_string_between($name,
 			$rootPath."\\",
 			'_-_');
-
-		var_dump($idGet);
 
 		if($idGet != $idCurso) {
 			$cont++;

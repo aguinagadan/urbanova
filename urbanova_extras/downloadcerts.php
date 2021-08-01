@@ -57,6 +57,12 @@ foreach ($files as $name => $file) {
 	}
 }
 
+if($contfiles == 0) {
+	echo 'Este curso no tiene certificados';
+	echo '<br><a href="/my">Regresar a la página anterior</a>';
+	exit;
+}
+
 // Zip archive will be created only after closing object
 $zip->close();
 
@@ -64,6 +70,7 @@ echo 'Archivo creado!';
 ob_clean();
 header('Content-disposition: attachment; filename=Certificados.zip');
 header('Content-type: application/zip');
+ob_end_flush();
 readfile($tmpFile);
 // remove zip file is exists in temp path
 unlink($tmpFile);

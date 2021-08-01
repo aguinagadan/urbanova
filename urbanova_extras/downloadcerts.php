@@ -39,8 +39,6 @@ foreach ($files as $name => $file)
 			$rootPath."/",
 			'_-_');
 
-		var_dump($idGet);
-
 		if($idGet != $idCurso || $idGet == false) {
 			$cont++;
 			continue;
@@ -48,8 +46,8 @@ foreach ($files as $name => $file)
 	}
 
 	// Skip directories (they would be added automatically)
-	if (!$file->isDir())
-	{
+	if (!$file->isDir()) {
+		$contfiles++;
 		// Get real and relative path for current file
 		$filePath = $file->getRealPath();
 		$relativePath = substr($filePath, strlen($rootPath) + 1);
@@ -58,7 +56,6 @@ foreach ($files as $name => $file)
 		$zip->addFile($filePath, $relativePath);
 	}
 }
-exit();
 
 if($contfiles == 0) {
 	echo 'Este curso no tiene certificados';

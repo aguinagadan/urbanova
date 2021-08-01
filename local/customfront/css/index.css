@@ -55,3 +55,10 @@ body#page-site-index {
 #page-footer {
     display: none !important;
 }
+
+.urbanova-login-button1 {
+    background: #EB4956 0 0 no-repeat padding-box;
+    box-shadow: 0 3px 6px #00000029;
+    border-radius: 26px;
+    opacity: 1;
+}

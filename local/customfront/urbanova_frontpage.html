@@ -22,7 +22,9 @@
             <p>¡Bienvenido!</p>
             <div>loreM IPSUM<br>LOREM IPSU</div>
             <p>Lorem ipsum dolor sit amet.</p>
-            <a href="#" id="btn-acc" class="header_title_btn u-flex-around">ACCEDER</a>
+            <div v-if="!isLoggedIn">
+                <a href="/login" id="btn-acc" class="header_title_btn u-flex-around">ACCEDER</a>
+            </div>
         </div>
     </div>
     <div class="footer-learn">
@@ -132,6 +134,7 @@
     var app = new Vue({
         el: '#app',
         data: {
+            isLoggedIn: false,
             isBlack: '',
             isSelected: '',
             view: {
@@ -277,6 +280,7 @@
                 axios.post('local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
                         let data = response.data.data;
+                        let isLoggedIn = response.data.loggedIn;
                         let slides = Array();
 
                         Object.keys(data).forEach(key => {
@@ -287,6 +291,7 @@
                             };
                             slides.push(newElem);
                         });
+                        this.isLoggedIn = isLoggedIn;
                         this.carrusel.items = slides;
                     });
             },

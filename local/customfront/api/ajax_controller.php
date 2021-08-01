@@ -62,14 +62,20 @@ function getUserImage() {
 function obtenerSlider() {
 	$slides = array();
 	$sliderData = \theme_remui\sitehomehandler::get_slider_data();
+	$isLoggedIn = false;
 
 	foreach($sliderData['slides'] as $slide) {
 		$image = str_replace('//aulavirtual.urbanova.com.pe','', $slide['img']);
 		$slides[] = ['src' => $image];
 	}
 
+	if (isloggedin()) {
+		$isLoggedIn = true;
+	}
+
 	$response['status'] = true;
 	$response['data'] = $slides;
+	$response['loggedIn'] = $isLoggedIn;
 
 	return $response;
 }

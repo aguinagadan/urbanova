@@ -53,14 +53,8 @@ foreach ($files as $name => $file) {
 		$relativePath = substr($filePath, strlen($rootPath) + 1);
 
 		// Add current file to archive
-		$zip->addFile(ltrim($filePath), $relativePath);
+		$zip->addFile($filePath, $relativePath);
 	}
-}
-
-if($contfiles == 0) {
-	echo 'Este curso no tiene certificados';
-	echo '<br><a href="/my">Regresar a la página anterior</a>';
-	exit;
 }
 
 // Zip archive will be created only after closing object
@@ -68,7 +62,6 @@ $zip->close();
 
 echo 'Archivo creado!';
 ob_clean();
-ob_end_flush();
 header('Content-disposition: attachment; filename=Certificados.zip');
 header('Content-type: application/zip');
 readfile($tmpFile);

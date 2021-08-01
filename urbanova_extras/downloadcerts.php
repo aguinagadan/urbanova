@@ -3,7 +3,8 @@
 global $CFG;
 
 // Get real path for our folder
-$rootPath = realpath(__DIR__ . '/../mod/customcert/files');
+$rootPath = realpath($CFG->dirroot.'/mod/customcert/files');
+
 
 $idCurso = isset($_GET['idCurso']) ?? null;
 

@@ -37,7 +37,7 @@ foreach ($files as $name => $file) {
 	if(!empty($idCurso)) {
 		// Skip directories (they would be added automatically)
 		$idGet = get_string_between($name,
-			$rootPath."//",
+			$rootPath."/",
 			'_-_');
 
 		if($idGet != $idCurso) {
@@ -69,8 +69,10 @@ $zip->close();
 echo 'Archivo creado!';
 ob_clean();
 ob_end_flush();
-header('Content-disposition: attachment; filename=Certificados.zip');
-header('Content-type: application/zip');
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header('Content-Type: application/zip;\n');
+header("Content-Transfer-Encoding: Binary");
+header("Content-Disposition: attachment; filename=Certificados.zip");
 readfile($tmpFile);
-// remove zip file is exists in temp path
 unlink($tmpFile);
+exit();

@@ -9,10 +9,9 @@ $rootPath = realpath(__DIR__ . '/../mod/customcert/files');
 $idCurso = isset($_GET['idCurso']) ?? null;
 
 // Initialize archive object
-// Initialize archive object
 $zip = new ZipArchive();
-$fileName = 'myZip.zip';
-$zip->open($fileName, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+$tmpFile = 'myZip.zip';
+$zip->open($tmpFile, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
 // Create recursive directory iterator
 /** @var SplFileInfo[] $files */
@@ -38,7 +37,7 @@ foreach ($files as $name => $file) {
 	if(!empty($idCurso)) {
 		// Skip directories (they would be added automatically)
 		$idGet = get_string_between($name,
-			$rootPath."/",
+			$rootPath."//",
 			'_-_');
 
 		if($idGet != $idCurso) {
@@ -68,16 +67,10 @@ if($contfiles == 0) {
 $zip->close();
 
 echo 'Archivo creado!';
-//ob_end_clean();
-//ob_end_flush();
-//header('Content-disposition: attachment; filename=Certificados.zip');
-//header('Content-type: application/zip');
-//readfile($fileName);
-//// remove zip file is exists in temp path
-//unlink($fileName);
-
-ob_end_clean();
-header("Content-Type: application/zip");
-header("Content-Disposition: attachment; filename=". pathinfo($fileName , PATHINFO_BASENAME));
-header("Content-Length: " . filesize($fileName ));
-readfile($fileName);
+ob_clean();
+ob_end_flush();
+header('Content-disposition: attachment; filename=Certificados.zip');
+header('Content-type: application/zip');
+readfile($tmpFile);
+// remove zip file is exists in temp path
+unlink($tmpFile);

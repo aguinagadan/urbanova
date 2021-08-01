@@ -31,6 +31,9 @@ function get_string_between($string, $start, $end){
 $cont = 0;
 $contfiles = 0;
 
+var_dump($files);
+exit;
+
 foreach ($files as $name => $file) {
 
 	if(!empty($idCurso)) {

@@ -142,7 +142,7 @@ function obtenerCursosByCat($idCat) {
 	global $USER;
 
 	$courses = array();
-	$allcourses = core_course_category::get(1)->get_courses(
+	$allcourses = core_course_category::get($idCat)->get_courses(
 		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
 
 	foreach($allcourses as $course) {

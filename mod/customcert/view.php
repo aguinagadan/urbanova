@@ -184,6 +184,6 @@ if (!$downloadown && !$downloadissue) {
 
     // Now we want to generate the PDF.
     $template = new \mod_customcert\template($template);
-    $template->generate_pdf(false, $userid);
+    $template->generate_pdf(false, $userid, false, $course);
     exit();
 }

@@ -253,7 +253,7 @@ class template {
      * @param bool $return Do we want to return the contents of the PDF?
      * @return string|void Can return the PDF in string format if specified.
      */
-    public function generate_pdf(bool $preview = false, int $userid = null, bool $return = false) {
+    public function generate_pdf(bool $preview = false, int $userid = null, bool $return = false, $course) {
         global $CFG, $DB, $USER;
 
         if (empty($userid)) {
@@ -288,6 +288,8 @@ class template {
             $pdf->SetTitle($this->name);
             $pdf->SetAutoPageBreak(true, 0);
             // Remove full-stop at the end, if it exists, to avoid "..pdf" being created and being filtered by clean_filename.
+	        $filenamePrev = rtrim($this->name, '.');
+	        $filename = clean_filename($filenamePrev . '.pdf');
             $filename = rtrim($this->name, '.');
 
             // This is the logic the TCPDF library uses when processing the name. This makes names
@@ -326,7 +328,14 @@ class template {
                 return $pdf->Output('', 'S');
             }
 
-            $pdf->Output($filename, $deliveryoption);
+            //$pdf->Output($filename, $deliveryoption);
+	        $delimiter = '_-_';
+	        $courseId = $course->id;
+	        $courseName = str_replace(' ', '_', $course->fullname);
+	        $userName = str_replace(' ', '_', $user->firstname . '_' . $user->lastname);
+
+	        $pdf->Output($CFG->dirroot . '/mod/customcert/files/' . $courseId . $delimiter . $courseName . '_' . $userName . '.pdf', 'F');
+	        $pdf->Output($filename, 'D');
         }
     }
 

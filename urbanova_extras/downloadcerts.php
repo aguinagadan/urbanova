@@ -8,10 +8,6 @@ global $CFG;
 // Get real path for our folder
 $rootPath = realpath(__DIR__ . '/../mod/customcert/files');
 
-var_dump($rootPath);
-exit;
-
-
 $idCurso = isset($_GET['idCurso']) ?? null;
 
 // Initialize archive object
@@ -43,7 +39,7 @@ foreach ($files as $name => $file) {
 	if(!empty($idCurso)) {
 		// Skip directories (they would be added automatically)
 		$idGet = get_string_between($name,
-			$rootPath."/",
+			$rootPath."\\",
 			'_-_');
 
 		if($idGet != $idCurso || $idGet == false) {

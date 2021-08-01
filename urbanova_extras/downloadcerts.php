@@ -5,9 +5,6 @@ global $CFG;
 // Get real path for our folder
 $rootPath = realpath(__DIR__ . '/../mod/customcert/files');
 
-var_dump($rootPath);
-exit;
-
 $idCurso = isset($_GET['idCurso']) ?? null;
 
 // Initialize archive object

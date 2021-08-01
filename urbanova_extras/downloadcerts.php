@@ -65,6 +65,9 @@ if($contfiles == 0) {
 	exit;
 }
 
+var_dump($zip);
+exit;
+
 // Zip archive will be created only after closing object
 $zip->close();
 

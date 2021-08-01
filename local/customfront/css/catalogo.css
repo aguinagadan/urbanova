@@ -122,6 +122,7 @@
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-bottom: 0;
   }
   .footer-learn-item p.p-bottom{
     padding-left: 80px;

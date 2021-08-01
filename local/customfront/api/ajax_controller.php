@@ -5,6 +5,7 @@ use core_course\external\course_summary_exporter;
 
 error_reporting(E_ALL);
 require_once(dirname(__FILE__) . '/../../../config.php');
+require_once($CFG->dirroot . '/enrol/externallib.php');
 
 try {
 	global $USER, $PAGE;
@@ -33,6 +34,9 @@ try {
 			break;
 		case 'obtenerCursosPendientes':
 			$returnArr = obtenerCursosPendientes();
+			break;
+		case 'obtenerTotalCursosbyCat':
+			$returnArr = obtenerTotalCursosbyCat($_POST['idCat']);
 			break;
 		case 'obtenerCursosByQuery':
 			$returnArr = obtenerCursosByQuery($_POST['q']);
@@ -165,8 +169,7 @@ function obtenerCursosByCat($idCat) {
 function obtenerCursosPendientes() {
 	global $USER;
 	$returnArr = array();
-	$userCourses = core_course_category::get(1)->get_courses(
-		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
+	$userCourses = enrol_get_users_courses($USER->id, true);
 
 	foreach($userCourses as $course) {
 		$percentage = progress::get_course_progress_percentage($course, $USER->id);
@@ -175,6 +178,33 @@ function obtenerCursosPendientes() {
 		}
 		$returnArr[] = [
 			'title' => strtolower($course->fullname),
+			'content' => strip_tags($course->summary),
+			'progress' => round($percentage) + 1,
+			'link' => '/course/view.php?id='.$course->id,
+			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
+			'dateEnd' => !empty($course->enddate) ? convertDateToSpanish($course->enddate,', ') : ''
+		];
+	}
+
+	$response['status'] = true;
+	$response['data'] = $returnArr;
+
+	return $response;
+}
+
+function obtenerTotalCursosbyCat($idCat) {
+	global $USER;
+
+	$returnArr = array();
+	$userCourses = enrol_get_users_courses($USER->id, true);
+
+	var_dump($userCourses);
+	exit;
+
+	foreach($userCourses as $course) {
+		$percentage = progress::get_course_progress_percentage($course, $USER->id);
+		$returnArr[] = [
+			'title'=> strtolower($course->fullname),
 			'content' => strip_tags($course->summary),
 			'progress' => round($percentage) + 1,
 			'link' => '/course/view.php?id='.$course->id,

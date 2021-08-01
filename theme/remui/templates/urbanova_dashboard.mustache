@@ -64,9 +64,10 @@
             <div class="header_title_btn u-flex-around"><input placeholder="¿qué curso estás buscando?" v-model="searchCursos"/><img src="./images/mycourse/search.png"/></div>
             <div class="header_title_btn u-flex-around">
                 <select>
-                    <Option>filtrar por categoría</Option>
-                    <Option>filtrar por categoría</Option>
-                    <Option>filtrar por categoría</Option>
+                    <Option @click="filteredCourses()">Nuestro Consumidor</Option>
+                    <Option>Tu Onboarding</Option>
+                    <Option>Seguridad</Option>
+                    <Option>Cursos del cliente</Option>
                 </select>
             </div>
         </div>
@@ -157,13 +158,44 @@
         },
         computed: {
             searchCurse: function (){
-                return this.cursosPen.filter((item) => item.title.includes(this.searchCursos.toLowerCase()));
+                return this.cursosTotal.filter((item) => item.title.includes(this.searchCursos.toLowerCase()));
             },
             // searchUsers: function(){
             //   return this.usuarios.filter((item) => item.name.includes(this.searchAlumnos));
             // },
         },
         methods: {
+            filteredCourses: function(idCat){
+                let frm = new FormData();
+                frm.append('request_type','obtenerTotalCursosbyCat');
+                frm.append('idCat', idCat);
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
+                        .then((response) => {
+                            let data = response.data.data;
+                            let courses = Array();
+
+                            Object.keys(data).forEach(key => {
+                                let dataVal = data[key];
+                                let title = dataVal.title;
+                                let content = dataVal.content;
+                                let progress = dataVal.progress;
+                                let link = dataVal.link;
+                                let image = dataVal.image;
+                                let date = dataVal.dateEnd;
+
+                                let newElem = {
+                                    'title': title,
+                                    'content': content,
+                                    'progress': progress,
+                                    'link': link,
+                                    'image': image,
+                                    'date': date,
+                                };
+                                courses.push(newElem);
+                            });
+                            this.cursosTotal = courses;
+                        });
+            },
             obtenerUsuario() {
                 let frm = new FormData();
                 frm.append('request_type','obtenerUsuario');

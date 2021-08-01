@@ -31,9 +31,6 @@ function get_string_between($string, $start, $end){
 $cont = 0;
 $contfiles = 0;
 
-var_dump($files);
-exit;
-
 foreach ($files as $name => $file) {
 
 	if(!empty($idCurso)) {
@@ -41,6 +38,8 @@ foreach ($files as $name => $file) {
 		$idGet = get_string_between($name,
 			$rootPath."\\",
 			'_-_');
+		var_dump($idGet);
+		exit;
 
 		if($idGet != $idCurso) {
 			$cont++;

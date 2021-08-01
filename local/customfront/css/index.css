@@ -51,3 +51,7 @@ body#page-site-index {
     width: 200px !important;
     height: 124px !important;
 }
+
+#page-site-index #page-footer {
+    display: none !important;
+}

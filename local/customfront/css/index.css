@@ -103,3 +103,7 @@ body#page-site-index {
     height: 17px;
     margin-top: 10%;
 }
+
+.urbanova-login-input {
+    border: 0.5103882551193237px solid #00314B;
+}

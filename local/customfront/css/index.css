@@ -89,6 +89,7 @@ body#page-site-index {
     border-radius: 23px;
     width: 50%;
     height: 46px;
+    border: none;
 }
 
 .urbanova-login-rectangle {

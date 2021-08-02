@@ -75,7 +75,8 @@ body#page-site-index {
     font-size: 11px;
     text-align: left;
     letter-spacing: 3.19px;
-    color: #00314B;
+    color: #00314B !important;
+    opacity: 1 !important;
 }
 
 .urbanova-login-button2-container {

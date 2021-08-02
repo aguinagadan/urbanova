@@ -315,7 +315,7 @@
     }
 
     if($course->category == 2) {
-	    include '/local/customfront/comments.html';
+	    echo $OUTPUT->render_from_template('theme_remui/urbanova_course');
     }
 
     echo $OUTPUT->footer();

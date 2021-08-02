@@ -59,6 +59,7 @@ body#page-site-index {
 .urbanova-login-button1 {
     background: #EB4956 0 0 no-repeat padding-box;
     box-shadow: 0 3px 6px #00000029;
+    color: #FFFFFF;
     border-radius: 26px;
     opacity: 1;
 }
@@ -69,4 +70,10 @@ body#page-site-index {
     letter-spacing: 3.19px;
     color: #00314B;
     opacity: 1;
+}
+
+.urbanova-login-button2 {
+    background: #EB4956 0 0 no-repeat padding-box;
+    border-radius: 23px;
+    color: #FFFFFF;
 }

@@ -315,7 +315,7 @@
     }
 
     if($course->category == 2) {
-	    include 'local/customfront/comments.html';
+	    include '/local/customfront/comments.html';
     }
 
     echo $OUTPUT->footer();

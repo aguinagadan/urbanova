@@ -64,6 +64,7 @@ body#page-site-index {
     width: 100%;
     line-height: 50px;
     text-decoration: none;
+    font-size: 11px;
 }
 
 .urbanova-login-button1-container {
@@ -72,7 +73,7 @@ body#page-site-index {
 }
 
 .urbanova-login-text {
-    font-size: 10px;
+    font-size: 11px;
     text-align: left;
     letter-spacing: 3.19px;
     color: #00314B !important;
@@ -92,6 +93,7 @@ body#page-site-index {
     width: 50%;
     height: 46px;
     border: none;
+    font-size: 11px;
 }
 
 .urbanova-login-rectangle {

@@ -41,6 +41,12 @@ try {
 		case 'obtenerCursosByQuery':
 			$returnArr = obtenerCursosByQuery($_POST['q']);
 			break;
+		case 'cargarComentarios':
+			$returnArr = cargarComentarios($_POST['idCourse']);
+			break;
+		case 'crearComentario':
+			$returnArr = crearComentario($_POST);
+			break;
 	}
 
 } catch (Exception $e) {
@@ -52,6 +58,46 @@ header('Content-type: application/json');
 
 echo json_encode($returnArr);
 exit();
+
+function formatCurrentTime($time) {
+	if (isset($time)) {
+		$time = strtotime(date('Y-m-d H:i', $time));
+	}
+	return $time;
+}
+
+function timeSince($original) {
+	$original = formatCurrentTime($original);
+
+	$ta = array(
+		array(31536000, "Año", "Años"),
+		array(2592000, "Mes", "Meses"),
+		array(604800, "Semana", "Semanas"),
+		array(86400, "Día", "Días"),
+		array(3600, "Hora", "Horas"),
+		array(60, "Minuto", "Minutos"),
+		array(1, "Segundo", "Segundos")
+	);
+	$since = time() - $original;
+	$res = "";
+	$lastkey = 0;
+	for ($i = 0; $i < count($ta); $i++) {
+		$cnt = floor($since / $ta[$i][0]);
+		if ($cnt != 0) {
+			$since = $since - ($ta[$i][0] * $cnt);
+			if ($res == "") {
+				$res .= ($cnt == 1) ? "1 {$ta[$i][1]}" : "{$cnt} {$ta[$i][2]}";
+				$lastkey = $i;
+			} else if ($ta[0] >= 60 && ($i - $lastkey) == 1) {
+				$res .= ($cnt == 1) ? " y 1 {$ta[$i][1]}" : " y {$cnt} {$ta[$i][2]}";
+				break;
+			} else {
+				break;
+			}
+		}
+	}
+	return $res;
+}
 
 function convertDateToSpanish($timestamp, $comma) {
 	setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish');
@@ -247,6 +293,48 @@ function obtenerCursosByQuery($q) {
 
 	$response['status'] = true;
 	$response['data'] = $courses;
+
+	return $response;
+}
+function cargarComentarios($id) {
+	global $DB, $USER;
+	$data = $DB->get_records_sql("SELECT * FROM {urbanova_comments} WHERE courseid = ? AND deleted = 0", array($id));
+
+	$comentarios = !empty($data) ? $data : array();
+
+	foreach($comentarios as $comentario) {
+
+		$user = $DB->get_record('user', array('id' => $comentario->userid));
+
+		$returnArr[] = [
+			'id'=> $comentario->id,
+			'comentario'=> $comentario->comment,
+			'user' => $user->firstname . ' ' . $user->lastname,
+			'date' => 'Hace ' . timeSince(strtotime($comentario->timecreated)),
+			'comentario_user_id' => $user->id,
+			'current_user_id' => $USER->id,
+		];
+	}
+
+	$response['status'] = true;
+	$response['data'] = $returnArr;
+
+	return $response;
+}
+
+function crearComentario($details) {
+	global $DB, $USER;
+
+	$comentario = new stdClass();
+	$comentario->courseid = $details['idCourse'];
+	$comentario->userid = $USER->id;
+	$comentario->comment = $details['commentTxt'];
+	$comentario->deleted = 0;
+	$comentario->timecreated = date("Y-m-d H:i:s");
+
+	$DB->insert_record('urbanova_comments', $comentario);
+
+	$response['status'] = true;
 
 	return $response;
 }

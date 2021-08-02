@@ -8,11 +8,11 @@
             <input @click="comentar" class="q-comentario-button" type="button" value="COMENTAR"></div>
         <div v-for="item in comentarios" class="q-comentarios-container">
             <div class="row" style="margin-left: 1%; margin-top: 10px;">
-                <div style="color: #085CB7; font-weight: 500; line-height: 30px;">{{item.user}}</div>
-                <div style="margin-left: 1%;color: #9F9F9F; line-height: 30px;">{{item.date}}</div>
+                <div style="color: #085CB7; font-weight: 500; line-height: 30px;">{(item.user)}</div>
+                <div style="margin-left: 1%;color: #9F9F9F; line-height: 30px;">{(item.date)}</div>
             </div>
             <div style="margin-left: 1%;">
-                {{item.comentario}}
+                {(item.comentario)}
             </div>
         </div>
     </div>
@@ -20,6 +20,7 @@
 <script>
     var app = new Vue({
         el: '#app',
+        delimiters: ['{(', ')}'],
         data: {
             comentarios: [],
             commentTxt: ''

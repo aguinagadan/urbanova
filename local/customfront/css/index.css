@@ -59,10 +59,11 @@ body#page-site-index {
 .urbanova-login-button1 {
     background: #EB4956 0 0 no-repeat padding-box;
     box-shadow: 0 3px 6px #00000029;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     border-radius: 26px;
     width: 100%;
     line-height: 50px;
+    text-decoration: none;
 }
 
 .urbanova-login-button1-container {

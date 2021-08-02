@@ -115,7 +115,7 @@
             <div class="card-block p-5 mt-80">
                 {{#loginpage_context}}
                 {{#logopos}}
-                        <h2 class="site-logo card-header text-center bg-transparent mb-3 p-4" ><img src="{{logourl}}" class="img-fluid" title="{{sitename}}" alt="{{sitename}}"/></h2>
+                        <h2 class="site-logo card-header text-center bg-transparent mb-3 p-4 border-0" ><img src="{{logourl}}" class="img-fluid" title="{{sitename}}" alt="{{sitename}}"/></h2>
                         <h2 class="site-name card-header text-center bg-transparent mb-3 p-4"><i class="site-icon fa fa-{{siteicon}}"></i> {{sitename}}</h2>
                 {{/logopos}}
                 {{/loginpage_context}}
@@ -156,7 +156,7 @@
                                         {{/canloginbyemail}}
                                     </label>
                                     <input type="text" name="username" id="username"
-                                        class="form-control"
+                                        class="form-control urbanova-login-input"
                                         value="{{username}}"
                                         placeholder=USUARIO
                                         autocomplete="username">
@@ -164,7 +164,7 @@
                                 <div class="form-group">
                                     <label for="password" class="sr-only">{{#str}} password {{/str}}</label>
                                     <input type="password" name="password" id="password" value=""
-                                        class="form-control"
+                                        class="form-control urbanova-login-input"
                                         placeholder=CONTRASEÑA
                                         autocomplete="current-password">
                                 </div>

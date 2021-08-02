@@ -47,6 +47,9 @@ try {
 		case 'crearComentario':
 			$returnArr = crearComentario($_POST);
 			break;
+		case 'eliminarComentario':
+			$returnArr = eliminarComentario($_POST['id']);
+			break;
 	}
 
 } catch (Exception $e) {
@@ -337,6 +340,22 @@ function crearComentario($details) {
 	$comentario->timecreated = date("Y-m-d H:i:s");
 
 	$DB->insert_record('urbanova_comments', $comentario);
+
+	$response['status'] = true;
+
+	return $response;
+}
+
+function eliminarComentario($id) {
+	global $DB;
+
+	$comentarioObj = $DB->get_record_sql("SELECT * FROM {urbanova_comments} WHERE id = ?", array($id));
+
+	if (!empty($comentarioObj)) {
+		$comentarioObj->deleted = 1;
+		$comentarioObj->timecreated = date("Y-m-d H:i:s");
+		$DB->update_record('urbanova_comments', $comentarioObj);
+	}
 
 	$response['status'] = true;
 

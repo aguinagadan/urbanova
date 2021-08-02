@@ -105,5 +105,5 @@ body#page-site-index {
 }
 
 .urbanova-login-input {
-    border: 0.5103882551193237px solid #00314B;
+    border: 0.5px solid #00314B !important;
 }

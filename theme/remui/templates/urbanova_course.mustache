@@ -10,6 +10,8 @@
             <div class="row" style="margin-left: 1%; margin-top: 10px;">
                 <div style="color: #085CB7; font-weight: 500; line-height: 30px;">{(item.user)}</div>
                 <div style="margin-left: 1%;color: #9F9F9F; line-height: 30px;">{(item.date)}</div>
+                <img v-if="item.comentario_user_id == item.current_user_id" @click="eliminarComentario(item.id)" src="/images/course/tacho.svg"
+                     style="height: 18px; cursor: pointer; margin-left: 20px; width: 14px; margin-top: 3px;"/>
             </div>
             <div style="margin-left: 1%;">
                 {(item.comentario)}
@@ -83,6 +85,16 @@
                                 alert('Comentario agregado satisfactoriamente');
                                 location.reload();
                             }
+                        });
+            },
+            eliminarComentario: function(id) {
+                let frm = new FormData();
+                frm.append('id', id);
+                frm.append('request_type','eliminarComentario');
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
+                        .then((response) => {
+                            alert('El comentario fue eliminado satisfactoriamente');
+                            location.reload();
                         });
             },
         }

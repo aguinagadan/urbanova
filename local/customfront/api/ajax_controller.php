@@ -300,6 +300,9 @@ function cargarComentarios($id) {
 	global $DB, $USER;
 	$data = $DB->get_records_sql("SELECT * FROM {urbanova_comments} WHERE courseid = ? AND deleted = 0", array($id));
 
+	var_dump($data);
+	exit;
+
 	$comentarios = !empty($data) ? $data : array();
 
 	foreach($comentarios as $comentario) {

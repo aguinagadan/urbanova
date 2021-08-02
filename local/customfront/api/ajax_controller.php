@@ -298,25 +298,26 @@ function obtenerCursosByQuery($q) {
 }
 function cargarComentarios($id) {
 	global $DB, $USER;
-	$data = $DB->get_records_sql("SELECT * FROM {urbanova_comments} WHERE courseid = ? AND deleted = 0", array($id));
+	$returnArr = array();
 
-	var_dump($data);
-	exit;
+	$data = $DB->get_records_sql("SELECT * FROM {urbanova_comments} WHERE courseid = ? AND deleted = 0", array($id));
 
 	$comentarios = !empty($data) ? $data : array();
 
-	foreach($comentarios as $comentario) {
+	if(!empty($comentarios)) {
+		foreach($comentarios as $comentario) {
 
-		$user = $DB->get_record('user', array('id' => $comentario->userid));
+			$user = $DB->get_record('user', array('id' => $comentario->userid));
 
-		$returnArr[] = [
-			'id'=> $comentario->id,
-			'comentario'=> $comentario->comment,
-			'user' => $user->firstname . ' ' . $user->lastname,
-			'date' => 'Hace ' . timeSince(strtotime($comentario->timecreated)),
-			'comentario_user_id' => $user->id,
-			'current_user_id' => $USER->id,
-		];
+			$returnArr[] = [
+				'id'=> $comentario->id,
+				'comentario'=> $comentario->comment,
+				'user' => $user->firstname . ' ' . $user->lastname,
+				'date' => 'Hace ' . timeSince(strtotime($comentario->timecreated)),
+				'comentario_user_id' => $user->id,
+				'current_user_id' => $USER->id,
+			];
+		}
 	}
 
 	$response['status'] = true;

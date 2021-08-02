@@ -314,4 +314,8 @@
         $PAGE->requires->js_call_amd('core_course/downloadcontent', 'init');
     }
 
+    echo '<pre>';
+    var_dump($course);
+	//include 'local/customfront/comments.html';
+
     echo $OUTPUT->footer();

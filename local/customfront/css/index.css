@@ -107,3 +107,43 @@ body#page-site-index {
 .urbanova-login-input {
     border: 0.5px solid #00314B !important;
 }
+
+/* COMENTARIOS */
+
+.q-comentario-container {
+    padding-top: 45px;
+    margin: auto;
+    text-align: left;
+    width: 79%;
+}
+
+.q-comentario-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #9F9F9F;
+}
+
+.q-comentario-input {
+    text-align: left;
+    color: rgb(112, 112, 112);
+    opacity: 1;
+    width: 100%;
+    border: none;
+    background: no-repeat;
+    border-bottom: 1px solid #707070;
+}
+
+.q-comentario-button {
+    text-align: center;
+    background-color: #085CB7;
+    border-radius: 8px;
+    color: white;
+    width: 171px;
+    height: 45px;
+    border: none;
+}
+
+.q-comentarios-container {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}

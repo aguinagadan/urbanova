@@ -133,7 +133,7 @@
                         </div>
                     {{/error}}
                     <div>
-                        <a type="button" class="btn btn-primary btn-block urbanova-login-button1"
+                        <a type="button" class="urbanova-login-button1"
                            href="../../local/MicrosoftSSO/index.php">
                             INICIA SESIÓN CON TU CUENTA URBANOVA
                         </a>
@@ -178,7 +178,8 @@
                                     </div>
                                 {{/rememberusername}}
 
-                                <button type="submit" class="btn btn-primary btn-block mt-4" id="loginbtn">{{#str}}login{{/str}}</button>
+                                <!-- <button type="submit" class="btn btn-primary btn-block mt-4" id="loginbtn">{{#str}}login{{/str}}</button>-->
+                                <button type="submit" class="urbanova-login-button2" id="loginbtn">{{#str}}login{{/str}}</button>
                             </form>
                         </div>
 
@@ -190,14 +191,14 @@
                             {{/hasinstructions}}
 
                             {{#canloginasguest}}
-                                <div class="mt-2">
-                                    <form action="{{loginurl}}" method="post" id="guestlogin">
-                                        <input type="hidden" name="logintoken" value="{{logintoken}}">
-                                        <input type="hidden" name="username" value="guest" />
-                                        <input type="hidden" name="password" value="guest" />
-                                        <button class="btn btn-secondary btn-block" type="submit">{{#str}}loginguest{{/str}}</button>
-                                    </form>
-                                </div>
+<!--                                <div class="mt-2">-->
+<!--                                    <form action="{{loginurl}}" method="post" id="guestlogin">-->
+<!--                                        <input type="hidden" name="logintoken" value="{{logintoken}}">-->
+<!--                                        <input type="hidden" name="username" value="guest" />-->
+<!--                                        <input type="hidden" name="password" value="guest" />-->
+<!--                                        <button class="btn btn-secondary btn-block" type="submit">{{#str}}loginguest{{/str}}</button>-->
+<!--                                    </form>-->
+<!--                                </div>-->
                             {{/canloginasguest}}
 
                             {{#hasidentityproviders}}

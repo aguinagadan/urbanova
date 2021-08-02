@@ -36,7 +36,7 @@
                 let params = new URLSearchParams(uri);
                 frm.append('idCourse', params.get("id"));
                 frm.append('request_type','cargarComentarios');
-                axios.post('/local/customfront/api/ajax_controller_qroma.php',frm)
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
                         .then((response) => {
                             let data = response.data.data;
                             let comentarios = Array();
@@ -76,7 +76,7 @@
                 frm.append('idCourse', params.get("id"));
                 frm.append('commentTxt', this.commentTxt);
                 frm.append('request_type','crearComentario');
-                axios.post('/local/customfront/api/ajax_controller_qroma.php', frm)
+                axios.post('/local/customfront/api/ajax_controller.php', frm)
                         .then((response) => {
                             if(response.data.status) {
                                 alert('Comentario agregado satisfactoriamente');

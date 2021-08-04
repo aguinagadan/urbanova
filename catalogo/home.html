@@ -224,6 +224,7 @@
             this.getP2();
             this.getP3();
             this.getP4();
+            this.getCursos2();
         },
         created(){
 
@@ -236,6 +237,33 @@
                 axios.post('/local/customfront/api/ajax_controller.php',frm)
                     .then((response) => {
                         this.cantidadCursos = response.data.data;
+                    });
+            },
+            getCursos2: function(){
+                let frm = new FormData();
+                frm.append('request_type','obtenerCursosByCat');
+                frm.append('idCat', 2);
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
+                    .then((response) => {
+                        let data = response.data.data;
+                        let courses = Array();
+
+                        Object.keys(data).forEach(key => {
+                            let dataVal = data[key];
+                            let image = dataVal.image;
+                            let title = dataVal.title;
+                            let progress = dataVal.porcent;
+                            let link = dataVal.link;
+
+                            let newElem = {
+                                'image': image,
+                                'title': title,
+                                'progress': progress,
+                                'link': link
+                            };
+                            courses.push(newElem);
+                        });
+                        this.cursos2 = courses;
                     });
             },
             getP1: function(){

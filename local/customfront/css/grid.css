@@ -1032,6 +1032,9 @@ html{
 }
 .section3-item .section3-itemd-desc .section3-itemd-desc-text{
   margin-top: 15px!important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .section3-item .section3-itemd-desc>img{
   display: none;

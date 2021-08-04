@@ -134,32 +134,32 @@
             <div class="section-triangle"></div>
         </div>
     </div>
-<!--    <div class="section41">-->
-<!--        <div class="section_title u-flex-around u-flex-column">-->
-<!--            <p><span>116 cursos</span> disponibles para ti</p>-->
-<!--            <div></div>-->
-<!--        </div>-->
-<!--        <div class="footer-learn-background u-flex-around">-->
-<!--            <img src="./images/course/sec4_back.png" />-->
-<!--        </div>-->
-<!--        <div class="section3-items5 u-container">-->
-<!--            <div v-for="item in cursos2" class="section3-item-div u-flex-around">-->
-<!--                <div class="section3-item">-->
-<!--                    <div class="video_icon u-flex-around">-->
-<!--                        <img src="./images/course/video.png" />-->
-<!--                    </div>-->
-<!--                    <img :src="item.image" />-->
-<!--                    <div class="section3-itemd-desc" >-->
-<!--                        <div class="section3-itemd-desc-gra" v-if="item.progress > 0">-->
-<!--                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.progress+'%'"></div>-->
-<!--                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.progress+'%'">{{item.progress}}%</div>-->
-<!--                        </div>-->
-<!--                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="section41">
+        <div class="section_title u-flex-around u-flex-column">
+            <p>Continua tu aprendizaje</p>
+            <div></div>
+        </div>
+        <div class="footer-learn-background u-flex-around">
+            <img src="/images/course/sec4_back.png" />
+        </div>
+        <div class="section3-items5 u-container">
+            <div v-for="item in cursos2" class="section3-item-div u-flex-around">
+                <div class="section3-item">
+                    <div class="video_icon u-flex-around">
+                        <img src="/images/course/video.png" />
+                    </div>
+                    <img :src="item.image" />
+                    <div class="section3-itemd-desc" >
+                        <div class="section3-itemd-desc-gra" v-if="item.progress > 0">
+                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.progress+'%'"></div>
+                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.progress+'%'">{{item.progress}}%</div>
+                        </div>
+                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <link rel="stylesheet" href="/local/customfront/css/grid.css">
 <link rel="stylesheet" href="/local/customfront/css/catalogo.css">
@@ -217,14 +217,8 @@
                 ],
             },
             cursos2: [
-                {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", link:"#"},
-                {image:"./images/course/item2.png", title:"TÍTULO DEL CURSO LOREM", progress:"60", link:"#"},
-                {image:"./images/course/item3.png", title:"TÍTULO DEL CURSO LOREM", progress:"0", link:"#"},
-                {image:"./images/course/item4.png", title:"TÍTULO DEL CURSO LOREM", progress:"0", link:"#"},
-                {image:"./images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"80", link:"#"},
-                {image:"./images/course/item2.png", title:"TÍTULO DEL CURSO LOREM", progress:"90", link:"#"},
-                {image:"./images/course/item3.png", title:"TÍTULO DEL CURSO LOREM", progress:"10", link:"#"},
-                {image:"./images/course/item4.png", title:"TÍTULO DEL CURSO LOREM", progress:"0", link:"#"},
+                {image:"/images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", link:"#"},
+                {image:"/images/course/item2.png", title:"TÍTULO DEL CURSO LOREM", progress:"60", link:"#"}
             ]
         },
         mounted(){

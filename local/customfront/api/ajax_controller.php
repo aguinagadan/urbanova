@@ -105,7 +105,7 @@ function timeSince($original) {
 
 function convertDateToSpanish($timestamp, $comma) {
 	setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish');
-	return strftime("%d de %B %Y", $timestamp);
+	return strftime("%d de %B$comma%Y", $timestamp);
 }
 
 function getUserImage() {

@@ -27,7 +27,8 @@ try {
 			$returnArr = obtenerUsuario();
 			break;
 		case 'obtenerCursosByCat':
-			$returnArr = obtenerCursosByCat($_POST['idCat']);
+			$limit = isset($_POST['limit']) ? $_POST['limit'] : false;
+			$returnArr = obtenerCursosByCat($_POST['idCat'], $limit);
 			break;
 		case 'obtenerBasicInfo':
 			$returnArr = obtenerBasicInfo();
@@ -191,7 +192,7 @@ function obtenerBasicInfo() {
 	return $response;
 }
 
-function obtenerCursosByCat($idCat) {
+function obtenerCursosByCat($idCat, $limit=false) {
 	global $USER;
 
 	$courses = array();
@@ -207,6 +208,10 @@ function obtenerCursosByCat($idCat) {
 			'porcent' => $percentage + 1,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
 		];
+	}
+
+	if($limit) {
+		$courses = array_slice($courses, -$limit, $limit, true);
 	}
 
 	$response['status'] = true;

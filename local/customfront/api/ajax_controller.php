@@ -424,9 +424,6 @@ function matricular($detail) {
 	$sql = "select * from mdl_user WHERE department $insql GROUP BY department";
 	$users = $DB->get_records_sql($sql, $params);
 
-	var_dump($users);
-	exit;
-
 	foreach($users as $user) {
 		check_enrol($idCurso, $user->id);
 	}

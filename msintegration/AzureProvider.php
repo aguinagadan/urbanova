@@ -93,7 +93,7 @@ class AzureProvider {
 		$accessToken = $this->getToken($this->constants::SCOPE, $this->constants::GRANT_TYPE_CLIENT_CREDENTIALS)->access_token;
 
 		$data = array(
-			'url' => 'https://graph.microsoft.com/v1.0/users'.$skipToken,
+			'url' => 'https://graph.microsoft.com/v1.0/users?$select=userPrincipalName,givenName,surname,mail,department'.$skipToken,
 			'httpMethod' => 'GET',
 			'httpHeader' => array("Authorization: ". $accessToken)
 		);

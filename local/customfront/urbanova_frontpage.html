@@ -212,7 +212,11 @@
                 ]
             },
             carrusel:{
-                items: [],
+                items: [
+                    {src: ""},
+                    {src: ""},
+                    {src: ""}
+                ],
                 config: {
                     anchoView: 0,
                     anchoCarrusel: 0,
@@ -248,11 +252,11 @@
             ],
         },
         mounted(){
+            this.loadSlider();
             this.loadTestimonios();
             this.getCourses();
         },
         created(){
-            this.loadSlider();
             this.carruselCreated();
             window.onresize = (event)=> {
                 this.resizeCarrusel();
@@ -260,7 +264,7 @@
             };
             setInterval(() => {
                 console.log(this.carrusel.config.actual)
-                if(this.carrusel.config.actual < this.tetimonio.items.length - 2){
+                if(this.carrusel.config.actual < this.carrusel.items.length - 2){
                     this.movLeft(this.carrusel.config.actual+1);
                 } else{
                     this.movLeft(1);

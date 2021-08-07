@@ -383,7 +383,7 @@ function obtenerDepartamentos() {
 	return $response;
 }
 
-function check_enrol($courseid, $userid) {
+function check_enrol($courseid, $userid, $roleid) {
 	global $DB;
 	$user = $DB->get_record('user', array('id' => $userid, 'deleted' => 0), '*', MUST_EXIST);
 	$course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
@@ -408,7 +408,7 @@ function check_enrol($courseid, $userid) {
 			}
 			$instance = $DB->get_record('enrol', array('id' => $instanceid));
 		}
-		$enrol->enrol_user($instance, $userid);
+		$enrol->enrol_user($instance, $userid, $roleid);
 	}
 	return true;
 }
@@ -425,7 +425,7 @@ function matricular($detail) {
 	$users = $DB->get_records_sql($sql, $params);
 
 	foreach($users as $user) {
-		check_enrol($idCurso, $user->id);
+		check_enrol($idCurso, $user->id, $user->roleid);
 	}
 
 	foreach($departamentos as $departamento) {

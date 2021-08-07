@@ -31,10 +31,12 @@
         <div class="footer-learn-background u-flex-around">
             <img src="./images/home/learn_back.png" />
         </div>
+<!-- Bloque eliminado hasta que se tenga titulo definido
         <div class="section_title u-flex-around u-flex-column">
             <p><span>Lorem</span> ipsum dolor sit amet.</p>
             <div></div>
         </div>
+-->
         <div class="u-flex-center u-responsive">
             <a href="#" class="footer-learn-item u-flex-around">
                 <div class="footer-learn-item-blue"></div>
@@ -263,7 +265,6 @@
                 this.resizeCarrusel2();
             };
             setInterval(() => {
-                console.log(this.carrusel.config.actual)
                 if(this.carrusel.config.actual < this.carrusel.items.length - 2){
                     this.movLeft(this.carrusel.config.actual+1);
                 } else{

@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     btn_matricular.click(function() {
 
-        console.log($("#new_users").is('checked'));
+        console.log($("#new_users").is(':checked'));
 
         $.post("../local/customfront/api/ajax_controller.php",
             {

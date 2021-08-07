@@ -252,7 +252,7 @@
             ],
         },
         mounted(){
-            //this.loadSlider();
+            this.loadSlider();
             this.loadTestimonios();
             this.getCourses();
         },
@@ -263,6 +263,7 @@
                 this.resizeCarrusel2();
             };
             setInterval(() => {
+                console.log(this.carrusel.config.actual)
                 if(this.carrusel.config.actual < this.tetimonio.items.length - 2){
                     this.movLeft(this.carrusel.config.actual+1);
                 } else{

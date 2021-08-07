@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/checkbox.css">
+<link rel="stylesheet" href="./css/select.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+<main>
+    <section>
+        <div class="col-12">
+            <div class="title_body">
+                <div class="titulo">Matrícula</div>
+                <div class="descripcion">
+                    Es te módulo sirve para configurar la matriculación automática de usuarios a determinado cursos.
+                </div>
+            </div>
+        </div>
+        <div class=" col-12">
+
+            <div class="form col-4" >
+                <form id="formulario" action="" method="POST" class="form_panel">
+                    <div class="fila">
+                        <div class="col-12">
+                            <label class="num">1.</label>
+                            <div class="select">
+                                <select name="curso" id="curso">
+                                    <option value="0">Busca el curso a configurar</option>
+                                    <option value="1">Curso política de cumplimiento</option>
+                                    <option value="2">Curso política de felicidad</option>
+                                    <option value="3">Curso política doctoral</option>
+                                </select>
+                                <span id="select_x">x</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <!-- <div></div> -->
+                        <div class="col-12">
+                            <label class="num">2.</label>
+                            <div class="select">
+                                <select name="participantes" id="participantes">
+                                    <option value="0">Selecciona a los participantes</option>
+                                    <option value="1">Analistas</option>
+                                    <option value="2">Operarios</option>
+                                    <option value="3">Comercial</option>
+                                    <option value="4">Recursos humanos</option>
+                                </select>
+                                <div class="select_arrow">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="selected_options" >
+                            <ul id="options">
+                                <!-- <li class="option">
+                                    <span>Analistas</span>
+                                    <a class="search-choice-close">x</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="mat_new_users">
+                            <label class="container">Matricular a los usuarios nuevos.
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="recordatorios">
+                        <div>
+                            <label class="num">3.</label>
+                            <label>Recordatorios</label>
+                        </div>
+                        <div class="checkboxes row">
+                            <div class=""><label class="container">Todos los lunes
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label></div>
+                            <div class=""><label class="container">Todos los viernes
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label></div>
+                            <div class=""><label class="container">A tres días del cierre
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label></div>
+                            <div class=""><label class="container">Un día antes del cierre
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label></div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn" id="btn_matricular">Matricular</button>
+                    </div>
+                </form>
+
+                <div id="success" class="form_panel">
+                    <div class="mensaje">
+                        Matrícula de usuarios exitosa
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn" id="btn_continuar">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>

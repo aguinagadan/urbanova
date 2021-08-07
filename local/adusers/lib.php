@@ -24,6 +24,7 @@ function createUsers($usersAD) {
 			$userObj->firstname = isset($userAD['givenName']) ? $userAD['givenName'] : ' ';
 			$userObj->lastname =  isset($userAD['surname']) ? $userAD['surname'] : ' ';
 			$userObj->email =  isset($userAD['mail']) ? $userAD['mail'] : ' ';
+			$userObj->department =  isset($userAD['department']) ? $userAD['department'] : ' ';
 			$userObj->lang = 'es';
 			$userObj->institution = 'azure';
 

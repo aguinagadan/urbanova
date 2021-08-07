@@ -13,7 +13,7 @@ $(document).ready(function () {
             var curso = $("#curso");
             curso.empty();
             for (var i=0; i<data.data.length; i++) {
-                curso.append('<option value="' + data.data[i].id + '">' + data.data[i].desc + '</option>');
+                curso.append('<option value="' + data.data[i].id + '">' + data.data[i].title + '</option>');
             }
         }, "json");
 

@@ -109,7 +109,7 @@ body#page-site-index {
 }
 
 .color-transparent {
-    color: transparent;
+    color: transparent !important;
 }
 
 /* COMENTARIOS */

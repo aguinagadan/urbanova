@@ -12,8 +12,8 @@ $(document).ready(function () {
         function(data) {
             var curso = $("#curso");
             curso.empty();
-            for (var i=0; i<data.length; i++) {
-                curso.append('<option value="' + data[i].id + '">' + data[i].desc + '</option>');
+            for (var i=0; i<data.data.length; i++) {
+                curso.append('<option value="' + data.data[i].id + '">' + data.data[i].desc + '</option>');
             }
         }, "json");
 

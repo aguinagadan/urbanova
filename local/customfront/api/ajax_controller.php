@@ -374,7 +374,7 @@ function eliminarComentario($id) {
 function obtenerDepartamentos() {
 	global $DB;
 
-	$returnArr = $DB->get_records_sql("SELECT department FROM {user}");
+	$returnArr = $DB->get_records_sql("SELECT department FROM {user} WHERE department!='' GROUP BY department");
 
 	var_dump($returnArr);
 	exit;

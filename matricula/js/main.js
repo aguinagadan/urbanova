@@ -53,7 +53,7 @@ $(document).ready(function () {
             {
                 'idCurso': $("#curso").val(),
                 'departamentos': selected_options,
-                'newUsers': $("#new_users").text(),
+                'newUsers': $("#new_users").val(),
                 'request_type': 'matricular'
             },
             function(data) {

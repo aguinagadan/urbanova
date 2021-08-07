@@ -376,9 +376,6 @@ function obtenerDepartamentos() {
 
 	$returnArr = $DB->get_records_sql("SELECT department FROM {user} WHERE department!='' GROUP BY department");
 
-	var_dump($returnArr);
-	exit;
-
-	$response['data'] = $returnArr;
+	$response['data'] = array_keys($returnArr);
 	return $response;
 }

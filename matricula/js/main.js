@@ -48,9 +48,18 @@ $(document).ready(function () {
 
     var btn_matricular = $("#btn_matricular");
 
-    btn_matricular.click(function(){
-        $("#formulario").hide();
-        $("#success").show();
+    btn_matricular.click(function() {
+        $.post("../local/customfront/api/ajax_controller.php",
+            {
+                'idCurso': $("#curso").val(),
+                'departamentos': selected_options,
+                'newUsers': $("#new_users").val(),
+                'request_type': 'matricular'
+            },
+            function(data) {
+                $("#formulario").hide();
+                $("#success").show();
+            }, "json");
     });
 
     $("#options").on("click", "a.search-choice-close", function(){

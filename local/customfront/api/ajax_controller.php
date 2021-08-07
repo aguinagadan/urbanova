@@ -54,6 +54,9 @@ try {
 		case 'obtenerDepartamentos':
 			$returnArr = obtenerDepartamentos();
 			break;
+		case 'matricular':
+			$returnArr = matricular($_POST);
+			break;
 	}
 
 } catch (Exception $e) {
@@ -378,4 +381,9 @@ function obtenerDepartamentos() {
 
 	$response['data'] = array_keys($returnArr);
 	return $response;
+}
+
+function matricular($detail) {
+	var_dump($detail);
+	exit;
 }

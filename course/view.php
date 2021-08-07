@@ -314,9 +314,6 @@
         $PAGE->requires->js_call_amd('core_course/downloadcontent', 'init');
     }
 
-    var_dump($course);
-    exit;
-
     if($course->category == 2) {
 	    echo $OUTPUT->render_from_template('theme_remui/urbanova_course', $templatecontext);
     }

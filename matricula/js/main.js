@@ -54,7 +54,7 @@ $(document).ready(function () {
             {
                 'idCurso': $("#curso").val(),
                 'departamentos': selected_options,
-                'newUsers': $("#new_users :checked"),
+                'newUsers': $("#new_users")[0],
                 'request_type': 'matricular'
             },
             function(data) {

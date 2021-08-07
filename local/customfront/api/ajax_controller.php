@@ -391,7 +391,7 @@ function matricular($detail) {
 	$isNew = $detail['newUsers'];
 
 	list($insql, $params) = $DB->get_in_or_equal($departamentos);
-	$sql = "select * from mdl_user WHERE departments $insql GROUP BY departments";
+	$sql = "select * from mdl_user WHERE department $insql GROUP BY department";
 	$users = $DB->get_records_sql($sql, $params);
 
 	var_dump($users);

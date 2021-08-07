@@ -202,6 +202,7 @@ function obtenerCursosByCat($idCat, $limit=false) {
 	foreach($allcourses as $course) {
 		$percentage = round(progress::get_course_progress_percentage($course, $USER->id));
 		$courses[] = [
+			'id'=> $course->id,
 			'title'=> strtoupper($course->fullname),
 			'content'=> strip_tags($course->summary),
 			'link'=> '/course/view.php?id='.$course->id,

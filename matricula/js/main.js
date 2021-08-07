@@ -7,6 +7,16 @@ $(document).ready(function () {
 
     var selected_options = [];
 
+    $.post("local/customfront/api/ajax_controller.php", {
+            'request_type': 'obtenerCursosByCat', 'idCat' : 1 },
+        function(data) {
+            var curso = $("#curso");
+            curso.empty();
+            for (var i=0; i<data.length; i++) {
+                curso.append('<option value="' + data[i].id + '">' + data[i].desc + '</option>');
+            }
+        }, "json");
+
     curso.change(function(){
         select_x.css({display: "inline-flex"});
     });

@@ -23,7 +23,7 @@ $(document).ready(function () {
             var participantes = $("#participantes");
             participantes.empty();
             for (var i=0; i<data.data.length; i++) {
-                participantes.append('<option value="' + data.data[i].title + '">' + data.data[i].title + '</option>');
+                participantes.append('<option value="' + data.data[i] + '">' + data.data[i] + '</option>');
             }
         }, "json");
 

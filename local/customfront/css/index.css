@@ -112,6 +112,10 @@ body#page-site-index {
     color: transparent !important;
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
+
 /* COMENTARIOS */
 
 .q-comentario-container {

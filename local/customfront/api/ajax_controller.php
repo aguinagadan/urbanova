@@ -404,6 +404,9 @@ function matricular($detail) {
 		$matricula->userid = $USER->id;
 		$matricula->createddate = date("Y-m-d H:i:s");
 
+		var_dump($matricula);
+		exit;
+
 		$DB->insert_record('urbanova_matricula', $matricula);
 	}
 

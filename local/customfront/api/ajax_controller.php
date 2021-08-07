@@ -51,6 +51,9 @@ try {
 		case 'eliminarComentario':
 			$returnArr = eliminarComentario($_POST['id']);
 			break;
+		case 'obtenerDepartamentos':
+			$returnArr = obtenerDepartamentos();
+			break;
 	}
 
 } catch (Exception $e) {
@@ -365,5 +368,17 @@ function eliminarComentario($id) {
 
 	$response['status'] = true;
 
+	return $response;
+}
+
+function obtenerDepartamentos() {
+	global $DB;
+
+	$returnArr = $DB->get_records_sql("SELECT department FROM {user}");
+
+	var_dump($returnArr);
+	exit;
+
+	$response['data'] = $returnArr;
 	return $response;
 }

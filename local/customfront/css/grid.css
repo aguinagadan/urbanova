@@ -485,7 +485,6 @@ div.omrs-input-group {
 #scrollView1 .slick-dots {
     bottom: 25%!important;
     width: auto!important;
-    left: 30%!important;
     z-index: 2;
 }
 

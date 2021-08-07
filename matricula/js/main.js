@@ -49,11 +49,14 @@ $(document).ready(function () {
     var btn_matricular = $("#btn_matricular");
 
     btn_matricular.click(function() {
+
+        console.log( $("#new_users"));
+
         $.post("../local/customfront/api/ajax_controller.php",
             {
                 'idCurso': $("#curso").val(),
                 'departamentos': selected_options,
-                'newUsers': $("#new_users").val(),
+                'newUsers': $("#new_users"),
                 'request_type': 'matricular'
             },
             function(data) {

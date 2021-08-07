@@ -10,6 +10,36 @@ spl_autoload_register(function ($clase) {
 	include $CFG->dirroot.'/msintegration/' . $clase . '.php';
 });
 
+function check_enrol($courseid, $userid, $roleid) {
+	global $DB;
+	$user = $DB->get_record('user', array('id' => $userid, 'deleted' => 0), '*', MUST_EXIST);
+	$course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
+	$context = context_course::instance($course->id);
+	if (!is_enrolled($context, $user)) {
+		$enrol = enrol_get_plugin('manual');
+		if ($enrol === null) {
+			return false;
+		}
+		$instances = enrol_get_instances($course->id, true);
+		$manualinstance = null;
+		foreach ($instances as $instance) {
+			if ($instance->name == 'manual') {
+				$manualinstance = $instance;
+				break;
+			}
+		}
+		if ($manualinstance !== null) {
+			$instanceid = $enrol->add_default_instance($course);
+			if ($instanceid === null) {
+				$instanceid = $enrol->add_instance($course);
+			}
+			$instance = $DB->get_record('enrol', array('id' => $instanceid));
+		}
+		$enrol->enrol_user($instance, $userid, $roleid);
+	}
+	return true;
+}
+
 function migrate_users_task() {
 	$provider = new AzureProvider();
 	createUsers($provider->getUsers());
@@ -35,10 +65,23 @@ function createUsers($usersAD) {
 				$userObj->confirmed  = 1;
 				$userObj->mnethostid = 1;
 				$userObj->id = $DB->insert_record('user', $userObj);
+
+				$matriculas = $DB->get_records_sql("SELECT * FROM {urbanova_matricula} WHERE department = ? and isnew = 1", array($userObj->department));
+
+				foreach ($matriculas as $matricula) {
+					check_enrol($matricula->courseid, $userObj->id, 5);
+				}
+
 			} else {
 				$userObj->id = $user->id;
 				$userObj->deleted = 0;
 				$DB->update_record('user', $userObj);
+
+				$matriculas = $DB->get_records_sql("SELECT * FROM {urbanova_matricula} WHERE department = ? and isnew = 1", array($userObj->department));
+
+				foreach ($matriculas as $matricula) {
+					check_enrol($matricula->courseid, $userObj->id, 5);
+				}
 			}
 		}
 	}

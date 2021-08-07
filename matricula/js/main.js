@@ -17,6 +17,16 @@ $(document).ready(function () {
             }
         }, "json");
 
+    $.post("../local/customfront/api/ajax_controller.php", {
+            'request_type': 'obtenerDepartamentos'},
+        function(data) {
+            var participantes = $("#participantes");
+            participantes.empty();
+            for (var i=0; i<data.data.length; i++) {
+                participantes.append('<option value="' + data.data[i].title + '">' + data.data[i].title + '</option>');
+            }
+        }, "json");
+
     curso.change(function(){
         select_x.css({display: "inline-flex"});
     });

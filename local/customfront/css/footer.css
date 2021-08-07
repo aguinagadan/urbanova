@@ -20,6 +20,11 @@
 .foooter-top-left-item ul{
     padding-left: 15px;
 }
+
+.foooter-top-left-item li{
+    color: white;
+}
+
 .foooter-top-left-item p{
     font-size: 12px
 }

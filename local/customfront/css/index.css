@@ -108,6 +108,10 @@ body#page-site-index {
     border: 0.5px solid #00314B !important;
 }
 
+.color-transparent {
+    color: transparent;
+}
+
 /* COMENTARIOS */
 
 .q-comentario-container {

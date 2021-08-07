@@ -248,11 +248,11 @@
             ],
         },
         mounted(){
-            this.loadSlider();
             this.loadTestimonios();
             this.getCourses();
         },
         created(){
+            this.loadSlider();
             this.carruselCreated();
             window.onresize = (event)=> {
                 this.resizeCarrusel();

@@ -75,4 +75,8 @@ $(document).ready(function () {
         });
     });
 
+    $("#btn_continuar").click(function() {
+        window.location.href = '/matricula';
+        return false;
+    });
 });

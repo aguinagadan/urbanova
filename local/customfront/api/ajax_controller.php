@@ -383,6 +383,36 @@ function obtenerDepartamentos() {
 	return $response;
 }
 
+function check_enrol($courseid, $userid) {
+	global $DB;
+	$user = $DB->get_record('user', array('id' => $userid, 'deleted' => 0), '*', MUST_EXIST);
+	$course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
+	$context = context_course::instance($course->id);
+	if (!is_enrolled($context, $user)) {
+		$enrol = enrol_get_plugin('manual');
+		if ($enrol === null) {
+			return false;
+		}
+		$instances = enrol_get_instances($course->id, true);
+		$manualinstance = null;
+		foreach ($instances as $instance) {
+			if ($instance->name == 'manual') {
+				$manualinstance = $instance;
+				break;
+			}
+		}
+		if ($manualinstance !== null) {
+			$instanceid = $enrol->add_default_instance($course);
+			if ($instanceid === null) {
+				$instanceid = $enrol->add_instance($course);
+			}
+			$instance = $DB->get_record('enrol', array('id' => $instanceid));
+		}
+		$enrol->enrol_user($instance, $userid);
+	}
+	return true;
+}
+
 function matricular($detail) {
 	global $DB, $USER;
 
@@ -394,7 +424,12 @@ function matricular($detail) {
 	$sql = "select * from mdl_user WHERE department $insql GROUP BY department";
 	$users = $DB->get_records_sql($sql, $params);
 
-	//MATRICULAR
+	var_dump($users);
+	exit;
+
+	foreach($users as $user) {
+		check_enrol($idCurso, $user->id);
+	}
 
 	foreach($departamentos as $departamento) {
 		$matricula = new stdClass();

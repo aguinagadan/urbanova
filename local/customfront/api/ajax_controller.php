@@ -400,12 +400,9 @@ function matricular($detail) {
 		$matricula = new stdClass();
 		$matricula->department = $departamento;
 		$matricula->courseid = $idCurso;
-		$matricula->isnew = $isNew;
+		$matricula->isnew = $isNew == true ? 1 : 0;
 		$matricula->userid = $USER->id;
 		$matricula->createddate = date("Y-m-d H:i:s");
-
-		var_dump($matricula);
-		exit;
 
 		$DB->insert_record('urbanova_matricula', $matricula);
 	}

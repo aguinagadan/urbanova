@@ -50,13 +50,11 @@ $(document).ready(function () {
 
     btn_matricular.click(function() {
 
-        console.log($("#new_users").is(':checked'));
-
         $.post("../local/customfront/api/ajax_controller.php",
             {
                 'idCurso': $("#curso").val(),
                 'departamentos': selected_options,
-                'newUsers': $("#new_users"),
+                'newUsers': $("#new_users").is(':checked'),
                 'request_type': 'matricular'
             },
             function(data) {

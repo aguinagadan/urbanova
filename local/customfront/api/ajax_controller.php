@@ -384,6 +384,33 @@ function obtenerDepartamentos() {
 }
 
 function matricular($detail) {
-	var_dump($detail);
+	global $DB, $USER;
+
+	$idCurso = $detail['idCurso'];
+	$departamentos = $detail['departamentos'];
+	$isNew = $detail['newUsers'];
+
+	list($insql, $params) = $DB->get_in_or_equal($departamentos);
+	$sql = "select * from mdl_user WHERE departments $insql GROUP BY departments";
+	$users = $DB->get_records_sql($sql, $params);
+
+	var_dump($users);
 	exit;
+
+	//MATRICULAR
+
+	foreach($departamentos as $departamento) {
+		$matricula = new stdClass();
+		$matricula->department = $departamento;
+		$matricula->courseid = $idCurso;
+		$matricula->isnew = $isNew;
+		$matricula->userid = $USER->id;
+		$matricula->createddate = date("Y-m-d H:i:s");
+
+		$DB->insert_record('urbanova_matricula', $matricula);
+	}
+
+	$response['status'] = true;
+
+	return $response;
 }

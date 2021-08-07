@@ -58,8 +58,12 @@ $(document).ready(function () {
                 'request_type': 'matricular'
             },
             function(data) {
-                $("#formulario").hide();
-                $("#success").show();
+                if(data.status) {
+                    $("#formulario").hide();
+                    $("#success").show();
+                } else {
+                    alert("No se pudo matricular");
+                }
             }, "json");
     });
 

@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     var selected_options = [];
 
-    $.post("local/customfront/api/ajax_controller.php", {
+    $.post("../local/customfront/api/ajax_controller.php", {
             'request_type': 'obtenerCursosByCat', 'idCat' : 1 },
         function(data) {
             var curso = $("#curso");

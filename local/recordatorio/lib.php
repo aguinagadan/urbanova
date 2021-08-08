@@ -15,13 +15,13 @@ function recordar_finalizacion_task() {
 	foreach ($recordatorios as $recordatorio) {
 		$context = CONTEXT_COURSE::instance($recordatorio->courseId);
 		$users = get_enrolled_users($context);
+//
+//		foreach($users as $user) {
+//
+//		}
 
-		foreach($users as $user) {
-
-		}
-
-		$foruser = core_user::get_user($userId);
-		$message = 'Por favor no se olvide de completar su curso pendiente: ' . ;
-		email_to_user($foruser, $supportuser, $subject, $message);
+//		$foruser = core_user::get_user($userId);
+//		$message = 'Por favor no se olvide de completar su curso pendiente: ' . ;
+//		email_to_user($foruser, $supportuser, $subject, $message);
 	}
 }

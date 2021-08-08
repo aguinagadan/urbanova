@@ -33,16 +33,16 @@ $(document).ready(function () {
     $.post("../local/customfront/api/ajax_controller.php", {
             'request_type': 'obtenerRecordatorios', 'courseId': $('#curso').find("option:first-child").val()},
         function(data) {
-            if(data.lunes === 1) {
+            if(data.lunes == 1) {
                 $("#lunes").attr('checked', data.lunes);
             }
-            if(data.viernes === 1) {
+            if(data.viernes == 1) {
                 $("#viernes").attr('checked', data.viernes);
             }
-            if(data.tresdias === 1) {
+            if(data.tresdias == 1) {
                 $("#tresdias").attr('checked', data.tresdias);
             }
-            if(data.undia === 1) {
+            if(data.undia == 1) {
                 $("#undia").attr('checked', data.undia);
             }
         }, "json");

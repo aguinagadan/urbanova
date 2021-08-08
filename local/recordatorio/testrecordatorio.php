@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 global $DB;
 
 $recordatorios = $DB->get_records_sql("SELECT * FROM {urbanova_recordatorio}");

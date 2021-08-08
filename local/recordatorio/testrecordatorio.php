@@ -14,7 +14,6 @@ function enviarRecordatorios($courseId) {
 	$context = context_system::instance();
 	$PAGE->set_context($context);
 
-	$supportuser = core_user::get_support_user();
 	$subject = 'URBANOVA - Mensaje de seguimiento de curso';
 	$context = CONTEXT_COURSE::instance($courseId);
 	$users = get_enrolled_users($context);
@@ -22,7 +21,7 @@ function enviarRecordatorios($courseId) {
 	foreach($users as $user) {
 		$foruser = core_user::get_user($user->id);
 		$message = 'Por favor no se olvide de completar su curso pendiente';
-		if(email_to_user($foruser, $supportuser, $subject, $message)) {
+		if(email_to_user($foruser, \core_user::get_noreply_user(), $subject, $message)) {
 			echo 'success';
 		} else {
 			echo 'fail';

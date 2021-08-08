@@ -36,7 +36,7 @@ function obtenerDiasDiferenciaHoy($fecha) {
 foreach ($recordatorios as $recordatorio) {
 	$day = date('D');
 
-	if($day == 'Mon' &&  $recordatorio->lunes == 1) {
+	if($day == 'Sat' &&  $recordatorio->lunes == 1) {
 		echo '1';
 		exit;
 		enviarRecordatorios($recordatorio->courseid);
@@ -57,7 +57,7 @@ foreach ($recordatorios as $recordatorio) {
 			continue;
 		}
 	}
-	if($day == 'Fri' &&  $recordatorio->undia == 1) {
+	if($recordatorio->undia == 1) {
 		echo '4';
 		exit;
 		$recordatorio = $DB->get_record_sql("SELECT * FROM {mdl_course} WHERE id = ?", $recordatorio->courseid);

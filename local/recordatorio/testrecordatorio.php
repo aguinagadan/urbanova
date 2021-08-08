@@ -4,6 +4,9 @@ global $DB;
 
 $recordatorios = $DB->get_records_sql("SELECT * FROM {mdl_urbanova_recordatorio}");
 
+var_dump($recordatorios);
+exit;
+
 $supportuser = core_user::get_support_user();
 $subject = 'URBANOVA - Mensaje de seguimiento de curso';
 

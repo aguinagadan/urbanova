@@ -13,7 +13,6 @@ $(document).ready(function () {
             var curso = $("#curso");
             curso.empty();
             for (var i=0; i<data.data.length; i++) {
-                firstCourse = data.data[0].id;
                 curso.append('<option value="' + data.data[i].id + '">' + data.data[i].title + '</option>');
             }
         }, "json");
@@ -29,7 +28,7 @@ $(document).ready(function () {
             }
         }, "json");
 
-    firstCourse = curso.find("option:first-child").val();
+    firstCourse = document.getElementById('curso').find("option:first-child").val();
     console.log(firstCourse);
 
     $.post("../local/customfront/api/ajax_controller.php", {

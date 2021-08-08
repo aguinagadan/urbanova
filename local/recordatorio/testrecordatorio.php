@@ -22,10 +22,10 @@ function enviarRecordatorios($courseId) {
 	foreach($users as $user) {
 		$foruser = core_user::get_user($user->id);
 		$message = 'Por favor no se olvide de completar su curso pendiente';
-		if(email_to_user($foruser, \core_user::get_noreply_user(), $subject, $message)) {
+		if(email_to_user($user, \core_user::get_noreply_user(), $subject, $message)) {
 			echo 'success';
 		} else {
-			echo 'fail';
+			echo 'failed';
 		}
 	}
 }

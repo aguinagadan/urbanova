@@ -443,7 +443,7 @@ function matricular($detail) {
 
 	$recordatorio = new stdClass();
 	$recordatorio->courseid = $idCurso;
-	$recordatorio->createuserid = $USER->id;
+	$recordatorio->createduserid = $USER->id;
 	$recordatorio->lunes = $detail['lunes'] == 'true' ? 1 : 0;
 	$recordatorio->viernes = $detail['viernes'] == 'true' ? 1 : 0;
 	$recordatorio->tresdias = $detail['tresdias'] == 'true' ? 1 : 0;

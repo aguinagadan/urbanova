@@ -32,7 +32,7 @@ $(document).ready(function () {
         }, "json");
 
     $.post("../local/customfront/api/ajax_controller.php", {
-            'request_type': 'obtenerRecordatorios', 'courseId': firstCourse},
+            'request_type': 'obtenerRecordatorios', 'courseId': 3},
         function(data) {
             if(data.lunes == 1) {
                 $("#lunes").attr('checked', data.lunes);

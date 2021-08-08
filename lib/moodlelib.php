@@ -6060,6 +6060,9 @@ function generate_email_messageid($localpart = null) {
 function email_to_user($user, $from, $subject, $messagetext, $messagehtml = '', $attachment = '', $attachname = '',
                        $usetrueaddress = true, $replyto = '', $replytoname = '', $wordwrapwidth = 79) {
 
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
+
     global $CFG, $PAGE, $SITE;
 
     if (empty($user) or empty($user->id)) {

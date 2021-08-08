@@ -473,8 +473,5 @@ function obtenerRecordatorios($detail) {
 	$response['tresdias'] = $recordatorio->tresdias;
 	$response['undia'] = $recordatorio->undia;
 
-	var_dump($response);
-	exit;
-
 	return $response;
 }

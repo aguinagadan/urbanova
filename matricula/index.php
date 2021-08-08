@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/../config.php');
 
-global $PAGE, $DB, $USER;
+global $PAGE, $DB, $USER, $SITE;
 
 require_login();
 
@@ -18,14 +18,12 @@ foreach($userRol as $ur) {
 	$rolesArr[] = $ur->roleid;
 }
 
-if(is_siteadmin()) {
+if(!in_array(1, $rolesArr) && !is_siteadmin()) {
 	header("Location: https://aulavirtual.urbanova.com.pe");
 	exit();
 }
 
 echo $OUTPUT->header();
-
-
 
 include('home.html');
 

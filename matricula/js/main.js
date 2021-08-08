@@ -27,7 +27,7 @@ $(document).ready(function () {
             }
         }, "json");
 
-    console.log(curso.firstChild);
+    console.log(curso.first());
 
     $.post("../local/customfront/api/ajax_controller.php", {
             'request_type': 'obtenerRecordatorios', 'courseId': curso.children('option:first').val()},

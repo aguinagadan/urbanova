@@ -36,13 +36,13 @@ function obtenerDiasDiferenciaHoy($fecha) {
 foreach ($recordatorios as $recordatorio) {
 	$day = date('D');
 
-	if($day == 'Sat' &&  $recordatorio->lunes == 1) {
+	if($day == 'Mon' &&  $recordatorio->lunes == 1) {
 		echo '1';
 		exit;
 		enviarRecordatorios($recordatorio->courseid);
 		continue;
 	}
-	if($day == 'Fri' &&  $recordatorio->viernes == 1) {
+	if($day == 'Sat' &&  $recordatorio->viernes == 1) {
 		echo '2';
 		exit;
 		enviarRecordatorios($recordatorio->courseid);

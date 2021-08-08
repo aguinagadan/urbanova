@@ -18,7 +18,7 @@ foreach($userRol as $ur) {
 	$rolesArr[] = $ur->roleid;
 }
 
-if(!in_array(1, $rolesArr) && !is_siteadmin()) {
+if(is_siteadmin()) {
 	header("Location: https://aulavirtual.urbanova.com.pe");
 	exit();
 }

@@ -46,10 +46,9 @@ foreach ($recordatorios as $recordatorio) {
 	if($recordatorio->tresdias == 1) {
 		$curso = $DB->get_record_sql("SELECT * FROM {course} WHERE id = ?", array($recordatorio->courseid));
 
-		var_dump(obtenerDiasDiferenciaHoy($curso->enddate));
-		exit;
-
-		if(obtenerDiasDiferenciaHoy($curso->enddate) == 3) {
+		if(isset($curso->enddate) && obtenerDiasDiferenciaHoy($curso->enddate) == 3) {
+			echo '333';
+			exit;
 			enviarRecordatorios($recordatorio->courseid);
 			continue;
 		}

@@ -47,7 +47,7 @@ foreach ($recordatorios as $recordatorio) {
 	if($recordatorio->tresdias == 1) {
 		$curso = $DB->get_record_sql("SELECT * FROM {course} WHERE id = ?", array($recordatorio->courseid));
 
-		var_dump($curso->dateend);
+		var_dump($curso);
 		exit;
 
 		if(obtenerDiasDiferenciaHoy($curso->dateend) == 3) {

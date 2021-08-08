@@ -30,6 +30,7 @@ $(document).ready(function () {
         }, "json");
 
     firstCourse = curso.find("option:first-child").val();
+    console.log(firstCourse);
 
     $.post("../local/customfront/api/ajax_controller.php", {
             'request_type': 'obtenerRecordatorios', 'courseId': firstCourse},

@@ -58,6 +58,10 @@ $(document).ready(function () {
 
     curso.change(function(){
         var val = curso.val();
+        $("#lunes").attr('checked', false);
+        $("#viernes").attr('checked', false);
+        $("#tresdias").attr('checked', false);
+        $("#undia").attr('checked', false);
         $.post("../local/customfront/api/ajax_controller.php", {
                 'request_type': 'obtenerRecordatorios', 'courseId': val},
             function(data) {

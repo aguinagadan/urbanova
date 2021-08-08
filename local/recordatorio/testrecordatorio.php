@@ -37,14 +37,10 @@ foreach ($recordatorios as $recordatorio) {
 	$day = date('D');
 
 	if($day == 'Mon' &&  $recordatorio->lunes == 1) {
-		echo '1';
-		exit;
 		enviarRecordatorios($recordatorio->courseid);
 		continue;
 	}
 	if($day == 'Sat' &&  $recordatorio->viernes == 1) {
-		echo '2';
-		exit;
 		enviarRecordatorios($recordatorio->courseid);
 		continue;
 	}

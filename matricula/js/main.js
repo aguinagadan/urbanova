@@ -28,6 +28,23 @@ $(document).ready(function () {
             }
         }, "json");
 
+    $.post("../local/customfront/api/ajax_controller.php", {
+            'request_type': 'obtenerRecordatorios', 'courseId': $("#curso").first().val()},
+        function(data) {
+            if(data.lunes === 1) {
+                $("#lunes").attr('checked', data.lunes);
+            }
+            if(data.viernes === 1) {
+                $("#viernes").attr('checked', data.lunes);
+            }
+            if(data.tresdias === 1) {
+                $("#tresdias").attr('checked', data.lunes);
+            }
+            if(data.undia === 1) {
+                $("#undia").attr('checked', data.lunes);
+            }
+        }, "json");
+
     curso.change(function(){
         select_x.css({display: "inline-flex"});
     });
@@ -42,10 +59,18 @@ $(document).ready(function () {
         $.post("../local/customfront/api/ajax_controller.php", {
                 'request_type': 'obtenerRecordatorios', 'courseId': val},
             function(data) {
-                $("#lunes").attr('checked', data.lunes);
-                $("#viernes").attr('checked', data.viernes);
-                $("#tresdias").attr('checked', data.tresdias);
-                $("#undia").attr('checked', data.undia);
+                if(data.lunes === 1) {
+                    $("#lunes").attr('checked', data.lunes);
+                }
+                if(data.viernes === 1) {
+                    $("#viernes").attr('checked', data.lunes);
+                }
+                if(data.tresdias === 1) {
+                    $("#tresdias").attr('checked', data.lunes);
+                }
+                if(data.undia === 1) {
+                    $("#undia").attr('checked', data.lunes);
+                }
             }, "json");
     });
 

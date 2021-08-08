@@ -419,7 +419,7 @@ function check_enrol($courseid, $userid, $roleid) {
 function matricular($detail) {
 	global $DB, $USER;
 
-	$idCurso = $detail['idCurso'];
+	$idCurso = intval($detail['idCurso']);
 	$departamentos = $detail['departamentos'];
 
 	list($insql, $params) = $DB->get_in_or_equal($departamentos);
@@ -466,7 +466,7 @@ function matricular($detail) {
 
 function obtenerRecordatorios($detail) {
 	global $DB;
-	$recordatorio = $DB->get_record_sql("SELECT * FROM {urbanova_recordatorio} WHERE courseid = ?", array($detail['courseId']));
+	$recordatorio = $DB->get_record_sql("SELECT * FROM {urbanova_recordatorio} WHERE courseid = ?", array(intval($detail['courseId'])));
 
 	$response['lunes'] = $recordatorio->lunes;
 	$response['viernes'] = $recordatorio->viernes;

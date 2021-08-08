@@ -28,7 +28,7 @@ function enviarRecordatorios($courseId) {
 }
 
 function obtenerDiasDiferenciaHoy($fecha) {
-	return abs(strtotime(date('c')) - $fecha)/60/60/24;
+	return round(abs(strtotime(date('c')) - $fecha)/60/60/24);
 }
 
 

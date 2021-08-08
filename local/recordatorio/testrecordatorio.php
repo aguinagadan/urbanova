@@ -2,7 +2,7 @@
 
 global $DB;
 
-$recordatorios = $DB->get_records_sql("SELECT * FROM {mdl_urbanova_recordatorio}");
+$recordatorios = $DB->get_records_sql("SELECT * FROM {urbanova_recordatorio}");
 
 var_dump($recordatorios);
 exit;

@@ -45,7 +45,7 @@ foreach ($recordatorios as $recordatorio) {
 		continue;
 	}
 	if($recordatorio->tresdias == 1) {
-		$curso = $DB->get_record_sql("SELECT * FROM {course} WHERE id = ?", $recordatorio->courseid);
+		$curso = $DB->get_record_sql("SELECT * FROM {course} WHERE id = ?", array($recordatorio->courseid));
 
 		var_dump($curso->dateend);
 		exit;

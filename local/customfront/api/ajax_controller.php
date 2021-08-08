@@ -57,6 +57,9 @@ try {
 		case 'matricular':
 			$returnArr = matricular($_POST);
 			break;
+		case 'obtenerRecordatorios':
+			$returnArr = obtenerRecordatorios($_POST);
+			break;
 	}
 
 } catch (Exception $e) {
@@ -418,7 +421,6 @@ function matricular($detail) {
 
 	$idCurso = $detail['idCurso'];
 	$departamentos = $detail['departamentos'];
-	$isNew = $detail['newUsers'];
 
 	list($insql, $params) = $DB->get_in_or_equal($departamentos);
 	$sql = "select * from mdl_user WHERE department $insql GROUP BY department";
@@ -432,14 +434,43 @@ function matricular($detail) {
 		$matricula = new stdClass();
 		$matricula->department = $departamento;
 		$matricula->courseid = $idCurso;
-		$matricula->isnew = $isNew == 'true' ? 1 : 0;
+		$matricula->isnew =  $detail['newUsers'] == 'true' ? 1 : 0;
 		$matricula->userid = $USER->id;
 		$matricula->createddate = date("Y-m-d H:i:s");
 
 		$DB->insert_record('urbanova_matricula', $matricula);
 	}
 
+	$recordatorio = new stdClass();
+	$matricula->courseid = $idCurso;
+	$matricula->createuserid = $USER->id;
+	$recordatorio->lunes = $detail['lunes'] == 'true' ? 1 : 0;
+	$recordatorio->viernes = $detail['viernes'] == 'true' ? 1 : 0;
+	$recordatorio->tresdias = $detail['tresdias'] == 'true' ? 1 : 0;
+	$recordatorio->undia = $detail['undia'] == 'true' ? 1 : 0;
+
+	$recordatorioData = $DB->get_record('urbanova_recordatorio', array('courseid' => $idCurso));
+
+	if(empty($recordatorioData) || !$recordatorioData) {
+		$DB->insert_record('urbanova_recordatorio', $recordatorio);
+	} else {
+		$recordatorio->id = $recordatorioData->id;
+		$DB->update_record('urbanova_recordatorio', $recordatorio);
+	}
+
 	$response['status'] = true;
+
+	return $response;
+}
+
+function obtenerRecordatorios($detail) {
+	global $DB;
+	$recordatorio = $DB->get_record_sql("SELECT * FROM {urbanova_recordatorio} WHERE courseid = ?", array($detail['courseId']));
+
+	$response['lunes'] = $recordatorio['lunes'];
+	$response['viernes'] = $recordatorio['viernes'];
+	$response['tresdias'] = $recordatorio['tresdias'];
+	$response['undia'] = $recordatorio['undia'];
 
 	return $response;
 }

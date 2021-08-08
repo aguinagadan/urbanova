@@ -37,6 +37,18 @@ $(document).ready(function () {
         select_x.css({display: "none"});
     });
 
+    curso.change(function(){
+        var val = curso.val();
+        $.post("../local/customfront/api/ajax_controller.php", {
+                'request_type': 'obtenerRecordatorios', 'courseId': val},
+            function(data) {
+                $("#lunes").attr('checked', data.lunes);
+                $("#viernes").attr('checked', data.viernes);
+                $("#tresdias").attr('checked', data.tresdias);
+                $("#undia").attr('checked', data.undia);
+            }, "json");
+    });
+
     participantes.change(function(){
         var val = participantes.val();
         if(jQuery.inArray(val, selected_options) == -1 && val != '0'){
@@ -55,6 +67,10 @@ $(document).ready(function () {
                 'idCurso': $("#curso").val(),
                 'departamentos': selected_options,
                 'newUsers': $("#new_users").is(':checked'),
+                'lunes': $("#lunes").is(':checked'),
+                'viernes': $("#viernes").is(':checked'),
+                'tresdias': $("#tresdias").is(':checked'),
+                'undia': $("#undia").is(':checked'),
                 'request_type': 'matricular'
             },
             function(data) {

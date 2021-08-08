@@ -37,13 +37,13 @@ $(document).ready(function () {
                 $("#lunes").attr('checked', data.lunes);
             }
             if(data.viernes === 1) {
-                $("#viernes").attr('checked', data.lunes);
+                $("#viernes").attr('checked', data.viernes);
             }
             if(data.tresdias === 1) {
-                $("#tresdias").attr('checked', data.lunes);
+                $("#tresdias").attr('checked', data.tresdias);
             }
             if(data.undia === 1) {
-                $("#undia").attr('checked', data.lunes);
+                $("#undia").attr('checked', data.undia);
             }
         }, "json");
 
@@ -65,13 +65,13 @@ $(document).ready(function () {
                     $("#lunes").attr('checked', data.lunes);
                 }
                 if(data.viernes === 1) {
-                    $("#viernes").attr('checked', data.lunes);
+                    $("#viernes").attr('checked', data.viernes);
                 }
                 if(data.tresdias === 1) {
-                    $("#tresdias").attr('checked', data.lunes);
+                    $("#tresdias").attr('checked', data.tresdias);
                 }
                 if(data.undia === 1) {
-                    $("#undia").attr('checked', data.lunes);
+                    $("#undia").attr('checked', data.undia);
                 }
             }, "json");
     });

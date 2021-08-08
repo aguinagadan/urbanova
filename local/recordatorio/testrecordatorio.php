@@ -28,8 +28,7 @@ function enviarRecordatorios($courseId) {
 }
 
 function obtenerDiasDiferenciaHoy($fecha) {
-	//terminar
-	return 3;
+	return abs(strtotime(date('c')) - $fecha)/60/60/24;
 }
 
 
@@ -47,10 +46,10 @@ foreach ($recordatorios as $recordatorio) {
 	if($recordatorio->tresdias == 1) {
 		$curso = $DB->get_record_sql("SELECT * FROM {course} WHERE id = ?", array($recordatorio->courseid));
 
-		var_dump($curso);
+		var_dump(obtenerDiasDiferenciaHoy($curso->enddate));
 		exit;
 
-		if(obtenerDiasDiferenciaHoy($curso->dateend) == 3) {
+		if(obtenerDiasDiferenciaHoy($curso->enddate) == 3) {
 			enviarRecordatorios($recordatorio->courseid);
 			continue;
 		}

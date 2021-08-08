@@ -28,7 +28,7 @@ $(document).ready(function () {
             }
         }, "json");
 
-    firstCourse = document.getElementById('curso').find("option:first-child").val();
+    firstCourse = document.getElementById('curso').first();
     console.log(firstCourse);
 
     $.post("../local/customfront/api/ajax_controller.php", {

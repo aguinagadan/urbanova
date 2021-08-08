@@ -5,6 +5,8 @@ $(document).ready(function () {
     var options = $("#options");
     var select_x = $("#select_x");
 
+    var firstCourse;
+
     var selected_options = [];
 
     $.post("../local/customfront/api/ajax_controller.php", {
@@ -13,6 +15,7 @@ $(document).ready(function () {
             var curso = $("#curso");
             curso.empty();
             for (var i=0; i<data.data.length; i++) {
+                firstCourse = data[0].id;
                 curso.append('<option value="' + data.data[i].id + '">' + data.data[i].title + '</option>');
             }
         }, "json");
@@ -28,10 +31,8 @@ $(document).ready(function () {
             }
         }, "json");
 
-    console.log($('#curso').find("option:first-child").val());
-
     $.post("../local/customfront/api/ajax_controller.php", {
-            'request_type': 'obtenerRecordatorios', 'courseId': $('#curso').find("option:first-child").val()},
+            'request_type': 'obtenerRecordatorios', 'courseId': firstCourse},
         function(data) {
             if(data.lunes == 1) {
                 $("#lunes").attr('checked', data.lunes);

@@ -5,11 +5,16 @@ ini_set('display_errors', 1);
 
 require_once(dirname(__FILE__) . '/../../config.php');
 
-global $DB;
+global $DB, $PAGE;
+
+$context = context_system::instance();
+$PAGE->set_context($context);
 
 $recordatorios = $DB->get_records_sql("SELECT * FROM {urbanova_recordatorio}");
 
 function enviarRecordatorios($courseId) {
+
+
 	$subject = 'URBANOVA - Mensaje de seguimiento de curso';
 	$context = CONTEXT_COURSE::instance($courseId);
 	$users = get_enrolled_users($context);

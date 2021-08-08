@@ -17,7 +17,7 @@ function enviarRecordatorios($courseId) {
 	$users = get_enrolled_users($context);
 
 	//ver que trae
-	var_dump($context);
+	var_dump($users);
 	exit;
 
 	foreach($users as $user) {
@@ -47,17 +47,15 @@ foreach ($recordatorios as $recordatorio) {
 		$curso = $DB->get_record_sql("SELECT * FROM {course} WHERE id = ?", array($recordatorio->courseid));
 
 		if(isset($curso->enddate) && obtenerDiasDiferenciaHoy($curso->enddate) == 3) {
-			echo '333';
-			exit;
 			enviarRecordatorios($recordatorio->courseid);
 			continue;
 		}
 	}
 	if($recordatorio->undia == 1) {
-		echo '4';
-		exit;
-		$recordatorio = $DB->get_record_sql("SELECT * FROM {mdl_course} WHERE id = ?", $recordatorio->courseid);
-		if(obtenerDiasDiferenciaHoy($recordatorio->dateend) == 1) {
+		$curso = $DB->get_record_sql("SELECT * FROM {course} WHERE id = ?", array($recordatorio->courseid));
+		if(isset($curso->enddate) && obtenerDiasDiferenciaHoy($curso->enddate) == 1) {
+			echo 'aaa';
+			exit;
 			enviarRecordatorios($recordatorio->courseid);
 			continue;
 		}

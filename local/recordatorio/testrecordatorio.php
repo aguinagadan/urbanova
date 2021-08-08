@@ -54,8 +54,6 @@ foreach ($recordatorios as $recordatorio) {
 	if($recordatorio->undia == 1) {
 		$curso = $DB->get_record_sql("SELECT * FROM {course} WHERE id = ?", array($recordatorio->courseid));
 		if(isset($curso->enddate) && obtenerDiasDiferenciaHoy($curso->enddate) == 1) {
-			echo 'aaa';
-			exit;
 			enviarRecordatorios($recordatorio->courseid);
 			continue;
 		}

@@ -76,12 +76,6 @@ function createUsers($usersAD) {
 				$userObj->id = $user->id;
 				$userObj->deleted = 0;
 				$DB->update_record('user', $userObj);
-
-				$matriculas = $DB->get_records_sql("SELECT * FROM {urbanova_matricula} WHERE department = ? and isnew = 1", array($userObj->department));
-
-				foreach ($matriculas as $matricula) {
-					check_enrol($matricula->courseid, $userObj->id, 5);
-				}
 			}
 		}
 	}

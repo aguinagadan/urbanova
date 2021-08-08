@@ -18,14 +18,11 @@ function enviarRecordatorios($courseId) {
 	foreach($users as $user) {
 		$foruser = core_user::get_user($user->id);
 		$message = 'Por favor no se olvide de completar su curso pendiente';
-
-		var_dump($foruser);
-		var_dump($supportuser);
-		var_dump($subject);
-		var_dump($message);
-		exit;
-
-		email_to_user($foruser, $supportuser, $subject, $message);
+		if(email_to_user($foruser, $supportuser, $subject, $message)) {
+			echo 'success';
+		} else {
+			echo 'fail';
+		}
 	}
 }
 

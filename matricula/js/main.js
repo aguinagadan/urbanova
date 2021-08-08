@@ -20,32 +20,25 @@ $(document).ready(function () {
         async:false
     });
 
-    // $.post("../local/customfront/api/ajax_controller.php", {
-    //         'request_type': 'obtenerCursosByCat', 'idCat' : 1 },
-    //     function(data) {
-    //         var curso = $("#curso");
-    //         curso.empty();
-    //         for (var i=0; i<data.data.length; i++) {
-    //             curso.append('<option value="' + data.data[i].id + '">' + data.data[i].title + '</option>');
-    //         }
-    //     }, "json");
-
-    $.post("../local/customfront/api/ajax_controller.php", {
-            'request_type': 'obtenerDepartamentos'},
-        function(data) {
+    $.ajax({
+        type: 'POST',
+        url: '../local/customfront/api/ajax_controller.php',
+        data: {'request_type': 'obtenerDepartamentos'},
+        success: function(data) {
             var participantes = $("#participantes");
             participantes.empty();
             participantes.append('<option value="0">Selecciona a los participantes</option>');
             for (var i=0; i<data.data.length; i++) {
                 participantes.append('<option value="' + data.data[i] + '">' + data.data[i] + '</option>');
             }
-        }, "json");
+        }
+    });
 
-    console.log(curso.first());
-
-    $.post("../local/customfront/api/ajax_controller.php", {
-            'request_type': 'obtenerRecordatorios', 'courseId': curso.children('option:first').val()},
-        function(data) {
+    $.ajax({
+        type: 'POST',
+        url: '../local/customfront/api/ajax_controller.php',
+        data: {'request_type': 'obtenerRecordatorios', 'courseId': curso.children('option:first').val()},
+        success: function(data) {
             if(data.lunes == 1) {
                 $("#lunes").attr('checked', data.lunes);
             }
@@ -58,7 +51,8 @@ $(document).ready(function () {
             if(data.undia == 1) {
                 $("#undia").attr('checked', data.undia);
             }
-        }, "json");
+        }
+    });
 
     curso.change(function(){
         select_x.css({display: "inline-flex"});
@@ -75,9 +69,12 @@ $(document).ready(function () {
         $("#viernes").attr('checked', false);
         $("#tresdias").attr('checked', false);
         $("#undia").attr('checked', false);
-        $.post("../local/customfront/api/ajax_controller.php", {
-                'request_type': 'obtenerRecordatorios', 'courseId': val},
-            function(data) {
+
+        $.ajax({
+            type: 'POST',
+            url: '../local/customfront/api/ajax_controller.php',
+            data: {'request_type': 'obtenerRecordatorios', 'courseId': val},
+            success: function(data) {
                 if(data.lunes == 1) {
                     $("#lunes").attr('checked', data.lunes);
                 }
@@ -90,7 +87,8 @@ $(document).ready(function () {
                 if(data.undia == 1) {
                     $("#undia").attr('checked', data.undia);
                 }
-            }, "json");
+            }
+        });
     });
 
     participantes.change(function(){
@@ -106,8 +104,10 @@ $(document).ready(function () {
 
     btn_matricular.click(function() {
 
-        $.post("../local/customfront/api/ajax_controller.php",
-            {
+        $.ajax({
+            type: 'POST',
+            url: '../local/customfront/api/ajax_controller.php',
+            data: {
                 'idCurso': $("#curso").val(),
                 'departamentos': selected_options,
                 'newUsers': $("#new_users").is(':checked'),
@@ -117,14 +117,15 @@ $(document).ready(function () {
                 'undia': $("#undia").is(':checked'),
                 'request_type': 'matricular'
             },
-            function(data) {
+            success: function(data) {
                 if(data.status) {
                     $("#formulario").hide();
                     $("#success").show();
                 } else {
                     alert("No se pudo matricular");
                 }
-            }, "json");
+            }
+        });
     });
 
     $("#options").on("click", "a.search-choice-close", function(){

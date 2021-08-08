@@ -9,16 +9,11 @@ global $DB;
 
 $recordatorios = $DB->get_records_sql("SELECT * FROM {urbanova_recordatorio}");
 
-$supportuser = core_user::get_support_user();
-$subject = 'URBANOVA - Mensaje de seguimiento de curso';
-
 function enviarRecordatorios($courseId) {
+	$supportuser = core_user::get_support_user();
+	$subject = 'URBANOVA - Mensaje de seguimiento de curso';
 	$context = CONTEXT_COURSE::instance($courseId);
 	$users = get_enrolled_users($context);
-
-	//ver que trae
-	var_dump($users);
-	exit;
 
 	foreach($users as $user) {
 		$foruser = core_user::get_user($user->id);

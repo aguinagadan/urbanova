@@ -467,6 +467,9 @@ function obtenerRecordatorios($detail) {
 	global $DB;
 	$recordatorio = $DB->get_record_sql("SELECT * FROM {urbanova_recordatorio} WHERE courseid = ?", array($detail['courseId']));
 
+	var_dump($recordatorio);
+	exit;
+
 	$response['lunes'] = $recordatorio['lunes'];
 	$response['viernes'] = $recordatorio['viernes'];
 	$response['tresdias'] = $recordatorio['tresdias'];

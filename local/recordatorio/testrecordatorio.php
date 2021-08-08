@@ -40,7 +40,7 @@ foreach ($recordatorios as $recordatorio) {
 		enviarRecordatorios($recordatorio->courseid);
 		continue;
 	}
-	if($day == 'Sat' &&  $recordatorio->viernes == 1) {
+	if($day == 'Fri' &&  $recordatorio->viernes == 1) {
 		enviarRecordatorios($recordatorio->courseid);
 		continue;
 	}

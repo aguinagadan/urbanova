@@ -28,10 +28,10 @@ $(document).ready(function () {
             }
         }, "json");
 
-    console.log(curso.val());
+    console.log($('#curso').find("option:first-child").val());
 
     $.post("../local/customfront/api/ajax_controller.php", {
-            'request_type': 'obtenerRecordatorios', 'courseId': curso.first().val()},
+            'request_type': 'obtenerRecordatorios', 'courseId': $('#curso').find("option:first-child").val()},
         function(data) {
             if(data.lunes === 1) {
                 $("#lunes").attr('checked', data.lunes);

@@ -4,10 +4,8 @@ $(document).ready(function () {
     var participantes = $("#participantes");
     var options = $("#options");
     var select_x = $("#select_x");
-
-    var firstCourse;
-
     var selected_options = [];
+    var firstCourse = 0;
 
     $.post("../local/customfront/api/ajax_controller.php", {
             'request_type': 'obtenerCursosByCat', 'idCat' : 1 },
@@ -31,7 +29,7 @@ $(document).ready(function () {
             }
         }, "json");
 
-    console.log(curso);
+    firstCourse = curso.find("option:first-child").val();
 
     $.post("../local/customfront/api/ajax_controller.php", {
             'request_type': 'obtenerRecordatorios', 'courseId': firstCourse},

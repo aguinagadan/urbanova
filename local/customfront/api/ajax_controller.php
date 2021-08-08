@@ -448,6 +448,7 @@ function matricular($detail) {
 	$recordatorio->viernes = $detail['viernes'] == 'true' ? 1 : 0;
 	$recordatorio->tresdias = $detail['tresdias'] == 'true' ? 1 : 0;
 	$recordatorio->undia = $detail['undia'] == 'true' ? 1 : 0;
+	$recordatorio->createddate = date("Y-m-d H:i:s");
 
 	$recordatorioData = $DB->get_record('urbanova_recordatorio', array('courseid' => $idCurso));
 
@@ -467,13 +468,13 @@ function obtenerRecordatorios($detail) {
 	global $DB;
 	$recordatorio = $DB->get_record_sql("SELECT * FROM {urbanova_recordatorio} WHERE courseid = ?", array($detail['courseId']));
 
-	var_dump($recordatorio);
-	exit;
+	$response['lunes'] = $recordatorio->lunes;
+	$response['viernes'] = $recordatorio->viernes;
+	$response['tresdias'] = $recordatorio->tresdias;
+	$response['undia'] = $recordatorio->undia;
 
-	$response['lunes'] = $recordatorio['lunes'];
-	$response['viernes'] = $recordatorio['viernes'];
-	$response['tresdias'] = $recordatorio['tresdias'];
-	$response['undia'] = $recordatorio['undia'];
+	var_dump($response);
+	exit;
 
 	return $response;
 }

@@ -6,15 +6,29 @@ $(document).ready(function () {
     var select_x = $("#select_x");
     var selected_options = [];
 
-    $.post("../local/customfront/api/ajax_controller.php", {
-            'request_type': 'obtenerCursosByCat', 'idCat' : 1 },
-        function(data) {
+    $.ajax({
+        type: 'POST',
+        url: '../local/customfront/api/ajax_controller.php',
+        data: {'request_type': 'obtenerCursosByCat', 'idCat' : 1 },
+        success: function(data) {
             var curso = $("#curso");
             curso.empty();
             for (var i=0; i<data.data.length; i++) {
                 curso.append('<option value="' + data.data[i].id + '">' + data.data[i].title + '</option>');
             }
-        }, "json");
+        },
+        async:false
+    });
+
+    // $.post("../local/customfront/api/ajax_controller.php", {
+    //         'request_type': 'obtenerCursosByCat', 'idCat' : 1 },
+    //     function(data) {
+    //         var curso = $("#curso");
+    //         curso.empty();
+    //         for (var i=0; i<data.data.length; i++) {
+    //             curso.append('<option value="' + data.data[i].id + '">' + data.data[i].title + '</option>');
+    //         }
+    //     }, "json");
 
     $.post("../local/customfront/api/ajax_controller.php", {
             'request_type': 'obtenerDepartamentos'},
@@ -27,7 +41,7 @@ $(document).ready(function () {
             }
         }, "json");
 
-    console.log(curso.first().value);
+    console.log(curso.first());
 
     $.post("../local/customfront/api/ajax_controller.php", {
             'request_type': 'obtenerRecordatorios', 'courseId': curso.children('option:first').val()},

@@ -45,10 +45,12 @@ foreach ($recordatorios as $recordatorio) {
 		continue;
 	}
 	if($recordatorio->tresdias == 1) {
-		echo '3';
+		$curso = $DB->get_record_sql("SELECT * FROM {mdl_course} WHERE id = ?", $recordatorio->courseid);
+
+		var_dump($curso->dateend);
 		exit;
-		$recordatorio = $DB->get_record_sql("SELECT * FROM {mdl_course} WHERE id = ?", $recordatorio->courseid);
-		if(obtenerDiasDiferenciaHoy($recordatorio->dateend) == 3) {
+
+		if(obtenerDiasDiferenciaHoy($curso->dateend) == 3) {
 			enviarRecordatorios($recordatorio->courseid);
 			continue;
 		}

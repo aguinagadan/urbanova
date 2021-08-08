@@ -10,6 +10,10 @@ global $DB;
 $recordatorios = $DB->get_records_sql("SELECT * FROM {urbanova_recordatorio}");
 
 function enviarRecordatorios($courseId) {
+	global $PAGE;
+	$context = context_system::instance();
+	$PAGE->set_context($context);
+
 	$supportuser = core_user::get_support_user();
 	$subject = 'URBANOVA - Mensaje de seguimiento de curso';
 	$context = CONTEXT_COURSE::instance($courseId);

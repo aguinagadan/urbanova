@@ -65,7 +65,7 @@
                 <input placeholder="¿qué curso estás buscando?" v-model="searchCursos"/>
                 <img src="./images/mycourse/search.png"/>
             </div>
-            <div v-for="item in categoriasPrincipales" class="header_title_btn u-flex-around">
+            <div class="header_title_btn u-flex-around">
                 <select @change="filteredCourses($event)">
                     <Option value="1">Todas las categorías</Option>
                     <Option value="3">Programa Integrado de Cumplimiento</Option>

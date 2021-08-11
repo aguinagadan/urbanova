@@ -489,11 +489,14 @@ function obtenerCategoriasPrincipales() {
 	$sql = "select id,name from mdl_course_categories WHERE id $insql ORDER BY id";
 	$categories = $DB->get_records_sql($sql, $params);
 
+	$todas = ['1' => ['id' => 1, 'name' => 'Todas las categorías']];
+	array_unshift($todas, $categories);
+
 	var_dump($categories);
 	exit;
 
 	$response['status'] = true;
-	$response['data'] = array_keys($categories);
+	$response['data'] = $categories;
 
 	return $response;
 }

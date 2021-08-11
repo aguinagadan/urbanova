@@ -67,11 +67,7 @@
             </div>
             <div v-for="item in categoriasPrincipales" class="header_title_btn u-flex-around">
                 <select @change="filteredCourses($event)">
-                    <Option value="1">Todas las categorías</Option>
-                    <Option value="3">"{(item)}"</Option>
-                    <Option value="4">Tu Onboarding</Option>
-                    <Option value="5">Seguridad</Option>
-                    <Option value="6">Cursos del cliente</Option>
+                    <Option :value="item.id">{(item)}</Option>
                 </select>
             </div>
         </div>
@@ -158,7 +154,12 @@
                 }
             ],
             searchCursos: '',
-            categoriasPrincipales: []
+            categoriasPrincipales: [
+                {
+                    id:"2",
+                    name:"test"
+                },
+            ],
         },
         created(){
             this.obtenerCursosPendientes();
@@ -184,9 +185,23 @@
             obtenerCategoriasPrincipales() {
                 let frm = new FormData();
                 frm.append('request_type','obtenerCategoriasPrincipales');
-                axios.post('../local/customfront/api/ajax_controller.php',frm)
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
                         .then((response) => {
-                            this.categoriasPrincipales = response.data.data;
+                            let data = response.data.data;
+                            let categorias = Array();
+
+                            Object.keys(data).forEach(key => {
+                                let dataVal = data[key];
+                                let id = dataVal.id;
+                                let name = dataVal.name;
+
+                                let newElem = {
+                                    'id': id,
+                                    'name': name
+                                };
+                                categorias.push(newElem);
+                            });
+                            this.categoriasPrincipales = categorias;
                         });
             },
             filteredCourses: function(event){

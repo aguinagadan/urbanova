@@ -496,15 +496,18 @@ function obtenerCategoriasPrincipales() {
 		];
 	}
 
-	$todas = array(
-		array(
-			'id' => 1,
-			'name' => 'Todas las categorías'
-		)
-	);
-	array_unshift($todas, $returnArr);
+	$returnArr[] = [
+		'id'=> 1,
+		'name'=> 'Todas las categorías',
+	];
 
-	var_dump($todas);
+	function sortByOrder($a, $b) {
+		return $a['id'] - $b['id'];
+	}
+
+	usort($returnArr, 'sortByOrder');
+
+	var_dump($returnArr);
 	exit;
 
 	$response['status'] = true;

@@ -479,11 +479,11 @@ function obtenerRecordatorios($detail) {
 	return $response;
 }
 
-function obtenerCategoriasPrincipales($id) {
+function obtenerCategoriasPrincipales() {
 	global $DB, $USER;
 	$returnArr = array();
 
-	$categoriasIds = [3,4,5,6]
+	$categoriasIds = [3,4,5,6];
 
 	list($insql, $params) = $DB->get_in_or_equal($categoriasIds);
 	$sql = "select * from mdl_category WHERE id $insql";

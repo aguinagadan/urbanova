@@ -67,7 +67,11 @@
             </div>
             <div v-for="item in categoriasPrincipales" class="header_title_btn u-flex-around">
                 <select @change="filteredCourses($event)">
-                    <Option :value="item.id">{(item)}</Option>
+                    <Option value="1">Todas las categorías</Option>
+                    <Option value="3">"{(item)}"</Option>
+                    <Option value="4">Tu Onboarding</Option>
+                    <Option value="5">Seguridad</Option>
+                    <Option value="6">Cursos del cliente</Option>
                 </select>
             </div>
         </div>

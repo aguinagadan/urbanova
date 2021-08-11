@@ -479,7 +479,7 @@ function obtenerRecordatorios($detail) {
 	return $response;
 }
 
-function obtenerCategoriasNameById($id) {
+function obtenerCategoriasPrincipales($id) {
 	global $DB, $USER;
 	$returnArr = array();
 

@@ -486,7 +486,7 @@ function obtenerCategoriasPrincipales() {
 	$categoriasIds = [3,4,5,6];
 
 	list($insql, $params) = $DB->get_in_or_equal($categoriasIds);
-	$sql = "select name from mdl_course_categories WHERE id $insql ORDER BY id";
+	$sql = "select name from mdl_course_categories WHERE id $insql ORDER BY id DESC";
 	$categories = $DB->get_records_sql($sql, $params);
 
 	var_dump($categories);

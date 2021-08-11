@@ -507,9 +507,6 @@ function obtenerCategoriasPrincipales() {
 
 	usort($returnArr, 'sortByOrder');
 
-	var_dump($returnArr);
-	exit;
-
 	$response['status'] = true;
 	$response['data'] = $categories;
 

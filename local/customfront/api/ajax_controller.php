@@ -492,7 +492,7 @@ function obtenerCategoriasPrincipales() {
 	$todas = ['1' => ['id' => 1, 'name' => 'Todas las categorías']];
 	array_unshift($todas, $categories);
 
-	var_dump($categories);
+	var_dump($todas);
 	exit;
 
 	$response['status'] = true;

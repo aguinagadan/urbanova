@@ -60,6 +60,9 @@ try {
 		case 'obtenerRecordatorios':
 			$returnArr = obtenerRecordatorios($_POST);
 			break;
+		case 'obtenerCategoriasPrincipales':
+			$returnArr = obtenerCategoriasPrincipales($_POST);
+			break;
 	}
 
 } catch (Exception $e) {
@@ -472,6 +475,25 @@ function obtenerRecordatorios($detail) {
 	$response['viernes'] = $recordatorio->viernes;
 	$response['tresdias'] = $recordatorio->tresdias;
 	$response['undia'] = $recordatorio->undia;
+
+	return $response;
+}
+
+function obtenerCategoriasNameById($id) {
+	global $DB, $USER;
+	$returnArr = array();
+
+	$categoriasIds = [3,4,5,6]
+
+	list($insql, $params) = $DB->get_in_or_equal($categoriasIds);
+	$sql = "select * from mdl_category WHERE id $insql";
+	$categories = $DB->get_records_sql($sql, $params);
+
+	var_dump($categories);
+	exit;
+
+	$response['status'] = true;
+	$response['data'] = $returnArr;
 
 	return $response;
 }

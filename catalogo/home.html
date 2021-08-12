@@ -242,6 +242,8 @@
                         let data = response.data.data;
                         let categorias = Array();
 
+                        data.shift();
+
                         Object.keys(data).forEach(key => {
                             let dataVal = data[key];
                             let id = dataVal.id;
@@ -252,7 +254,6 @@
                                 'name': name
                             };
                             categorias.push(newElem);
-                            categorias.shift();
                         });
                         this.categoriasPrincipales = categorias;
                     });

@@ -22,43 +22,43 @@
             <p><span>{{cantidadCursos}} cursos</span> disponibles para ti</p>
             <div></div>
         </div>
-        <div class="u-flex-center u-responsive">
-            <div class="footer-learn-item u-flex-around" @click="display_b=1">
-                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==1?true:false }"></div>
+        <div v-for="(key, value) in list1" class="u-flex-center u-responsive">
+            <div class="footer-learn-item u-flex-around" @click="display_b=key">
+                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==key?true:false }"></div>
                 <div class="footer-learn-item-a">
-                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==1?true:false }">
-                        <p>Programa Integrado<br>de Cumplimiento</p>
+                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==key?true:false }">
+                        <p>{{value.name}}</p>
                     </div>
                 </div>
                 <div class="triangle-bottom" :class="{ 'display_block': display_b==1?true:false }"></div>
             </div>
-            <div class="footer-learn-item u-flex-around" @click="display_b=2">
-                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==2?true:false }"></div>
-                <div class="footer-learn-item-a">
-                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==2?true:false }">
-                        <p>Tu primer día<br>en Urbanova</p>
-                    </div>
-                </div>
-                <div class="triangle-bottom" :class="{ 'display_block': display_b==2?true:false }"></div>
-            </div>
-            <div class="footer-learn-item u-flex-around" @click="display_b=3">
-                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==3?true:false }"></div>
-                <div class="footer-learn-item-a">
-                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==3?true:false }">
-                        <p>Formación de Capacidades</p>
-                    </div>
-                </div>
-                <div class="triangle-bottom" :class="{ 'display_block': display_b==3?true:false }"></div>
-            </div>
-            <div class="footer-learn-item u-flex-around" @click="display_b=4">
-                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==4?true:false }"></div>
-                <div class="footer-learn-item-a">
-                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==4?true:false }">
-                        <p>Conociendo el negocio</p>
-                    </div>
-                </div>
-                <div class="triangle-bottom" :class="{ 'display_block': display_b==4?true:false }"></div>
-            </div>
+<!--            <div class="footer-learn-item u-flex-around" @click="display_b=2">-->
+<!--                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==2?true:false }"></div>-->
+<!--                <div class="footer-learn-item-a">-->
+<!--                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==2?true:false }">-->
+<!--                        <p>Tu primer día<br>en Urbanova</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="triangle-bottom" :class="{ 'display_block': display_b==2?true:false }"></div>-->
+<!--            </div>-->
+<!--            <div class="footer-learn-item u-flex-around" @click="display_b=3">-->
+<!--                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==3?true:false }"></div>-->
+<!--                <div class="footer-learn-item-a">-->
+<!--                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==3?true:false }">-->
+<!--                        <p>Formación de Capacidades</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="triangle-bottom" :class="{ 'display_block': display_b==3?true:false }"></div>-->
+<!--            </div>-->
+<!--            <div class="footer-learn-item u-flex-around" @click="display_b=4">-->
+<!--                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==4?true:false }"></div>-->
+<!--                <div class="footer-learn-item-a">-->
+<!--                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==4?true:false }">-->
+<!--                        <p>Conociendo el negocio</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="triangle-bottom" :class="{ 'display_block': display_b==4?true:false }"></div>-->
+<!--            </div>-->
         </div>
     </div>
     <div class="section3 u-container">
@@ -216,7 +216,8 @@
             cursos2: [
                 {image:"/images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", link:"#"},
                 {image:"/images/course/item2.png", title:"TÍTULO DEL CURSO LOREM", progress:"60", link:"#"}
-            ]
+            ],
+            categoriasPrincipales: [],
         },
         mounted(){
             this.getBasicInfo();
@@ -225,11 +226,34 @@
             this.getP3();
             this.getP4();
             this.getCursos2();
+            this.obtenerCategoriasPrincipales();
         },
         created(){
 
         },
         methods: {
+            obtenerCategoriasPrincipales() {
+                let frm = new FormData();
+                frm.append('request_type','obtenerCategoriasPrincipales');
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
+                    .then((response) => {
+                        let data = response.data.data;
+                        let categorias = Array();
+
+                        Object.keys(data).forEach(key => {
+                            let dataVal = data[key];
+                            let id = dataVal.id;
+                            let name = dataVal.name;
+
+                            let newElem = {
+                                'id': id,
+                                'name': name
+                            };
+                            categorias.push(newElem);
+                        });
+                        this.categoriasPrincipales = categorias;
+                    });
+            },
             //agregar los 2 primero elementos para generar el scroll
             getBasicInfo: function(){
                 let frm = new FormData();

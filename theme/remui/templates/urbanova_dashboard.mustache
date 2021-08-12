@@ -67,8 +67,8 @@
             </div>
             <div class="header_title_btn u-flex-around">
                 <select @change="filteredCourses($event)">
-                    <option v-for="option in options" v-bind:value="option.value">
-                        {{ option.text }}
+                    <option v-for="cat in categoriasPrincipales" v-bind:value="cat.id">
+                        {( cat.name )}
                     </option>
                 </select>
             </div>
@@ -156,12 +156,7 @@
                 }
             ],
             searchCursos: '',
-            categoriasPrincipales: [
-                {
-                    id:"2",
-                    name:"test"
-                },
-            ],
+            categoriasPrincipales: [],
         },
         created(){
             this.obtenerCursosPendientes();

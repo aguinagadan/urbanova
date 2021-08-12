@@ -67,11 +67,9 @@
             </div>
             <div class="header_title_btn u-flex-around">
                 <select @change="filteredCourses($event)">
-                    <Option value="1">Todas las categorías</Option>
-                    <Option value="3">Programa Integrado de Cumplimiento</Option>
-                    <Option value="4">Tu primer día en Urbanova</Option>
-                    <Option value="5">Formación de Capacidades</Option>
-                    <Option value="6">Conociendo el negocio</Option>
+                    <option v-for="option in options" v-bind:value="option.value">
+                        {{ option.text }}
+                    </option>
                 </select>
             </div>
         </div>

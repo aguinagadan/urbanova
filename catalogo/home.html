@@ -22,17 +22,17 @@
             <p><span>{{cantidadCursos}} cursos</span> disponibles para ti</p>
             <div></div>
         </div>
-        <div v-for="(value, key) in categoriasPrincipales">
-            <div class="u-flex-center u-responsive">
-            <div class="footer-learn-item u-flex-around" @click="display_b=key">
-                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==key?true:false }"></div>
-                <div class="footer-learn-item-a">
-                    <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==key?true:false }">
-                        <p>{{value.name}}</p>
+        <div class="u-flex-center u-responsive">
+            <div v-for="(value, key) in categoriasPrincipales">
+                <div class="footer-learn-item u-flex-around" @click="display_b=key">
+                    <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==key?true:false }"></div>
+                    <div class="footer-learn-item-a">
+                        <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==key?true:false }">
+                            <p>{{value.name}}</p>
+                        </div>
                     </div>
+                    <div class="triangle-bottom" :class="{ 'display_block': display_b==1?true:false }"></div>
                 </div>
-                <div class="triangle-bottom" :class="{ 'display_block': display_b==1?true:false }"></div>
-            </div>
 <!--            <div class="footer-learn-item u-flex-around" @click="display_b=2">-->
 <!--                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==2?true:false }"></div>-->
 <!--                <div class="footer-learn-item-a">-->
@@ -60,7 +60,7 @@
 <!--                </div>-->
 <!--                <div class="triangle-bottom" :class="{ 'display_block': display_b==4?true:false }"></div>-->
 <!--            </div>-->
-        </div>
+            </div>
         </div>
     </div>
     <div class="section3 u-container">

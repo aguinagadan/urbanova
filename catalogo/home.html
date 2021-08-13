@@ -136,9 +136,9 @@
             <div class="section-triangle"></div>
         </div>
     </div>
-    <div class="section41">
+    <div id="continuatuaprendizaje" class="section41">
         <div class="section_title u-flex-around u-flex-column">
-            <p>Continua tu aprendizaje</p>
+            <p>Continúa tu aprendizaje</p>
             <div></div>
         </div>
         <div class="footer-learn-background u-flex-around">
@@ -149,10 +149,6 @@
                 <div class="section3-item">
                     <img :src="item.image" />
                     <div class="section3-itemd-desc" >
-                        <div class="section3-itemd-desc-gra" v-if="item.progress > 0">
-                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.progress+'%'"></div>
-                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.progress+'%'">{{item.progress}}%</div>
-                        </div>
                         <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
                     </div>
                 </div>

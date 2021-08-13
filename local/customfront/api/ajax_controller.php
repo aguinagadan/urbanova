@@ -248,7 +248,7 @@ function obtenerCursosPendientes() {
 		}
 		$returnArr[] = [
 			'title' => strtolower($course->fullname),
-			'content' => 'test',
+			'content' => strip_tags($course->summary),
 			'progress' => round($percentage),
 			'link' => '/course/view.php?id='.$course->id,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),

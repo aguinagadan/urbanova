@@ -77,6 +77,10 @@ function getTokenPhoto($scope, $grantType, $isLogin=false, $params=array()) {
 function getUsersPhoto() {
 	$accessToken = getTokenPhoto('https://graph.microsoft.com/.default','client_credentials')->access_token;
 
+	var_dump('test');
+	var_dump($accessToken);
+	exit;
+
 	$data = array(
 		'url' => 'https://graph.microsoft.com/v1.0/users/mvargas@urbanova.com.pe/photo/$value',
 		'httpMethod' => 'GET',

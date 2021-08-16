@@ -3,7 +3,7 @@ require_once(dirname(__FILE__) . '/../../config.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-global $USER;
+global $USER, $OUTPUT;
 
 
 function execCurlPhoto($data) {
@@ -90,6 +90,5 @@ function getUsersPhoto() {
 $photo = getUsersPhoto();
 var_dump('<img src="data:image/png;base64, ' . getUsersPhoto() . ' " />');
 
-$userpicture = new \user_picture($USER);
-var_dump($userpicture);
+var_dump($OUTPUT->user_picture($USER));
 exit;

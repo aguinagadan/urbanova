@@ -44,6 +44,23 @@ function migrate_users_task() {
 	$provider = new AzureProvider();
 	createUsers($provider->getUsers());
 }
+
+function saveUserPhotoLocal($base64Photo, $username) {
+	global $DB;
+
+	$user = $DB->get_record('urbanova_user_photos', array('username' => $username));
+
+	$userPhotoObj = new stdClass();
+	$userPhotoObj->profilepic = $base64Photo;
+
+	if(empty($user) || !$user) {
+		$userPhotoObj->id = $DB->insert_record('user', $userPhotoObj);
+	} else {
+		$userPhotoObj->id = $user->id;
+		$DB->update_record('user', $userPhotoObj);
+	}
+}
+
 function createUsers($usersAD) {
 	global $DB;
 	if(!empty($usersAD)) {
@@ -77,6 +94,9 @@ function createUsers($usersAD) {
 				$userObj->deleted = 0;
 				$DB->update_record('user', $userObj);
 			}
+
+			$provider = new AzureProvider();
+			saveUserPhotoLocal($provider->getADUserPhoto($userObj->username),$userObj->username);
 		}
 	}
 }

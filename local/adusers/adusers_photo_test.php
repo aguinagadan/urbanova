@@ -1,5 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . '/../../config.php');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 
 function execCurlPhoto($data) {
@@ -84,6 +86,7 @@ function getUsersPhoto() {
 	);
 	$responseData = execCurlPhoto($data);
 
+	var_dump('test');
 	var_dump($responseData);
 	exit;
 

@@ -2506,6 +2506,10 @@ class core_renderer extends renderer_base {
                 $userpicture->$key = $value;
             }
         }
+
+//        '<img src="https://aulavirtual.urbanova.com.pe/pluginfile.php/5/user/icon/remui/f2?rev=301" class="userpicture"
+//width="35" height="35">';
+
         return $this->render($userpicture);
     }
 

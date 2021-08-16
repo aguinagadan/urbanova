@@ -28,6 +28,9 @@ function execCurlPhoto($data) {
 	}
 	$curlSetOptArray[CURLOPT_HTTPHEADER] = $httpHeader;
 
+	var_dump($curlSetOptArray);
+	exit;
+
 	curl_setopt_array($curl, $curlSetOptArray);
 	$response = curl_exec($curl);
 
@@ -80,9 +83,6 @@ function getUsersPhoto() {
 		'httpMethod' => 'GET',
 		'httpHeader' => array("Authorization: ". $accessToken)
 	);
-
-	var_dump($data);
-	exit;
 
 	$responseData = execCurlPhoto($data);
 

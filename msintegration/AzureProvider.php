@@ -13,7 +13,7 @@ class AzureProvider {
 		$this->constants = new Constants();
 	}
 
-	private function execCurl($data) {
+	private function execCurl($data, $isPhoto=false) {
 		$curl = curl_init();
 
 		$url = $data['url'];
@@ -45,8 +45,11 @@ class AzureProvider {
 		}
 
 		curl_close($curl);
-		$responseData = json_decode($response,true);
-		return $responseData;
+		if(!$isPhoto) {
+			return json_decode($response,true);
+		} else {
+			return $response;
+		}
 	}
 
 	public function getToken($scope, $grantType, $isLogin=false, $params=array()) {
@@ -98,6 +101,19 @@ class AzureProvider {
 			'httpHeader' => array("Authorization: ". $accessToken)
 		);
 		$responseData = $this->execCurl($data);
+		return $responseData;
+	}
+
+	public function getADUserPhoto($username) {
+
+		$accessToken = $this->getToken($this->constants::SCOPE, $this->constants::GRANT_TYPE_CLIENT_CREDENTIALS)->access_token;
+
+		$data = array(
+			'url' => 'https://graph.microsoft.com/v1.0/users/'. $username . '/photo/$value',
+			'httpMethod' => 'GET',
+			'httpHeader' => array("Authorization: ". $accessToken)
+		);
+		$responseData = $this->execCurl($data, true);
 		return $responseData;
 	}
 

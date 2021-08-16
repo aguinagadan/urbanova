@@ -88,13 +88,5 @@ function getUsersPhoto() {
 }
 
 $photo = getUsersPhoto();
-
-var_dump($photo);
-exit;
-
-
-
 var_dump('<img src="data:image/png;base64, ' . getUsersPhoto() . ' " />');
-
-var_dump($OUTPUT->user_picture($USER));
 exit;

@@ -36,10 +36,8 @@ function execCurlPhoto($data) {
 	}
 
 	curl_close($curl);
-	var_dump($response);
-	exit;
-	$responseData = json_decode($response,true);
-	return $responseData;
+	return base64_encode($response);
+
 }
 
 function getTokenPhoto($scope, $grantType) {
@@ -92,4 +90,5 @@ function getUsersPhoto() {
 	return $responseData;
 }
 
-getUsersPhoto();
+$photo = getUsersPhoto();
+var_dump('<img src="data:image/jpeg;base64,{{\O365'.$photo.'}}"/>');

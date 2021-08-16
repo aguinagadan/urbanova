@@ -86,4 +86,4 @@ function getUsersPhoto() {
 }
 
 $photo = getUsersPhoto();
-var_dump('<img src="data:image/jpeg;base64,{{\O365'.$photo.'}}"/>');
+var_dump('<img src="data:image/png;base64, ' . getUsersPhoto() . ' " />');

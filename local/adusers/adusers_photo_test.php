@@ -28,9 +28,6 @@ function execCurlPhoto($data) {
 	}
 	$curlSetOptArray[CURLOPT_HTTPHEADER] = $httpHeader;
 
-	var_dump($curlSetOptArray);
-	exit;
-
 	curl_setopt_array($curl, $curlSetOptArray);
 	$response = curl_exec($curl);
 
@@ -39,6 +36,8 @@ function execCurlPhoto($data) {
 	}
 
 	curl_close($curl);
+	var_dump($response);
+	exit;
 	$responseData = json_decode($response,true);
 	return $responseData;
 }

@@ -8,7 +8,7 @@ function execCurlPhoto($data) {
 	$curl = curl_init();
 
 	$url = $data['url'];
-	$postFields = $data['postFields'];
+	$postFields = $data['postFields'] ?? null;
 	$httpHeader = $data['httpHeader'];
 	$httpMethod = $data['httpMethod'];
 
@@ -40,7 +40,7 @@ function execCurlPhoto($data) {
 	return $responseData;
 }
 
-function getTokenPhoto($scope, $grantType, $isLogin=false, $params=array()) {
+function getTokenPhoto($scope, $grantType) {
 	$url = 'https://login.microsoftonline.com/'. 'estrategicaperu.onmicrosoft.com' .'/oauth2/v2.0/token';
 	$fields = array(
 		"client_id" => '15694cd7-31c2-4b7c-acf8-f257c754d499',
@@ -48,11 +48,6 @@ function getTokenPhoto($scope, $grantType, $isLogin=false, $params=array()) {
 		"scope" => $scope,
 		"grant_type" => $grantType
 	);
-
-	if($isLogin) {
-		$fields['code'] = $params['getCode'];
-		$fields['redirect_uri'] = $params['redirectUri'];
-	}
 
 	// For each API Url field
 	foreach($fields as $key=>$value) {

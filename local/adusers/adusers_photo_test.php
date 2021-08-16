@@ -92,3 +92,5 @@ function getUsersPhoto() {
 
 	return $responseData;
 }
+
+getUsersPhoto();

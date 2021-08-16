@@ -41,6 +41,7 @@ function execCurlPhoto($data) {
 }
 
 function getTokenPhoto($scope, $grantType) {
+	$fields_string = '';
 	$url = 'https://login.microsoftonline.com/'. 'estrategicaperu.onmicrosoft.com' .'/oauth2/v2.0/token';
 	$fields = array(
 		"client_id" => '15694cd7-31c2-4b7c-acf8-f257c754d499',

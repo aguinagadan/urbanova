@@ -82,11 +82,6 @@ function getUsersPhoto() {
 	);
 
 	$responseData = execCurlPhoto($data);
-
-	var_dump('test');
-	var_dump($responseData);
-	exit;
-
 	return $responseData;
 }
 

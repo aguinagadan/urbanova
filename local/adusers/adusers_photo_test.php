@@ -3,9 +3,6 @@ require_once(dirname(__FILE__) . '/../../config.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-function base64url_decode($data){
-	return base64_decode(strtr( $data, '-_', '+/') . str_repeat('=', 3 - ( 3 + strlen( $data )) % 4 ));
-}
 
 function execCurlPhoto($data) {
 	$curl = curl_init();
@@ -39,7 +36,7 @@ function execCurlPhoto($data) {
 	}
 
 	curl_close($curl);
-	var_dump(base64url_decode($response));
+	var_dump($response);
 	exit;
 	$responseData = json_decode($response,true);
 	return $responseData;

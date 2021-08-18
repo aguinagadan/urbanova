@@ -469,6 +469,9 @@ function matricular($detail) {
 
 		$rolesToEnroll = array();
 
+		var_dump($departamentos);
+		exit;
+
 		foreach($departamentos as $departamento) {
 			if(!is_int($departamento)) {
 				continue;

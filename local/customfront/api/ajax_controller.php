@@ -399,6 +399,16 @@ function obtenerDepartamentos() {
 	global $DB;
 
 	$returnArr = $DB->get_records_sql("SELECT department FROM {user} WHERE department!='' GROUP BY department");
+	$roles = $DB->get_records_sql("SELECT name FROM {role} WHERE id IN(9)");
+
+	$response['data'] = array_merge(array_keys($returnArr), array_keys($roles));
+	return $response;
+}
+
+function obtenerRolesPersonalizados() {
+	global $DB;
+
+	$returnArr = $DB->get_records_sql("SELECT * FROM {role} WHERE id IN(9)");
 
 	$response['data'] = array_keys($returnArr);
 	return $response;

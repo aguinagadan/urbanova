@@ -33,8 +33,8 @@ $(document).ready(function () {
                 participantes.append('<option value="' + data.data[i] + '">' + data.data[i] + '</option>');
             }
             var roles = data.roles;
-            roles.each(function(index) {
-                participantes.append('<option value="' + index + '">' + 'Rol :' + $(this).name + '</option>');
+            $.each(roles, function(i, obj) {
+                participantes.append('<option value="' + i + '">' + obj + '</option>');
             });
         }
     });

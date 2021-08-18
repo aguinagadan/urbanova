@@ -54,9 +54,6 @@ try {
 		case 'obtenerDepartamentos':
 			$returnArr = obtenerDepartamentos();
 			break;
-		case 'obtenerRolesPersonalizados':
-			$returnArr = obtenerRolesPersonalizados();
-			break;
 		case 'matricular':
 			$returnArr = matricular($_POST);
 			break;
@@ -402,15 +399,6 @@ function obtenerDepartamentos() {
 	global $DB;
 
 	$returnArr = $DB->get_records_sql("SELECT department FROM {user} WHERE department!='' GROUP BY department");
-
-	$response['data'] = array_keys($returnArr);
-	return $response;
-}
-
-function obtenerRolesPersonalizados() {
-	global $DB;
-
-	$returnArr = $DB->get_records_sql("SELECT * FROM {role} WHERE id IN(9)");
 
 	$response['data'] = array_keys($returnArr);
 	return $response;

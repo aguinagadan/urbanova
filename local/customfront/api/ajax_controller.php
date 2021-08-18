@@ -61,7 +61,7 @@ try {
 			$returnArr = obtenerRecordatorios($_POST);
 			break;
 		case 'obtenerCategoriasPrincipales':
-			$returnArr = obtenerCategoriasPrincipales($_POST);
+			$returnArr = obtenerCategoriasPrincipales();
 			break;
 	}
 
@@ -399,19 +399,10 @@ function obtenerDepartamentos() {
 	global $DB;
 
 	$returnArr = $DB->get_records_sql("SELECT department FROM {user} WHERE department!='' GROUP BY department");
-	$roles = $DB->get_records_sql("SELECT name FROM {role} WHERE id IN(9)");
+	$roles = $DB->get_records_sql("SELECT id,name FROM {role} WHERE id IN(9)");
 
 	$response['data'] = array_keys($returnArr);
 	$response['roles'] = array_keys($roles);
-	return $response;
-}
-
-function obtenerRolesPersonalizados() {
-	global $DB;
-
-	$returnArr = $DB->get_records_sql("SELECT * FROM {role} WHERE id IN(9)");
-
-	$response['data'] = array_keys($returnArr);
 	return $response;
 }
 
@@ -474,6 +465,22 @@ function matricular($detail) {
 		$DB->insert_record('urbanova_matricula', $matricula);
 
 	} else {
+
+		foreach($departamentos as $departamento) {
+			if(!is_int($departamento)) {
+				continue;
+			}
+			$rolesToEnroll[] = $departamento;
+		}
+
+		var_dump($rolesToEnroll);
+		exit;
+
+		//traer lista de usuarios que pertenecen a ese rol
+		//enrollear
+		//guardar rol id en urbanova_matricula ($matricula->isnew = 0)
+
+
 		list($insql, $params) = $DB->get_in_or_equal($departamentos);
 		$sql = "select * from mdl_user WHERE department $insql GROUP BY department";
 		$users = $DB->get_records_sql($sql, $params);
@@ -530,7 +537,7 @@ function obtenerRecordatorios($detail) {
 }
 
 function obtenerCategoriasPrincipales() {
-	global $DB, $USER;
+	global $DB;
 	$returnArr = array();
 
 	$categoriasIds = [3,4,5,6];

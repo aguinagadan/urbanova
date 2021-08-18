@@ -33,7 +33,7 @@ $(document).ready(function () {
                 participantes.append('<option value="' + data.data[i] + '">' + data.data[i] + '</option>');
             }
             for (var j=0; j<data.roles.length; j++) {
-                participantes.append('<option value="' + data.roles[j] + '">' + 'Rol :' + data.roles[j] + '</option>');
+                participantes.append('<option value="' + data.roles[j].id + '">' + 'Rol :' + data.roles[j].name + '</option>');
             }
         }
     });

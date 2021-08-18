@@ -54,6 +54,9 @@ try {
 		case 'obtenerDepartamentos':
 			$returnArr = obtenerDepartamentos();
 			break;
+		case 'obtenerRolesPersonalizados':
+			$returnArr = obtenerRolesPersonalizados();
+			break;
 		case 'matricular':
 			$returnArr = matricular($_POST);
 			break;
@@ -404,6 +407,15 @@ function obtenerDepartamentos() {
 	return $response;
 }
 
+function obtenerRolesPersonalizados() {
+	global $DB;
+
+	$returnArr = $DB->get_records_sql("SELECT * FROM {role} WHERE id IN(9)");
+
+	$response['data'] = array_keys($returnArr);
+	return $response;
+}
+
 function check_enrol($courseid, $userid, $roleid) {
 	global $DB;
 	$user = $DB->get_record('user', array('id' => $userid, 'deleted' => 0), '*', MUST_EXIST);
@@ -444,11 +456,9 @@ function matricular($detail) {
 		$sql = "select * from mdl_user where deleted = 0 AND institution = 'azure'";
 		$users = $DB->get_records_sql($sql);
 
-		$test = "select * from mdl_urbanova_matricula";
-		$test = $DB->get_records_sql($test);
-
+		//descomentar - samuel
 		echo '<pre>';
-		var_dump($test);
+		var_dump($users);
 		exit;
 
 		foreach($users as $user) {

@@ -473,12 +473,11 @@ function matricular($detail) {
 			if(intval($departamento) == 0) {
 				continue;
 			}
-			$rolesToEnroll[] = $departamento;
+			$rolesToEnroll[] = intval($departamento);
 		}
 
-		var_dump($rolesToEnroll);
-		exit;
 
+		//usando la lista de roles (ejem: 9,10)...
 		//traer lista de usuarios que pertenecen a ese rol
 		//enrollear
 		//guardar rol id en urbanova_matricula ($matricula->isnew = 0)

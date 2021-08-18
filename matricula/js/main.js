@@ -38,19 +38,6 @@ $(document).ready(function () {
     $.ajax({
         type: 'POST',
         url: '../local/customfront/api/ajax_controller.php',
-        data: {'request_type': 'obtenerRolesPersonalizados'},
-        success: function(data) {
-            var participantes = $("#participantes");
-            participantes.empty();
-            for (var i=0; i<data.data.length; i++) {
-                participantes.append('<option value="rol' + data.data[i].id + '">' + 'Rol: ' + data.data[i].name + '</option>');
-            }
-        }
-    });
-
-    $.ajax({
-        type: 'POST',
-        url: '../local/customfront/api/ajax_controller.php',
         data: {'request_type': 'obtenerRecordatorios', 'courseId': curso.children('option:first').val()},
         success: function(data) {
             if(data.lunes == 1) {

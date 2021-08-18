@@ -401,7 +401,8 @@ function obtenerDepartamentos() {
 	$returnArr = $DB->get_records_sql("SELECT department FROM {user} WHERE department!='' GROUP BY department");
 	$roles = $DB->get_records_sql("SELECT name FROM {role} WHERE id IN(9)");
 
-	$response['data'] = array_merge(array_keys($returnArr), array_keys($roles));
+	$response['data'] = array_keys($returnArr);
+	$response['roles'] = array_merge(array_keys($returnArr), array_keys($roles);
 	return $response;
 }
 

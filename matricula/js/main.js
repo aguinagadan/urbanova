@@ -28,7 +28,7 @@ $(document).ready(function () {
             var participantes = $("#participantes");
             participantes.empty();
             participantes.append('<option value="0">Selecciona a los participantes</option>');
-            participantes.append('<option value="all">Matricular a todos los usuarios</option>');
+            participantes.append('<option value="all">MATRICULAR A TODOS LOS USUARIOS</option>');
             for (var i=0; i<data.data.length; i++) {
                 participantes.append('<option value="' + data.data[i] + '">' + data.data[i] + '</option>');
             }

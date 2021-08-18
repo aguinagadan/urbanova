@@ -444,8 +444,11 @@ function matricular($detail) {
 		$sql = "select * from mdl_user where deleted = 0 AND institution = 'azure'";
 		$users = $DB->get_records_sql($sql);
 
+		$test = "select * from mdl_urbanova_matricula";
+		$test = $DB->get_records_sql($test);
+
 		echo '<pre>';
-		var_dump($users);
+		var_dump($test);
 		exit;
 
 		foreach($users as $user) {

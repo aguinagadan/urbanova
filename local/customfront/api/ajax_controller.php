@@ -402,7 +402,7 @@ function obtenerDepartamentos() {
 	$roles = $DB->get_records_sql("SELECT name FROM {role} WHERE id IN(9)");
 
 	$response['data'] = array_keys($returnArr);
-	$response['roles'] = array_merge(array_keys($returnArr), array_keys($roles);
+	$response['roles'] = array_keys($roles);
 	return $response;
 }
 

@@ -447,6 +447,7 @@ function matricular($detail) {
 		$users = $DB->get_records_sql($sql);
 
 		//descomentar - samuel
+		echo 'test all';
 		echo '<pre>';
 		var_dump($users);
 		exit;
@@ -465,6 +466,8 @@ function matricular($detail) {
 		$DB->insert_record('urbanova_matricula', $matricula);
 
 	} else {
+
+		$rolesToEnroll = array();
 
 		foreach($departamentos as $departamento) {
 			if(!is_int($departamento)) {

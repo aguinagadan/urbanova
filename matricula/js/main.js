@@ -34,7 +34,7 @@ $(document).ready(function () {
             }
             var roles = data.roles;
             $.each(roles, function(i, obj) {
-                participantes.append('<option value="' + i + '">' + obj + '</option>');
+                participantes.append('<option value="' + obj.id + '">' + obj.name + '</option>');
             });
         }
     });

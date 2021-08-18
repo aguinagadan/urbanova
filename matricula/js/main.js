@@ -32,7 +32,8 @@ $(document).ready(function () {
             for (var i=0; i<data.data.length; i++) {
                 participantes.append('<option value="' + data.data[i] + '">' + data.data[i] + '</option>');
             }
-            data.roles.each(function( index ) {
+            var roles = data.roles;
+            roles.each(function(index) {
                 participantes.append('<option value="' + index + '">' + 'Rol :' + $(this).name + '</option>');
             });
         }

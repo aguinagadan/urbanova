@@ -440,23 +440,45 @@ function matricular($detail) {
 	$idCurso = intval($detail['idCurso']);
 	$departamentos = $detail['departamentos'];
 
-	list($insql, $params) = $DB->get_in_or_equal($departamentos);
-	$sql = "select * from mdl_user WHERE department $insql GROUP BY department";
-	$users = $DB->get_records_sql($sql, $params);
+	if(in_array('all', $departamentos)) {
+		$sql = "select * from mdl_user where deleted = 0";
+		$users = $DB->get_records_sql($sql);
 
-	foreach($users as $user) {
-		check_enrol($idCurso, $user->id, 5); //roleid = 5 (student)
-	}
+		var_dump($users);
+		exit;
 
-	foreach($departamentos as $departamento) {
+		foreach($users as $user) {
+			check_enrol($idCurso, $user->id, 5); //roleid = 5 (student)
+		}
+
 		$matricula = new stdClass();
-		$matricula->department = $departamento;
+		$matricula->department = 'all';
 		$matricula->courseid = $idCurso;
 		$matricula->isnew =  $detail['newUsers'] == 'true' ? 1 : 0;
 		$matricula->userid = $USER->id;
 		$matricula->createddate = date("Y-m-d H:i:s");
 
 		$DB->insert_record('urbanova_matricula', $matricula);
+
+	} else {
+		list($insql, $params) = $DB->get_in_or_equal($departamentos);
+		$sql = "select * from mdl_user WHERE department $insql GROUP BY department";
+		$users = $DB->get_records_sql($sql, $params);
+
+		foreach($users as $user) {
+			check_enrol($idCurso, $user->id, 5); //roleid = 5 (student)
+		}
+
+		foreach($departamentos as $departamento) {
+			$matricula = new stdClass();
+			$matricula->department = $departamento;
+			$matricula->courseid = $idCurso;
+			$matricula->isnew =  $detail['newUsers'] == 'true' ? 1 : 0;
+			$matricula->userid = $USER->id;
+			$matricula->createddate = date("Y-m-d H:i:s");
+
+			$DB->insert_record('urbanova_matricula', $matricula);
+		}
 	}
 
 	$recordatorio = new stdClass();

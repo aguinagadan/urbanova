@@ -357,3 +357,15 @@
   width: 200px !important;
   height: 124px !important;
 }
+
+.aprendizaje-icon {
+  position: absolute;
+  height: 0;
+  right: 5px;
+  bottom: 173px;
+}
+
+.aprendizaje-icon img {
+  width: 30px !important;
+  height: 30px !important;
+}

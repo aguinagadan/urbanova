@@ -147,7 +147,12 @@
         <div class="section3-items5 u-container">
             <div v-for="item in cursos2" class="section3-item-div u-flex-around">
                 <div class="section3-item">
-                    <img :src="item.image" />
+                    <div>
+                        <img :src="item.image" />
+                        <div class="aprendizaje-icon">
+                            <img :src="item.imagetype">
+                        </div>
+                    </div>
                     <div class="section3-itemd-desc" >
                         <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
                     </div>
@@ -212,8 +217,8 @@
                 ],
             },
             cursos2: [
-                {image:"/images/course/item1.png", title:"TÍTULO DEL CURSO LOREM", progress:"30", link:"#"},
-                {image:"/images/course/item2.png", title:"TÍTULO DEL CURSO LOREM", progress:"60", link:"#"}
+                {image:"/images/course/item1.png", imagetype:"", title:"TÍTULO DEL CURSO LOREM", progress:"30", link:"#"},
+                {image:"/images/course/item2.png", imagetype:"", title:"TÍTULO DEL CURSO LOREM", progress:"60", link:"#"}
             ],
             categoriasPrincipales: [],
         },
@@ -275,12 +280,14 @@
                         Object.keys(data).forEach(key => {
                             let dataVal = data[key];
                             let image = dataVal.image;
+                            let imagetype = dataVal.imagetype;
                             let title = dataVal.title;
                             let progress = dataVal.porcent;
                             let link = dataVal.link;
 
                             let newElem = {
                                 'image': image,
+                                'imagetype': imagetype,
                                 'title': title,
                                 'progress': progress,
                                 'link': link

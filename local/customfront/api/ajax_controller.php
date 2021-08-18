@@ -206,6 +206,7 @@ function obtenerBasicInfo() {
 
 function obtenerCursosByCat($idCat, $limit=false) {
 	global $USER;
+	$imageType = '';
 
 	$courses = array();
 	$allcourses = core_course_category::get($idCat)->get_courses(
@@ -213,6 +214,19 @@ function obtenerCursosByCat($idCat, $limit=false) {
 
 	foreach($allcourses as $course) {
 		$percentage = round(progress::get_course_progress_percentage($course, $USER->id));
+
+		$category = \core_course_category::get($course->category);
+
+		$rootPath = '/images/course/';
+
+		if($category->id == 14) {
+			$imageType = $rootPath.'play.svg';
+		} elseif($category->id == 16) {
+			$imageType = $rootPath.'clip.svg';
+		} else {
+			$imageType = $rootPath.'mapamundi.svg';
+		}
+
 		$courses[] = [
 			'id'=> $course->id,
 			'title'=> strtoupper($course->fullname),
@@ -220,6 +234,7 @@ function obtenerCursosByCat($idCat, $limit=false) {
 			'link'=> '/course/view.php?id='.$course->id,
 			'porcent' => $percentage + 1,
 			'image' => \theme_remui_coursehandler::get_course_image($course, 1),
+			'imagetype' => $imageType,
 		];
 	}
 

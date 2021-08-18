@@ -444,6 +444,10 @@ function matricular($detail) {
 		$sql = "select * from mdl_user where deleted = 0 AND institution = 'azure'";
 		$users = $DB->get_records_sql($sql);
 
+		echo '<pre>';
+		var_dump($users);
+		exit;
+
 		foreach($users as $user) {
 			check_enrol($idCurso, $user->id, 5); //roleid = 5 (student)
 		}

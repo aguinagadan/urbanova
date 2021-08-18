@@ -444,6 +444,8 @@ function matricular($detail) {
 		$sql = "select * from mdl_user where deleted = 0";
 		$users = $DB->get_records_sql($sql);
 
+
+		echo '<pre>';
 		var_dump($users);
 		exit;
 

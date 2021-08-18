@@ -470,7 +470,7 @@ function matricular($detail) {
 		$rolesToEnroll = array();
 
 		foreach($departamentos as $departamento) {
-			if(intval($departamento) != 0) {
+			if(intval($departamento) == 0) {
 				continue;
 			}
 			$rolesToEnroll[] = $departamento;

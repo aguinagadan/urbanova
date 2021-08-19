@@ -63,6 +63,9 @@ try {
 		case 'obtenerCategoriasPrincipales':
 			$returnArr = obtenerCategoriasPrincipales();
 			break;
+		case 'obtenerCursosUrbanova':
+			$returnArr = obtenerCursosUrbanova();
+			break;
 	}
 
 } catch (Exception $e) {
@@ -200,6 +203,29 @@ function obtenerBasicInfo() {
 
 	$response['status'] = true;
 	$response['data'] = count($allcourses);
+
+	return $response;
+}
+
+function obtenerCursosUrbanova() {
+	global $DB;
+
+	$sql = "select id,name from mdl_course_categories WHERE parent = 1 ORDER BY id"; //parent 1 = urbanova
+	$categories = $DB->get_records_sql($sql);
+
+	foreach ($categories as $category) {
+		$courses[] = [
+			'idCat'=> $category->id,
+			'cursoData'=>obtenerCursosByCat($category->id),
+		];
+	}
+
+	echo '<pre>';
+	var_dump($courses);
+	exit;
+
+	$response['status'] = true;
+	$response['data'] = $courses;
 
 	return $response;
 }
@@ -541,7 +567,7 @@ function obtenerCategoriasPrincipales() {
 	global $DB;
 	$returnArr = array();
 
-	$sql = "select id,name from mdl_course_categories WHERE parent = 1 ORDER BY id";
+	$sql = "select id,name from mdl_course_categories WHERE parent = 1 ORDER BY id"; //parent 1 = urbanova
 	$categories = $DB->get_records_sql($sql);
 
 	foreach ($categories as $category) {

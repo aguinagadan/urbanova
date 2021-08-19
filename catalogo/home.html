@@ -156,7 +156,8 @@
             lite_clicked: false,
             isShow: 0,
             plus_clicked: false,
-            display_b: 3, //categoria por defecto
+            display_b: 3, //categoria por defecto,
+            cursosUrbanova: [],
             cursos: {
                 p1: [
                     {
@@ -208,11 +209,34 @@
             this.getP4();
             this.getCursos2();
             this.obtenerCategoriasPrincipales();
+            this.obtenerCursosUrbanova();
         },
         created(){
 
         },
         methods: {
+            obtenerCursosUrbanova() {
+                let frm = new FormData();
+                frm.append('request_type','obtenerCursosUrbanova');
+                axios.post('/local/customfront/api/ajax_controller.php',frm)
+                    .then((response) => {
+                        let data = response.data.data;
+                        let cursosUrbanova = Array();
+
+                        Object.keys(data).forEach(key => {
+                            let dataVal = data[key];
+                            let idCat = dataVal.idCat;
+                            let cursoData = dataVal.cursoData;
+
+                            let newElem = {
+                                'id': idCat,
+                                'cursoData': cursoData
+                            };
+                            cursosUrbanova.push(newElem);
+                        });
+                        this.cursosUrbanova = cursosUrbanova;
+                    });
+            },
             obtenerCategoriasPrincipales() {
                 let frm = new FormData();
                 frm.append('request_type','obtenerCategoriasPrincipales');

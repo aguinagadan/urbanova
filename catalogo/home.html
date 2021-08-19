@@ -37,70 +37,21 @@
         </div>
     </div>
     <div class="section3 u-container">
-        <div class="section3-items1" :class="{ 'display_block': display_b==3?true:false }">
-            <div v-for="item in cursos.p1" class="section3-item-div u-flex-around">
-                <div class="section3-item">
-                    <img :src="item.image"/>
-                    <div class="section3-itemd-desc" >
-                        <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
-                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
-                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
+        <div v-for="value in cursosUrbanova">
+            <div class="section3-items1" :class="{ 'display_block': display_b==(value.idCat)?true:false }">
+                <div v-for="item in value.cursoData" class="section3-item-div u-flex-around">
+                    <div class="section3-item">
+                        <img :src="item.image"/>
+                        <div class="section3-itemd-desc" >
+                            <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
+                                <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
+                                <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
+                            </div>
+                            <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
+                            <div class="section3-itemd-desc-line" ></div>
+                            <div class="section3-itemd-desc-text" >{{item.content}}</div>
+                            <img src="./images/course/item_b.png" />
                         </div>
-                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
-                        <div class="section3-itemd-desc-line" ></div>
-                        <div class="section3-itemd-desc-text" >{{item.content}}</div>
-                        <img src="./images/course/item_b.png" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section3-items1" :class="{ 'display_block': display_b==4?true:false }">
-            <div v-for="item in cursos.p2" class="section3-item-div u-flex-around">
-                <div class="section3-item">
-                    <img :src="item.image"/>
-                    <div class="section3-itemd-desc" >
-                        <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
-                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
-                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
-                        </div>
-                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
-                        <div class="section3-itemd-desc-line" ></div>
-                        <div class="section3-itemd-desc-text" >{{item.content}}</div>
-                        <img src="./images/course/item_b.png" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section3-items1" :class="{ 'display_block': display_b==5?true:false }">
-            <div v-for="item in cursos.p3" class="section3-item-div u-flex-around">
-                <div class="section3-item">
-                    <img :src="item.image"/>
-                    <div class="section3-itemd-desc" >
-                        <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
-                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
-                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
-                        </div>
-                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
-                        <div class="section3-itemd-desc-line" ></div>
-                        <div class="section3-itemd-desc-text" >{{item.content}}</div>
-                        <img src="./images/course/item_b.png" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section3-items1" :class="{ 'display_block': display_b==6?true:false }">
-            <div v-for="item in cursos.p4" class="section3-item-div u-flex-around">
-                <div class="section3-item">
-                    <img :src="item.image"/>
-                    <div class="section3-itemd-desc" >
-                        <div class="section3-itemd-desc-gra" v-if="item.porcent > 0">
-                            <div class="section3-itemd-desc-gra-red" :style="'width:'+item.porcent+'%'"></div>
-                            <div class="section3-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.porcent+'%'">{{item.porcent}}%</div>
-                        </div>
-                        <a :href="item.link" class="section3-itemd-desc-title" >{{item.title}}</a>
-                        <div class="section3-itemd-desc-line" ></div>
-                        <div class="section3-itemd-desc-text" >{{item.content}}</div>
-                        <img src="./images/course/item_b.png" />
                     </div>
                 </div>
             </div>

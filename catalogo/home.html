@@ -23,15 +23,15 @@
             <div></div>
         </div>
         <div class="u-flex-center u-responsive">
-            <div v-for="value in categoriasPrincipales">
-                <div class="footer-learn-item u-flex-around" @click="display_b=(value.id)">
-                    <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==(value.id)?true:false }"></div>
+            <div v-for="(value, key) in categoriasPrincipales">
+                <div class="footer-learn-item u-flex-around" @click="display_b=(key+1)">
+                    <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==(key+1)?true:false }"></div>
                     <div class="footer-learn-item-a">
-                        <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==(value.id)?true:false }">
+                        <div class="footer-learn-item-opac u-flex-around" :class="{ 'back_col-red': display_b==(key+1)?true:false }">
                             <p>{{value.name}}</p>
                         </div>
                     </div>
-                    <div class="triangle-bottom" :class="{ 'display_block': display_b==(value.id)?true:false }"></div>
+                    <div class="triangle-bottom" :class="{ 'display_block': display_b==(key+1)?true:false }"></div>
                 </div>
 <!--            <div class="footer-learn-item u-flex-around" @click="display_b=2">-->
 <!--                <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==2?true:false }"></div>-->
@@ -64,7 +64,7 @@
         </div>
     </div>
     <div class="section3 u-container">
-        <div class="section3-items1" :class="{ 'display_block': display_b==3?true:false }">
+        <div class="section3-items1" :class="{ 'display_block': display_b==1?true:false }">
             <div v-for="item in cursos.p1" class="section3-item-div u-flex-around">
                 <div class="section3-item">
                     <img :src="item.image"/>
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-        <div class="section3-items1" :class="{ 'display_block': display_b==4?true:false }">
+        <div class="section3-items1" :class="{ 'display_block': display_b==2?true:false }">
             <div v-for="item in cursos.p2" class="section3-item-div u-flex-around">
                 <div class="section3-item">
                     <img :src="item.image"/>
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <div class="section3-items1" :class="{ 'display_block': display_b==5?true:false }">
+        <div class="section3-items1" :class="{ 'display_block': display_b==3?true:false }">
             <div v-for="item in cursos.p3" class="section3-item-div u-flex-around">
                 <div class="section3-item">
                     <img :src="item.image"/>
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <div class="section3-items1" :class="{ 'display_block': display_b==6?true:false }">
+        <div class="section3-items1" :class="{ 'display_block': display_b==4?true:false }">
             <div v-for="item in cursos.p4" class="section3-item-div u-flex-around">
                 <div class="section3-item">
                     <img :src="item.image"/>
@@ -136,7 +136,6 @@
             <div class="section-triangle"></div>
         </div>
     </div>
-
 <!-- Comentado porque se movio a otra seccion -->
 
 <!--    <div id="continuatuaprendizaje" class="section41">-->

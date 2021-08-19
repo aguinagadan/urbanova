@@ -109,43 +109,6 @@
             plus_clicked: false,
             display_b: 3, //categoria por defecto,
             cursosUrbanova: [],
-            cursos: {
-                p1: [
-                    {
-                        image: "./images/course/item1.png",
-                        porcent:"60",
-                        title:"TÍTULO DEL CURSO LOREM",
-                        content:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ",
-                        link:"#"
-                    },
-                ],
-                p2: [
-                    {
-                        image: "./images/course/item2.png",porcent:"30",
-                        title:"TÍTULO DEL CURSO LOREM",
-                        content:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ",
-                        link:"#"
-                    },
-                ],
-                p3: [
-                    {
-                        image: "./images/course/item3.png",
-                        porcent:"0",
-                        title:"TÍTULO DEL CURSO LOREM",
-                        content:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ",
-                        link:"#"
-                    },
-                ],
-                p4: [
-                    {
-                        image: "./images/course/item4.png",
-                        porcent:"0",
-                        title:"TÍTULO DEL CURSO LOREM",
-                        content:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ",
-                        link:"#"
-                    },
-                ],
-            },
             cursos2: [
                 {image:"/images/course/item1.png", imagetype:"", title:"TÍTULO DEL CURSO LOREM", progress:"30", link:"#"},
                 {image:"/images/course/item2.png", imagetype:"", title:"TÍTULO DEL CURSO LOREM", progress:"60", link:"#"}
@@ -154,10 +117,6 @@
         },
         mounted(){
             this.getBasicInfo();
-            this.getP1();
-            this.getP2();
-            this.getP3();
-            this.getP4();
             this.getCursos2();
             this.obtenerCategoriasPrincipales();
             this.obtenerCursosUrbanova();
@@ -249,123 +208,7 @@
                         });
                         this.cursos2 = courses;
                     });
-            },
-            getP1: function(){
-                let frm = new FormData();
-                frm.append('request_type','obtenerCursosByCat');
-                frm.append('idCat', 3);
-                axios.post('/local/customfront/api/ajax_controller.php',frm)
-                    .then((response) => {
-                        let data = response.data.data;
-                        let courses = Array();
-
-                        Object.keys(data).forEach(key => {
-                            let dataVal = data[key];
-                            let title = dataVal.title;
-                            let content = dataVal.content;
-                            let porcent = dataVal.porcent;
-                            let link = dataVal.link;
-                            let image = dataVal.image;
-
-                            let newElem = {
-                                'title': title,
-                                'content': content,
-                                'porcent': porcent,
-                                'link': link,
-                                'image': image
-                            };
-                            courses.push(newElem);
-                        });
-                        this.cursos.p1 = courses;
-                    });
-            },
-            getP2: function(){
-                let frm = new FormData();
-                frm.append('request_type','obtenerCursosByCat');
-                frm.append('idCat', 4);
-                axios.post('/local/customfront/api/ajax_controller.php',frm)
-                    .then((response) => {
-                        let data = response.data.data;
-                        let courses = Array();
-
-                        Object.keys(data).forEach(key => {
-                            let dataVal = data[key];
-                            let title = dataVal.title;
-                            let content = dataVal.content;
-                            let porcent = dataVal.porcent;
-                            let link = dataVal.link;
-                            let image = dataVal.image;
-
-                            let newElem = {
-                                'title': title,
-                                'content': content,
-                                'porcent': porcent,
-                                'link': link,
-                                'image': image
-                            };
-                            courses.push(newElem);
-                        });
-                        this.cursos.p2 = courses;
-                    });
-            },
-            getP3: function(){
-                let frm = new FormData();
-                frm.append('request_type','obtenerCursosByCat');
-                frm.append('idCat', 5);
-                axios.post('/local/customfront/api/ajax_controller.php',frm)
-                    .then((response) => {
-                        let data = response.data.data;
-                        let courses = Array();
-
-                        Object.keys(data).forEach(key => {
-                            let dataVal = data[key];
-                            let title = dataVal.title;
-                            let content = dataVal.content;
-                            let porcent = dataVal.porcent;
-                            let link = dataVal.link;
-                            let image = dataVal.image;
-
-                            let newElem = {
-                                'title': title,
-                                'content': content,
-                                'porcent': porcent,
-                                'link': link,
-                                'image': image
-                            };
-                            courses.push(newElem);
-                        });
-                        this.cursos.p3 = courses;
-                    });
-            },
-            getP4: function(){
-                let frm = new FormData();
-                frm.append('request_type','obtenerCursosByCat');
-                frm.append('idCat', 6);
-                axios.post('/local/customfront/api/ajax_controller.php',frm)
-                    .then((response) => {
-                        let data = response.data.data;
-                        let courses = Array();
-
-                        Object.keys(data).forEach(key => {
-                            let dataVal = data[key];
-                            let title = dataVal.title;
-                            let content = dataVal.content;
-                            let porcent = dataVal.porcent;
-                            let link = dataVal.link;
-                            let image = dataVal.image;
-
-                            let newElem = {
-                                'title': title,
-                                'content': content,
-                                'porcent': porcent,
-                                'link': link,
-                                'image': image
-                            };
-                            courses.push(newElem);
-                        });
-                        this.cursos.p4 = courses;
-                    });
-            },
+            }
         }
     })
 </script>

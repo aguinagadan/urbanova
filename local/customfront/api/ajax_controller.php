@@ -216,13 +216,9 @@ function obtenerCursosUrbanova() {
 	foreach ($categories as $category) {
 		$courses[] = [
 			'idCat'=> $category->id,
-			'cursoData'=>obtenerCursosByCat($category->id),
+			'cursoData'=>obtenerCursosByCat($category->id)['data'],
 		];
 	}
-
-	echo '<pre>';
-	var_dump($courses);
-	exit;
 
 	$response['status'] = true;
 	$response['data'] = $courses;

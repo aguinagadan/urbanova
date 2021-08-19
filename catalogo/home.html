@@ -38,7 +38,7 @@
     </div>
     <div class="section3 u-container">
         <div v-for="value in cursosUrbanova">
-            <div class="section3-items1 value.idCat" :class="{ 'display_block': display_b==(value.idCat)?true:false }">
+            <div class="section3-items1" :class="{ 'display_block': display_b==(value.idCat)?true:false }">
                 <div v-for="item in value.cursoData" class="section3-item-div u-flex-around">
                     <div class="section3-item">
                         <img :src="item.image"/>
@@ -180,7 +180,7 @@
                             let cursoData = dataVal.cursoData;
 
                             let newElem = {
-                                'id': idCat,
+                                'idCat': idCat,
                                 'cursoData': cursoData
                             };
                             cursosUrbanova.push(newElem);

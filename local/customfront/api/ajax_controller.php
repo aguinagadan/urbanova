@@ -206,7 +206,6 @@ function obtenerBasicInfo() {
 
 function obtenerCursosByCat($idCat, $limit=false) {
 	global $USER;
-	$imageType = '';
 
 	$courses = array();
 	$allcourses = core_course_category::get($idCat)->get_courses(
@@ -545,7 +544,7 @@ function obtenerCategoriasPrincipales() {
 	$categoriasIds = [3,4,5,6];
 
 	list($insql, $params) = $DB->get_in_or_equal($categoriasIds);
-	$sql = "select id,name from mdl_course_categories WHERE id $insql ORDER BY id";
+	$sql = "select id,name from mdl_course_categories WHERE parent = 1";
 	$categories = $DB->get_records_sql($sql, $params);
 
 	foreach ($categories as $category) {

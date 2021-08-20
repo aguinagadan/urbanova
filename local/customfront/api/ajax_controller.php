@@ -61,7 +61,7 @@ try {
 			$returnArr = obtenerRecordatorios($_POST);
 			break;
 		case 'obtenerCategoriasPrincipales':
-			$returnArr = obtenerCategoriasPrincipales();
+			$returnArr = obtenerCategoriasPrincipales($_POST['include_all']);
 			break;
 		case 'obtenerCursosUrbanova':
 			$returnArr = obtenerCursosUrbanova();
@@ -562,7 +562,7 @@ function obtenerRecordatorios($detail) {
 	return $response;
 }
 
-function obtenerCategoriasPrincipales() {
+function obtenerCategoriasPrincipales($includeAll = false) {
 	global $DB;
 	$returnArr = array();
 
@@ -576,10 +576,12 @@ function obtenerCategoriasPrincipales() {
 		];
 	}
 
-	$returnArr[] = [
-		'id'=> 1,
-		'name'=> 'Todas las categorías',
-	];
+	if($includeAll) {
+		$returnArr[] = [
+			'id'=> 1,
+			'name'=> 'Todas las categorías',
+		];
+	}
 
 	$response['status'] = true;
 	$response['data'] = $returnArr;

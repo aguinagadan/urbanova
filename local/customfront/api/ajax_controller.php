@@ -231,7 +231,7 @@ function obtenerCursosByCat($idCat, $limit=false) {
 
 	$courses = array();
 	$allcourses = core_course_category::get($idCat)->get_courses(
-		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
+		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('sortorder' => 1)));
 
 	foreach($allcourses as $course) {
 		if($course->visible == 0) {

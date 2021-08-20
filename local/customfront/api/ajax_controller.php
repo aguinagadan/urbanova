@@ -231,9 +231,12 @@ function obtenerCursosByCat($idCat, $limit=false) {
 
 	$courses = array();
 	$allcourses = core_course_category::get($idCat)->get_courses(
-		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1), 'visible' => 1));
+		array('recursive' => true, 'coursecontacts' => true, 'sort' => array('idnumber' => 1)));
 
 	foreach($allcourses as $course) {
+		if($course->visible == 0) {
+			continue;
+		}
 		$percentage = round(progress::get_course_progress_percentage($course, $USER->id));
 
 		$category = \core_course_category::get($course->category);

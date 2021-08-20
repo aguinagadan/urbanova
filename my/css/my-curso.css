@@ -420,7 +420,8 @@
     font-size: 13px;
     color: #00314b;
     padding-top: 5px;
-    margin-top: 25px
+    margin-top: 25px;
+    text-transform: uppercase;
   }
   .section3-itemd-desc-line{
     width: 50px;

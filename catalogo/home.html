@@ -22,8 +22,8 @@
             <p><span>{{cantidadCursos}} cursos</span> disponibles para ti</p>
             <div></div>
         </div>
-        <div class="u-flex-center u-responsive">
-            <div v-for="value in categoriasPrincipales">
+        <div class="u-flex-center u-responsive row">
+            <div v-for="value in categoriasPrincipales" class="col-3">
                 <div class="footer-learn-item u-flex-around" @click="display_b=(value.id)">
                     <div class="footer-learn-item-blue" :class="{ 'back_col': display_b==(value.id)?true:false }"></div>
                     <div class="footer-learn-item-a">

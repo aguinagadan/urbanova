@@ -583,6 +583,9 @@ function obtenerCategoriasPrincipales($includeAll = false) {
 		];
 	}
 
+	var_dump($returnArr);
+	exit;
+
 	$response['status'] = true;
 	$response['data'] = $returnArr;
 

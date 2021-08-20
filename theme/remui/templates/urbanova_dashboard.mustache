@@ -181,6 +181,7 @@
         methods: {
             obtenerCategoriasPrincipales() {
                 let frm = new FormData();
+                frm.append('include_all', true);
                 frm.append('request_type','obtenerCategoriasPrincipales');
                 axios.post('/local/customfront/api/ajax_controller.php',frm)
                         .then((response) => {

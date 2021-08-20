@@ -581,12 +581,6 @@ function obtenerCategoriasPrincipales() {
 		'name'=> 'Todas las categorías',
 	];
 
-	function sortByOrder($a, $b) {
-		return $a['id'] - $b['id'];
-	}
-
-	usort($returnArr, 'sortByOrder');
-
 	$response['status'] = true;
 	$response['data'] = $returnArr;
 

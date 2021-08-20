@@ -210,7 +210,7 @@ function obtenerBasicInfo() {
 function obtenerCursosUrbanova() {
 	global $DB;
 
-	$sql = "select id,name from mdl_course_categories WHERE parent = 1 ORDER BY id"; //parent 1 = urbanova
+	$sql = "select id,name from mdl_course_categories WHERE parent = 1 and visible = 1 ORDER BY id"; //parent 1 = urbanova
 	$categories = $DB->get_records_sql($sql);
 
 	foreach ($categories as $category) {

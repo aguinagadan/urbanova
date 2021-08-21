@@ -134,7 +134,7 @@ class AzureProvider {
 			$key++;
 		}
 
-		var_dump(count($allUsers));
+		var_dump($allUsers);
 		exit;
 
 		foreach($allUsers as $allUser) {

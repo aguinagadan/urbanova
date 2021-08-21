@@ -2511,8 +2511,11 @@ class core_renderer extends renderer_base {
 
 	    $userPhotoObj = $DB->get_record_sql("SELECT * FROM {urbanova_user_photos} WHERE username = ?", array($USER->username));
 
-	    return '<img src="data:image/png;base64, ' . $userPhotoObj->profilepic . ' " class="userpicture" width="100" height="100">';
-        //return $this->render($userpicture);
+        if(!empty($userPhotoObj)) {
+	        return '<img src="data:image/png;base64, ' . $userPhotoObj->profilepic . ' " class="userpicture" width="100" height="100">';
+        } else {
+	        return $this->render($userpicture);
+        }
     }
 
     /**

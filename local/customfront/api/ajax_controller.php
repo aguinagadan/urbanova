@@ -534,6 +534,9 @@ function matricular($detail) {
 		}
 
 		foreach($departamentos as $departamento) {
+			if(in_array($departamento,$rolesToEnroll)) {
+				continue;
+			}
 			$matricula = new stdClass();
 			$matricula->department = $departamento;
 			$matricula->courseid = $idCurso;

@@ -2513,11 +2513,11 @@ class core_renderer extends renderer_base {
 
 	    $userPhotoObj = $DB->get_record_sql("SELECT * FROM {urbanova_user_photos} WHERE username = ?", array($user->username));
 
-        if(empty($userPhotoObj) || strpos($userPhotoObj->profilepic, $defaultBase64) !== false) {
-	        return $this->render($userpicture);
+        if(!empty($userPhotoObj) && strpos($userPhotoObj->profilepic, $defaultBase64) === false) {
+	        $userpicture->src ='data:image/png;base64, ' . $userPhotoObj->profilepic;
         }
 
-        return '<img src="data:image/png;base64, ' . $userPhotoObj->profilepic . ' " class="userpicture" width="100" height="100">';
+	    return $this->render($userpicture);
     }
 
     /**
@@ -2554,7 +2554,11 @@ class core_renderer extends renderer_base {
             $class .= ' defaultuserpic';
         }
 
-        $src = $userpicture->get_url($this->page, $this);
+        if(empty($userpicture->src)) {
+	        $src = $userpicture->get_url($this->page, $this);
+        } else {
+	        $src = $userpicture->src;
+        }
 
         $attributes = array('src' => $src, 'class' => $class, 'width' => $size, 'height' => $size);
         if (!$userpicture->visibletoscreenreaders) {

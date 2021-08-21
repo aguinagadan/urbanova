@@ -495,12 +495,16 @@ function matricular($detail) {
 			$rolesToEnroll[] = intval($departamento);
 		}
 
-		var_dump($rolesToEnroll);
+		//usando la lista de roles (ejem: [9,10])
+		//traer lista de usuarios que pertenecen a ese rol
+
+		list($insqlRoles, $paramsRoles) = $DB->get_in_or_equal($rolesToEnroll);
+		$sqlRoles = "select userid from mdl_role_assignments WHERE roleid $insqlRoles";
+		$users = $DB->get_records_sql($sqlRoles, $paramsRoles);
+
+		var_dump($users);
 		exit;
 
-
-		//usando la lista de roles (ejem: 9,10)...
-		//traer lista de usuarios que pertenecen a ese rol
 		//enrollear
 		//guardar rol id en urbanova_matricula ($matricula->isnew = 0)
 

@@ -90,7 +90,7 @@ class AzureProvider {
 
 	private function getADUsersRaw($key, $skipToken) {
 		if($key>0) {
-			$skipToken = '?$skiptoken='.$skipToken;
+			$skipToken = '&?$skiptoken='.$skipToken;
 		}
 
 		$accessToken = $this->getToken($this->constants::SCOPE, $this->constants::GRANT_TYPE_CLIENT_CREDENTIALS)->access_token;

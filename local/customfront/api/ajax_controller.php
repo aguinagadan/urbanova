@@ -497,7 +497,6 @@ function matricular($detail) {
 
 		//usando la lista de roles (ejem: [9,10])
 		//traer lista de usuarios que pertenecen a ese rol
-
 		list($insqlRoles, $paramsRoles) = $DB->get_in_or_equal($rolesToEnroll);
 		$sqlRoles = "select userid from mdl_role_assignments WHERE roleid $insqlRoles";
 		$users = $DB->get_records_sql($sqlRoles, $paramsRoles);
@@ -506,11 +505,24 @@ function matricular($detail) {
 		list($insqlUser, $paramsUser) = $DB->get_in_or_equal($users);
 		$sqlUser = "select * from mdl_user WHERE id $insqlUser";
 		$users = $DB->get_records_sql($sqlUser, $paramsUser);
-		var_dump($users);
-		exit;
 
 		//enrollear
+		foreach($users as $user) {
+			check_enrol($idCurso, $user->id, 5); //roleid = 5 (student)
+		}
+
 		//guardar rol id en urbanova_matricula ($matricula->isnew = 0)
+		foreach($rolesToEnroll as $roleToEnroll) {
+			$matricula = new stdClass();
+			$matricula->department = $roleToEnroll;
+			$matricula->courseid = $idCurso;
+			$matricula->isnew =  0; //Para roles, por defecto es 0
+			$matricula->userid = $USER->id;
+			$matricula->deleted = 0;
+			$matricula->createddate = date("Y-m-d H:i:s");
+
+			$DB->insert_record('urbanova_matricula', $matricula);
+		}
 
 
 		list($insql, $params) = $DB->get_in_or_equal($departamentos);

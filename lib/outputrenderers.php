@@ -222,6 +222,8 @@ class renderer_base {
         $classparts = explode('\\', get_class($widget));
         // Strip namespaces.
         $classname = array_pop($classparts);
+        var_dump($classname);
+        exit;
         // Remove _renderable suffixes
         $classname = preg_replace('/_renderable$/', '', $classname);
 

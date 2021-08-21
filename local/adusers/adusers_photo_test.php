@@ -38,6 +38,8 @@ function execCurlPhoto($data) {
 	}
 
 	curl_close($curl);
+	var_dump(base64_encode($response));
+	exit;
 	return base64_encode($response);
 
 }

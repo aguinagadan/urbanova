@@ -114,7 +114,7 @@ class AzureProvider {
 			'httpHeader' => array("Authorization: ". $accessToken)
 		);
 		$responseData = $this->execCurl($data, true);
-		return $responseData;
+		return base64_encode($responseData);
 	}
 
 	public function getUsers() {

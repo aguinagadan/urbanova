@@ -2502,9 +2502,7 @@ class core_renderer extends renderer_base {
     public function user_picture(stdClass $user, array $options = null) {
     	global $DB, $USER;
 
-    	$defalultBase64 = 'eyJlcnJvciI6eyJjb2RlIjoiRXJyb3JJdGVtTm90Rm91bmQiLCJtZXNzYWdlIjoiVGhlIHBob3RvIHdhc24ndCBmb3VuZC4iLCJpbm5lck
-    	Vycm9yIjp7ImRhdGUiOiIyMDIxLTA4LTIxVDA0OjM1OjMxIiwicmVxdWVzdC1pZCI6IjYzYz
-    	QwMWY2LTU5YzYtNDljYS1hMTA1LTMzMTM3NTBmM2VkZiIsImNsaWVudC1yZXF1ZXN0LWlkIjoiNjNjNDAxZjYtNTljNi00OWNhLWExMDUtMzMxMzc1MGYzZWRmIn19fQ==';
+    	$defalultBase64 = 'eyJlcnJvciI6eyJjb2RlIjoiRXJyb3JJdGVtTm90Rm91bmQiLCJtZXNzYWdlIjoiVGhlIHBob3RvIHdhc24ndCBmb3VuZC4iLCJpbm5lckVycm9yIjp7ImRhdGUiOiIyMDIxLTA4LTIxVDA0OjM1OjMxIiwicmVxdWVzdC1pZCI6IjYzYzQwMWY2LTU5YzYtNDljYS1hMTA1LTMzMTM3NTBmM2VkZiIsImNsaWVudC1yZXF1ZXN0LWlkIjoiNjNjNDAxZjYtNTljNi00OWNhLWExMDUtMzMxMzc1MGYzZWRmIn19fQ==';
 
         $userpicture = new user_picture($user);
         foreach ((array)$options as $key=>$value) {

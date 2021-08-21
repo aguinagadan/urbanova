@@ -514,7 +514,7 @@ function matricular($detail) {
 		//guardar rol id en urbanova_matricula ($matricula->isnew = 0)
 		foreach($rolesToEnroll as $roleToEnroll) {
 			$matricula = new stdClass();
-			$matricula->department = $roleToEnroll;
+			$matricula->role = $roleToEnroll;
 			$matricula->courseid = $idCurso;
 			$matricula->isnew =  0; //Para roles, por defecto es 0
 			$matricula->userid = $USER->id;

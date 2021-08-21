@@ -2513,7 +2513,7 @@ class core_renderer extends renderer_base {
 
 	    $userPhotoObj = $DB->get_record_sql("SELECT * FROM {urbanova_user_photos} WHERE username = ?", array($user->username));
 
-        if(empty($userPhotoObj) || strpos($defaultBase64, $userPhotoObj->profilepic) === true) {
+        if(empty($userPhotoObj) || strpos($userPhotoObj->profilepic, $defaultBase64) == true) {
 	        return $this->render($userpicture);
         }
 

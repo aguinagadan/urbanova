@@ -63,8 +63,6 @@ function saveUserPhotoLocal($base64Photo, $username) {
 }
 
 function createUsers($usersAD) {
-	var_dump(count($usersAD));
-	exit;
 	global $DB;
 	if(!empty($usersAD)) {
 		foreach($usersAD as $key=>$userAD) {

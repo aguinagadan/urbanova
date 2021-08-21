@@ -212,6 +212,11 @@ class user_picture implements renderable {
      */
     public $includetoken = false;
 
+	/**
+	 * @var mixed Custom src
+	 */
+	public $src = '';
+
     /**
      * User picture constructor.
      *

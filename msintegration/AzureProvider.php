@@ -90,7 +90,7 @@ class AzureProvider {
 
 	private function getADUsersRaw($key, $skipToken) {
 		if($key>0) {
-			$skipToken = '&?$skiptoken='.$skipToken;
+			$skipToken = '&$skiptoken='.$skipToken;
 		}
 
 		$accessToken = $this->getToken($this->constants::SCOPE, $this->constants::GRANT_TYPE_CLIENT_CREDENTIALS)->access_token;
@@ -133,9 +133,6 @@ class AzureProvider {
 			$skipToken = substr($allUsers[$key]['@odata.nextLink'], strpos($allUsers[$key]['@odata.nextLink'], $needle) + strlen($needle));
 			$key++;
 		}
-
-		var_dump(count($allUsers));
-		exit;
 
 		foreach($allUsers as $allUser) {
 			foreach($allUser['value'] as $key=>$val) {

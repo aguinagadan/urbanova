@@ -501,7 +501,11 @@ function matricular($detail) {
 		list($insqlRoles, $paramsRoles) = $DB->get_in_or_equal($rolesToEnroll);
 		$sqlRoles = "select userid from mdl_role_assignments WHERE roleid $insqlRoles";
 		$users = $DB->get_records_sql($sqlRoles, $paramsRoles);
+		$users = array_keys($users);
 
+		list($insqlUser, $paramsUser) = $DB->get_in_or_equal($users);
+		$sqlUser = "select * from mdl_user WHERE id $insqlUser";
+		$users = $DB->get_records_sql($sqlUser, $paramsUser);
 		var_dump($users);
 		exit;
 

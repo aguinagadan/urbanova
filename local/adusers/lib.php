@@ -84,7 +84,7 @@ function createUsers($usersAD) {
 				$userObj->mnethostid = 1;
 				$userObj->id = $DB->insert_record('user', $userObj);
 
-				$matriculas = $DB->get_records_sql("SELECT * FROM {urbanova_matricula} WHERE (department = ? OR department = 'all') and isnew = 1 and isdeleted = 0", array($userObj->department));
+				$matriculas = $DB->get_records_sql("SELECT * FROM {urbanova_matricula} WHERE (department = ? OR department = 'all') and isnew = 1 and deleted = 0", array($userObj->department));
 
 				if(!empty($matriculas)) {
 					foreach ($matriculas as $matricula) {

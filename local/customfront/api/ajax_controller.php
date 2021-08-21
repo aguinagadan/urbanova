@@ -470,12 +470,6 @@ function matricular($detail) {
 		$sql = "select * from mdl_user where deleted = 0 AND institution = 'azure'";
 		$users = $DB->get_records_sql($sql);
 
-		//descomentar - samuel
-		echo 'test all';
-		echo '<pre>';
-		var_dump($users);
-		exit;
-
 		foreach($users as $user) {
 			check_enrol($idCurso, $user->id, 5); //roleid = 5 (student)
 		}
@@ -485,6 +479,7 @@ function matricular($detail) {
 		$matricula->courseid = $idCurso;
 		$matricula->isnew =  $detail['newUsers'] == 'true' ? 1 : 0;
 		$matricula->userid = $USER->id;
+		$matricula->deleted = 0;
 		$matricula->createddate = date("Y-m-d H:i:s");
 
 		$DB->insert_record('urbanova_matricula', $matricula);
@@ -499,6 +494,9 @@ function matricular($detail) {
 			}
 			$rolesToEnroll[] = intval($departamento);
 		}
+
+		var_dump($rolesToEnroll);
+		exit;
 
 
 		//usando la lista de roles (ejem: 9,10)...
@@ -521,6 +519,7 @@ function matricular($detail) {
 			$matricula->courseid = $idCurso;
 			$matricula->isnew =  $detail['newUsers'] == 'true' ? 1 : 0;
 			$matricula->userid = $USER->id;
+			$matricula->deleted = 0;
 			$matricula->createddate = date("Y-m-d H:i:s");
 
 			$DB->insert_record('urbanova_matricula', $matricula);

@@ -134,9 +134,6 @@ class AzureProvider {
 			$key++;
 		}
 
-		var_dump($allUsers);
-		exit;
-
 		foreach($allUsers as $allUser) {
 			foreach($allUser['value'] as $key=>$val) {
 				$val['mail'] = strtolower($val['mail']);

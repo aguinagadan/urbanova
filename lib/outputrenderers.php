@@ -2502,6 +2502,10 @@ class core_renderer extends renderer_base {
     public function user_picture(stdClass $user, array $options = null) {
     	global $DB, $USER;
 
+    	$defalultBase64 = 'eyJlcnJvciI6eyJjb2RlIjoiRXJyb3JJdGVtTm90Rm91bmQiLCJtZXNzYWdlIjoiVGhlIHBob3RvIHdhc24ndCBmb3VuZC4iLCJpbm5lck
+    	Vycm9yIjp7ImRhdGUiOiIyMDIxLTA4LTIxVDA0OjM1OjMxIiwicmVxdWVzdC1pZCI6IjYzYz
+    	QwMWY2LTU5YzYtNDljYS1hMTA1LTMzMTM3NTBmM2VkZiIsImNsaWVudC1yZXF1ZXN0LWlkIjoiNjNjNDAxZjYtNTljNi00OWNhLWExMDUtMzMxMzc1MGYzZWRmIn19fQ==';
+
         $userpicture = new user_picture($user);
         foreach ((array)$options as $key=>$value) {
             if (property_exists($userpicture, $key)) {
@@ -2511,7 +2515,7 @@ class core_renderer extends renderer_base {
 
 	    $userPhotoObj = $DB->get_record_sql("SELECT * FROM {urbanova_user_photos} WHERE username = ?", array($user->username));
 
-        if(!empty($userPhotoObj)) {
+        if(!empty($userPhotoObj) || $userPhotoObj->profilepic != $defalultBase64) {
 	        return '<img src="data:image/png;base64, ' . $userPhotoObj->profilepic . ' " class="userpicture" width="100" height="100">';
         } else {
 	        return $this->render($userpicture);

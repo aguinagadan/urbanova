@@ -2502,7 +2502,7 @@ class core_renderer extends renderer_base {
     public function user_picture(stdClass $user, array $options = null) {
     	global $DB, $USER;
 
-    	$defalultBase64 = 'eyJlcnJvciI6';
+	    $defaultBase64 = 'eyJlcnJvciI6';
 
         $userpicture = new user_picture($user);
         foreach ((array)$options as $key=>$value) {
@@ -2513,7 +2513,7 @@ class core_renderer extends renderer_base {
 
 	    $userPhotoObj = $DB->get_record_sql("SELECT * FROM {urbanova_user_photos} WHERE username = ?", array($user->username));
 
-        if(empty($userPhotoObj) || strpos($defalultBase64, $userPhotoObj->profilepic) === true) {
+        if(empty($userPhotoObj) || strpos($defaultBase64, $userPhotoObj->profilepic) === true) {
 	        return $this->render($userpicture);
         }
 

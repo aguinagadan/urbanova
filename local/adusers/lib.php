@@ -54,10 +54,11 @@ function saveUserPhotoLocal($base64Photo, $username) {
 	$userPhotoObj->profilepic = $base64Photo;
 
 	if(empty($user) || !$user) {
-		$userPhotoObj->id = $DB->insert_record('user', $userPhotoObj);
+		$userPhotoObj->username = $username;
+		$userPhotoObj->id = $DB->insert_record('urbanova_user_photos', $userPhotoObj);
 	} else {
 		$userPhotoObj->id = $user->id;
-		$DB->update_record('user', $userPhotoObj);
+		$DB->update_record('urbanova_user_photos', $userPhotoObj);
 	}
 }
 
@@ -85,8 +86,10 @@ function createUsers($usersAD) {
 
 				$matriculas = $DB->get_records_sql("SELECT * FROM {urbanova_matricula} WHERE (department = ? OR department = 'all') and isnew = 1 and isdeleted = 0", array($userObj->department));
 
-				foreach ($matriculas as $matricula) {
-					check_enrol($matricula->courseid, $userObj->id, 5);
+				if(!empty($matriculas)) {
+					foreach ($matriculas as $matricula) {
+						check_enrol($matricula->courseid, $userObj->id, 5);
+					}
 				}
 
 			} else {

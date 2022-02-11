@@ -1,0 +1,128 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    Edwiser RemUI
+    @package   theme_remui
+    @copyright (c) 2020 WisdmLabs (https://wisdmlabs.com/)
+    @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
+}}
+{{!
+    @template theme_remui/activity_navigation
+
+    Display the activity navigation for all activities in a course
+
+    Context variables required for this template:
+
+    Example context (json):
+    {
+    }
+}}
+<div id="wdm-edwiserreports" class="row m-0 d-none" data-editing="{{ editing }}">
+    {{# blocks }}
+        <div class="{{{extraclasses}}} mb-5 edwiserReport-block {{# hiddenblock }} block-hidden {{/ hiddenblock}}">
+            <div id="{{id}}" data-sesskey="{{sesskey}}" data-blockname="{{name}}">
+                <div class="panel m-0">
+                    <div class="panel-header d-flex">
+                        <div class="panel-title px-0 col-10">
+                            <strong class="mb-1">
+                                {{{name}}}
+                                <a href="javascript:void(0)" data-title="{{info}}" class="small" data-toggle="tooltip" data-trigger="hover" data-placement="bottom">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                            </strong>
+
+                            <div class="block-filters">{{{ filters }}}</div>
+                        </div>
+                        {{# editopt }}
+                        <div class="col-2 p-0">
+                            {{> local_edwiserreports/blocksettingdropdown }}
+                        </div>
+                        {{/ editopt }}
+                    </div>
+                    <div class="panel-body p-0">
+                        {{{ blockview }}}
+                        <div class="loader w-full text-center">
+                            {{# pix }} loader, local_edwiserreports{{/ pix }}
+                        </div>
+                        {{#iscustomblock}}
+                            <table class="table customreportdata w-full"></table>
+                        {{/iscustomblock}}
+                    </div>
+                    <div class="panel-footer row m-0">
+                        {{# morelink }}
+                            <div class="">
+                                <a href="{{{.}}}" class="btn btn-primary btn-sm">{{#str}} more, local_edwiserreports {{/str}}</a>
+                            </div>
+                        {{/ morelink }}
+                        {{# hasdownloadlink }}
+                            {{> local_edwiserreports/exportreports }}
+                        {{/ hasdownloadlink }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#iscustomblock}}
+            {{#js}}
+                require([
+                    'jquery',
+                    'core/ajax',
+                    'local_edwiserreports/customreportsblock'
+                ], function(
+                    $,
+                    ajax,
+                    customreportsblock
+                ) {
+                    var tableId = '#{{{id}}} table.customreportdata'
+
+                    $(document).ready(function() {
+                        var getCustomReportsData = ajax.call([{
+                            methodname: 'local_edwiserreports_get_customreports_data',
+                            args: {
+                                params: JSON.stringify({{{params}}})
+                            }
+                        }]);
+
+                        getCustomReportsData[0].done(function(response) {
+                            if (response.success) {
+                                var data = JSON.parse(response.data);
+                                $(tableId).DataTable({
+                                    columns: data.columns,
+                                    data: data.reportsdata,
+                                    bInfo: false,
+                                    lengthChange: false,
+                                    language: { 
+                                        searchPlaceholder: "{{#str}}searchreports, local_edwiserreports{{/str}}",
+                                        emptyTable: "{{#str}}noresult, local_edwiserreports{{/str}}"
+                                    },
+                                    drawCallback: function() {
+                                        $('.dataTables_paginate > .pagination').addClass('pagination-sm pull-right');
+                                        $('.dataTables_filter').addClass('pagination-sm pull-right');
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+            {{/js}}
+        {{/iscustomblock}}
+    {{/ blocks }}
+    {{# canmanagecustomreports }}
+        <div class="col-12">
+            <a href="{{customreportseditlink}}" class="btn btn-primary pull-right">
+                <i class="icon fa fa-plus fa-fw " aria-hidden="true"></i>
+                {{#str}} createcustomreports, local_edwiserreports {{/str}}
+            </a>
+        </div>
+    {{/ canmanagecustomreports }}
+</div>

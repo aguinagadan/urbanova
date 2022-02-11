@@ -1,0 +1,134 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    Edwiser RemUI
+    @package   theme_remui
+    @copyright (c) 2020 WisdmLabs (https://wisdmlabs.com/)
+    @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
+}}
+{{!
+    @template theme_remui/activity_navigation
+
+    Display the activity navigation for all activities in a course
+
+    Context variables required for this template:
+
+    Example context (json):
+    {
+    }
+}}
+<table id="accessinfotable" class="table mb-1 d-none">
+    <tbody class="small">
+        {{#siteaccess}}
+        {{#.}}
+        <tr class="siteaccess-tablerow">
+                {{#access}}
+                    <td class="bg-secondary small font-weight-700 border border-white p-0"
+                    data-toggle="tooltip"
+                    title="{{#str}} siteaccessinfo , local_edwiserreports, {{/str}} {{value}}"
+                    style="background-color: rgba(52,137,223,{{opacity}}) !important;">
+                        <p class="m-0 d-none">{{value}}</p>
+                    </td>
+                {{/access}}
+                {{#time}}
+                <td class="empty-label siteacess-time bg-white small font-weight-700 border border-white py-0">{{.}}</td>
+                {{/time}}
+        </tr>
+        {{/.}}
+        {{/siteaccess}}
+
+        <tr class="text-center">
+            <td class="empty-label small font-weight-700 border-0">
+                <p class="m-0">
+                {{#str}} sun, local_edwiserreports {{/str}}
+            </p>
+            </td>
+            <td class="empty-label small font-weight-700 border-0">
+                <p class="m-0">
+                {{#str}} mon, local_edwiserreports {{/str}}
+            </p>
+            </td>
+            <td class="empty-label small font-weight-700 border-0">
+                <p class="m-0">
+                {{#str}} tue, local_edwiserreports {{/str}}
+            </p>
+            </td>
+            <td class="empty-label small font-weight-700 border-0">
+                <p class="m-0">
+                {{#str}} wed, local_edwiserreports {{/str}}
+            </p>
+            </td>
+            <td class="empty-label small font-weight-700 border-0">
+                <p class="m-0">
+                {{#str}} thu, local_edwiserreports {{/str}}
+            </p>
+            </td>
+            <td class="empty-label small font-weight-700 border-0">
+                <p class="m-0">
+                {{#str}} fri, local_edwiserreports {{/str}}
+            </p>
+            </td>
+            <td class="empty-label small font-weight-700 border-0">
+                <p class="m-0">
+                {{#str}} sat, local_edwiserreports {{/str}}
+            </p>
+            </td>
+            <td class="empty-label border-0"></td>
+        </tr>
+    </tbody>
+</table>
+<div class="px-1">
+    <table id="accessinfodesctable" class="table small font-weight-700 mb-1" style="display: none;">
+        <tbody>
+            <tr>
+                <td class="color-label-20 bg-secondary small font-weight-700 border border-white p-0">
+                    <p class="invisible m-0">0</p>
+                </td>
+                <td class="color-label-40 bg-secondary small font-weight-700 border border-white p-0">
+                    <p class="invisible m-0">0</p>
+                </td>
+                <td class="color-label-60 bg-secondary small font-weight-700 border border-white p-0">
+                    <p class="invisible m-0">0</p>
+                </td>
+                <td class="color-label-80 bg-secondary small font-weight-700 border border-white p-0">
+                    <p class="invisible m-0">0</p>
+                </td>
+                <td class="color-label-100 bg-secondary small font-weight-700 border border-white p-0">
+                    <p class="invisible m-0">0</p>
+                </td>
+                <td class="color-label empty-label border-0 p-0" style="width: 0.1px;"></td>
+            </tr>
+            <tr>
+                <td class="empty-label border-0 m-0 p-0">
+                    <p class="position-relative">0%</p>
+                </td>
+                <td class="empty-label border-0 m-0 p-0">
+                    <p class="position-relative">20%</p>
+                </td>
+                <td class="empty-label border-0 m-0 p-0">
+                    <p class="position-relative">40%</p>
+                </td>
+                <td class="empty-label border-0 m-0 p-0">
+                    <p class="position-relative">60%</p>
+                </td>
+                <td class="empty-label border-0 m-0 p-0">
+                    <p class="position-relative">80%</p>
+                </td>
+                <td class="empty-label border-0 m-0 p-0">
+                    <p class="position-relative">100%</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

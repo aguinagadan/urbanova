@@ -1,0 +1,38 @@
+V 1.1.1
+====================================================
+Fixed moodle standard and listing issues
+
+v 1.1.0
+====================================================
+Features
+- Added custom reports editing page.
+- Preview custom query reports
+
+Tweak
+- Improved Active Users graph and table data calculation
+- Improved security of data export and more details page.
+- Improved cappability and security system.
+
+Fixes
+- Active users and Course Progress filter ui issue
+- Active users data export issue.
+- Custom report creation issue with Moodle 3.10
+- Cohort filter issue with custom report - It was showing only 20 cohorts
+
+v 1.0.1
+====================================================
+
+Feature - Added support for Oracle, MsSQL and PostgreSQL databases.
+Feature - Compatibility with Moodle 3.10+.
+Tweak - Code Optimization.
+Tweak - Converted CSS to SCSS.
+Tweak - Added function prefix in global context lib.php.
+Tweak - Removed unused functions from the converted.
+Tweak - Removed the edit advance select option in capability.
+Fix - Fixed the redirection issue for non logged in users at homepage.
+Fix - Fixed report blocks access permission related issues.
+
+v 1.0.0
+====================================================
+
+- Initial version

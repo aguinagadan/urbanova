@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inducción.</title>
+    <link rel="stylesheet" href="https://media.daktico.com/game/css/style.css">
+    <link rel="stylesheet" href="https://media.daktico.com/game/marcobre/induccion/base.css">
+    <link rel="stylesheet" href="https://media.daktico.com/game/marcobre/induccion/custom.css">
+    <link rel="stylesheet" href="https://media.daktico.com/player/reproductor.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="login" v-if="view.login">
+        <div class="content">
+          <div class="info">                               
+            <div class="text">
+              <input type="text" placeholder="Usuario de plataforma educativa" v-model="user.us_user">
+              <input type="text" placeholder="Nombres" v-model="user.us_name">
+            </div>
+            <div class="button">
+              <div class="btn-game" @click="btn_login()"><span>INGRESAR</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="window-1" v-if="view.ini">
+        <div class="header">
+          <div class="user"><span>{{user.us_name}}</span></div>
+          <div class="point">
+            <div class="icon"></div><span>{{user.us_point}}</span>
+          </div>
+          <div class="badge" @click="viewBadge();">
+            <div class="icon"></div><span>{{user.us_badge}}</span>
+          </div>
+          <div class="trophy" @click="viewTrophy();">
+            <div class="icon"></div><span>{{user.us_trophy}}</span>
+          </div>
+          <div class="config"></div>
+        </div>
+        <div class="content">
+          <div class="info">
+            <div class="game-progress">
+              <div class="bar-container">
+                <div class="bar" :style="'width: '+user.porcent+'%;'">
+                  <div class="bar-efect"></div>
+                  <div class="bar-mov"></div>
+                  <div class="icon"></div>
+                  <div class="porcent">{{user.porcent}}%</div>
+                </div>
+              </div>
+            </div>
+            <div class="text">{{game.course}}</div>
+            <div class="button" @click="btn_starGame();">
+              <button class="btn-game"><span v-if="!user.ini">COMENZAR</span><span v-if="user.ini">CONTINUAR</span></button>
+            </div>
+          </div>
+          <div class="theme">
+            <div class="icon"></div>
+            <div class="title tooltip blue w2 x2">{{game.course}}</div>
+          </div>
+        </div>
+        <div class="btn-arrow" @click="btn_starGame();"></div>
+      </div>
+      <div class="mapa" v-if="view.map">
+        <div class="header">
+          <div class="user"><span>{{user.us_name}}</span></div>
+          <div class="point">
+            <div class="icon"></div><span>{{user.us_point}}</span>
+          </div>
+          <div class="badge" @click="viewBadge();">
+            <div class="icon"></div><span>{{user.us_point}}</span>
+          </div>
+          <div class="trophy" @click="viewTrophy();">
+            <div class="icon"></div><span>{{user.us_trophy}}</span>
+          </div>
+          <div class="config"></div>
+        </div>
+        <div class="marco">
+          <div class="map" v-if="movil" style="height: 1080px">
+            <div class="start"></div>
+            <div class="game-progress">
+              <div class="bar-container">
+                <div class="bar" :style="'width: '+general.mapProgres+'px;'">
+                  <div class="bar-efect"></div>
+                </div>
+              </div>
+              <div class="time-line">
+                <div class="item" v-for="(item, index) in game.levels" v-bind:class="{ ini: item.type == 'ini', quest: item.type == 'quiz', video: item.type == 'video' || item.type == 'quizvideo', level: index &gt; 1 &amp;&amp; item.type == 'ini', complete: index &lt; user.actual, active: index == user.actual, disabled: index &gt; user.actual}" @click="showActivity(item, index)">
+                  <div class="level-info" v-if="item.type == 'ini'"></div>
+                  <div class="text" v-if="item.type == 'ini'">{{item.name}}</div>
+                  <div class="point" v-if="(item.type == 'video' || item.type == 'quiz' || item.type == 'quizvideo') &amp;&amp; index &gt; user.actual">{{item.point}}</div>
+                  <div class="point" v-if="(item.type == 'video' || item.type == 'quiz' || item.type == 'quizvideo') &amp;&amp; index &lt;= user.actual"></div>
+                  <div class="icon-game" v-if="index == user.actual"></div>
+                  <div class="title tooltip x2" v-bind:class="{red: index &lt; user.actual, grey: index &gt; user.actual}" v-if="item.type != 'ini' &amp;&amp; index != user.actual">{{item.title}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="map" v-if="!movil" :style="'width: '+general.map+'px;'">
+            <div class="start"></div>
+            <div class="game-progress">
+              <div class="bar-container">
+                <div class="bar" :style="'width: '+general.mapProgres+'px;'">
+                  <div class="bar-efect"></div>
+                </div>
+              </div>
+              <div class="time-line">
+                <div class="item" v-for="(item, index) in game.levels" v-bind:class="{ ini: item.type == 'ini', quest: item.type == 'quiz', video: item.type == 'video' || item.type == 'quizvideo', level: index &gt; 1 &amp;&amp; item.type == 'ini', complete: index &lt; user.us_idActivity + 1, active: index == user.us_idActivity + 1, disabled: index &gt; user.us_idActivity + 1}" @click="btn_showActivity(item, index)">
+                  <div class="level-info" v-if="item.type == 'ini'"></div>
+                  <div class="text" v-if="item.type == 'ini'">{{item.name}}</div>
+                  <div class="point" v-if="(item.type == 'video' || item.type == 'quiz' || item.type == 'quizvideo') &amp;&amp; index &gt; user.us_idActivity + 1">{{item.point}}</div>
+                  <div class="point" v-if="(item.type == 'video' || item.type == 'quiz' || item.type == 'quizvideo') &amp;&amp; index &lt;= user.us_idActivity + 1"></div>
+                  <div class="icon-game" v-if="index == user.us_idActivity + 1"></div>
+                  <div class="title tooltip x2" v-bind:class="{red: index &lt; user.us_idActivity + 1, grey: index &gt; user.us_idActivity}" v-if="item.type != 'ini' &amp;&amp; index != user.us_idActivity + 1">{{item.title}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="end"></div>
+          </div>
+        </div>
+      </div>
+      <div class="load" v-if="view.load">
+        <div class="text"></div>
+        <div class="icon">
+          <div class="level-info"></div>
+        </div>
+      </div>
+      <div class="insignea" v-if="view.insignea" @click="loadMedalla()">
+        <div class="title">Ganaste la insignia</div>
+        <div class="insignea" style="'background: url('+general.insignea.url+');'"> </div>
+        <div class="name"></div>
+        <div class="text">{{general.insignea.text}}</div>
+      </div>
+      <div class="video" v-if="view.video">
+        <video class="video-js" id="example_video_1" preload="true" width="100%" height="auto" poster="" :key="general.activity.source" autoplay>
+          <source :src="general.activity.source" type="video/mp4">
+          <p>Su navegador no soporta video.</p>
+        </video>
+        <div class="repro" v-html="repro"></div>
+      </div>
+      <div class="quiz" v-if="view.quiz">
+        <div class="progress">
+          <div class="active" :style="'width: '+general.porcent+'%;'"></div>
+          <div class="time">
+            <div class="icon"></div>
+            <div class="time" v-if="general.time &lt; 10">0{{general.timeActivity}}</div>
+            <div class="time" v-if="general.time &gt; 9">{{general.timeActivity}}</div>
+          </div>
+        </div>
+        <div class="bg">
+          <div class="content">
+            <div class="title">
+              <div class="icon"></div>
+              <div class="text">{{general.activity.name}}</div>
+            </div>
+            <div class="container">
+              <div class="item" v-for="(item, key) in general.activity.alternatives" @click="selectAlternative(item.al_id)">
+                <div class="option">{{key + 1}}</div>
+                <div class="text">{{item.al_text}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feedback-positive" v-if="view.feedbackPositive">
+        <div class="fb-title"></div>
+        <div class="content">
+          <div class="image"></div>
+          <div class="info">
+            <div class="point">
+              <div class="title">Puntos</div>
+              <div class="icon"></div>
+              <div class="value"><span>{{user.us_point}}</span><span> + {{temp.point.obtenido}}</span></div>
+            </div>
+            <div class="bonification">
+              <div class="title">Bonificación por velocidad</div>
+              <div class="icon"></div>
+              <div class="value"><span>{{user.us_point + temp.point.obtenido}}</span><span> + {{temp.point.bonification}}</span></div>
+            </div>
+            <div class="ranking2">
+              <div class="title">Nuevo puesto en ranking</div>
+              <div class="icon"></div>
+              <div class="value"><span>{{user.ranking}}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer2">
+          <div class="btn-game2" @click="f_viewMap2()">
+            <div class="triangle-left"></div>
+            <div class="text">Regresar al mapa</div>
+          </div>
+          <div class="btn-game2" @click="f_w_nextAtivity()">
+            <div class="text">Siguiente actividad</div>
+            <div class="triangle-rigth"></div>
+          </div>
+        </div>
+      </div>
+      <div class="feedback-negative2" v-if="view.feedbackNegative2">
+        <div class="fb-title"></div>
+        <div class="content">
+          <div class="image"></div>
+          <div class="info">
+            <div class="point">
+              <div class="title">Puntos</div>
+              <div class="icon"></div>
+              <div class="value"><span>{{user.us_point}}</span><span> + 0</span></div>
+            </div>
+            <div class="bonification">
+              <div class="title">Bonificación por velocidad</div>
+              <div class="icon"></div>
+              <div class="value"><span>{{user.us_badge}}</span><span> + 0</span></div>
+            </div>
+            <div class="ranking2">
+              <div class="title">Nuevo puesto en ranking</div>
+              <div class="icon"></div>
+              <div class="value"><span>{{user.ranking}}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer2">
+          <div class="btn-game2" @click="f_viewMap()">
+            <div class="triangle-left"></div>
+            <div class="text">Regresar al mapa</div>
+          </div>
+          <div class="btn-game2" @click="f_w_nextAtivity()">
+            <div class="text">Siguiente actividad</div>
+            <div class="triangle-rigth"></div>
+          </div>
+        </div>
+      </div>
+      <div class="feedback-negative" v-if="view.feedbackNegative" @click="viewMap()">
+        <div class="content">
+          <div class="title">
+            <div class="title">No alcanzaste el puntaje mínimo</div>
+            <div class="point">Lograste {{user.point}} puntos</div>
+          </div>
+          <div class="image"></div>
+        </div>
+      </div>
+      <div class="logros" v-if="view.logros">
+        <div class="title">Logros </div>
+        <div class="content">
+          <div class="item" v-for="(item, key) in badge">
+            <div class="content">
+              <div class="icon">
+                <div class="image" style="background: url('./img/logro-01.png')"></div>
+              </div>
+              <div class="badge"></div>
+              <div class="date"> 
+                <div class="calendar">
+                  <div class="icon"></div>
+                  <div class="text">Superando el 23 de febreo de 2021 a las 13:05</div>
+                </div>
+                <div class="clock">
+                  <div class="icon"></div>
+                  <div class="text">Tiempo {{parseInt(general.timers.general/60)}} minutos</div>
+                </div>
+              </div>
+              <div class="info">
+                <div class="item">
+                  <div class="icon"> </div>
+                  <div class="text">Invencible</div>
+                </div>
+                <div class="item">
+                  <div class="icon"> </div>
+                  <div class="text">Imparable</div>
+                </div>
+                <div class="item">
+                  <div class="icon"> </div>
+                  <div class="text">Temple</div>
+                </div>
+                <div class="item">
+                  <div class="icon"> </div>
+                  <div class="text">Resilente </div>
+                </div>
+                <div class="item">
+                  <div class="icon"> </div>
+                  <div class="text">Intelectual </div>
+                </div>
+                <div class="item">
+                  <div class="icon"> </div>
+                  <div class="text">Inspector</div>
+                </div>
+              </div>
+            </div>
+            <div class="title">Nombre de la estación </div>
+          </div>
+        </div>
+      </div>
+      <div class="ranking" v-if="view.ranking">
+        <div class="title">
+          <div class="icon"></div>
+          <div class="text">Ranking</div>
+        </div>
+        <div class="content">
+          <div class="list">
+            <div class="item" v-for="(item, key) in ranking" v-bind:class="{active: key == 0}">
+              <div class="icon"></div>
+              <div class="user">{{key+1}}.  Juan Perales Robles</div>
+              <div class="point">
+                <div class="icon"></div>
+                <div class="text">25, 000</div>
+              </div>
+              <div class="insigneas">
+                <div class="icon"></div>
+                <div class="text">18</div>
+              </div>
+              <div class="end">
+                <div class="date">Finalizado el 12/04/2021</div>
+                <div class="time">Duración: 120 minutos</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="end" v-if="view.end">
+        <div class="card">
+          <div class="content">
+            <div class="left">
+              <div class="point">
+                <div class="icon"> </div>
+                <div class="info"> 
+                  <div class="text">Lograste </div>
+                  <div class="point">{{user.us_point}}</div>
+                  <div class="text">puntos</div>
+                </div>
+              </div>
+              <div class="icon"></div>
+            </div>
+            <div class="rigth">
+              <div class="title">{{game.course}}</div>
+              <div class="content"> 
+                <div class="info"> 
+                  <div class="time"> 
+                    <div class="icon"></div>
+                    <div class="text">Duración: </div>
+                    <div class="value">{{parseInt(general.timers.general/60)}}</div>
+                    <div class="text">minutos</div>
+                  </div>
+                  <div class="calification">
+                    <div class="icon"></div>
+                    <div class="text">Calificación </div>
+                    <div class="value">{{general.calif.nota}}</div>
+                  </div>
+                </div>
+                <div class="badge">
+                  <div class="title"> 
+                    <div class="icon"> </div>
+                    <div class="text">
+                      <div class="tt">Insignias </div>
+                      <div class="value">{{general.insignea.cant}}</div>
+                    </div>
+                  </div>
+                  <div class="content">
+                    <div class="item">
+                      <div class="icon"> </div>
+                      <div class="value">{{00}}</div>
+                    </div>
+                    <div class="item">
+                      <div class="icon"> </div>
+                      <div class="value">{{00}}</div>
+                    </div>
+                    <div class="item">
+                      <div class="icon"> </div>
+                      <div class="value">{{00}}</div>
+                    </div>
+                    <div class="item">
+                      <div class="icon"> </div>
+                      <div class="value">{{00}}</div>
+                    </div>
+                    <div class="item">
+                      <div class="icon"> </div>
+                      <div class="value">{{00}}</div>
+                    </div>
+                    <div class="item">
+                      <div class="icon"> </div>
+                      <div class="value">{{00}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="action" v-if="general.calif.status">
+            <div class="btn-game tipe2" @click="btn_exit()" href="game.html"><span>SALIR</span></div>
+            <h3>¡Vamos por más!</h3>
+            <p>Puedes cerrar la ventana y/o continuar con las actividades del curso </p>
+          </div>
+          <div class="action" v-if="!general.calif.status">
+            <div class="btn-game tipe2" @click="btn_repit()" href="game.html"><span>REPETIR</span></div>
+            <h3>¡Vamos por más!</h3>
+            <p>Debes repetir el curso</p>
+          </div>
+        </div>
+        <div class="buttons"></div>
+      </div>
+      <div class="salir" v-if="view.map == true" @click="viewIni()"></div>
+    </div>
+    <script src="https://media.daktico.com/player/repro.js"></script>
+    <script src="https://media.daktico.com/game/js/libs//vue.js"></script>
+    <script src="https://media.daktico.com/game/js/libs//SCORM_API_wrapper.js"></script>
+    <script src="https://media.daktico.com/game/marcobre/induccion/js/config.js"></script>
+    <script src="https://media.daktico.com/game/js/main.js"></script>
+  </body>
+</html>

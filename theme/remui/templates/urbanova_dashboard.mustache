@@ -75,7 +75,7 @@
         </div>
         <div v-for="item in searchCurse" class="section4-item u-flex-between u-responsive">
             <div class="section4-itemd-img">
-                <img :src="item.image" />
+                <a :href="item.link" class=""><img :src="item.image" /></a>
                 <div class="team-cards-desc-star u-flex-around">
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="section4-itemd-desc u-flex-between u-flex-column" >
-                <div class="section4-itemd-desc-title" >{(item.title)}</div>
+                <div class="section4-itemd-desc-title" > <a :href="item.link" class="">{(item.title)}</a></div>
                 <div class="section4-itemd-desc-gra">
                     <div class="section4-itemd-desc-gra-red" :style="'width:'+item.progress+'%'"></div>
                     <div class="section4-itemd-desc-gra-percent u-flex-around" :style="'left:'+item.progress+'%'">{(item.progress)}%</div>

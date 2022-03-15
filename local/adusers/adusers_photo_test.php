@@ -34,7 +34,7 @@ function execCurlPhoto($data) {
 	$response = curl_exec($curl);
 
 	if (curl_errno($curl)) {
-		print curl_error($curl);
+		//print curl_error($curl);
 	}
 
 	curl_close($curl);

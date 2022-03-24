@@ -90,5 +90,5 @@ function getUsersPhoto() {
 }
 
 $photo = getUsersPhoto();
-var_dump('<img src="data:image/png;base64, ' . getUsersPhoto() . ' " />');
+//var_dump('<img src="data:image/png;base64, ' . getUsersPhoto() . ' " />');
 exit;
